@@ -42,7 +42,7 @@ function CarsList() {
         <SearchBar data={ChopCars} addTodo={addTodo} counter={counter} />
       </div>
       <div>
-      {todos.filter(car => car.location == 'port').length > 0 && <h3> Port ChopShop</h3>}
+      {todos.filter(car => car.location == 'port').length > 0 && <h3> Port Chop Shop</h3>}
         <div style={{display: "flex"}}>
         {todos.filter(car => car.location == 'port').map((value, index) => (
           <div key={index + value.location}>
@@ -54,7 +54,7 @@ function CarsList() {
         ))}</div>
       </div>
       <div>
-      {todos.filter(car => car.location == 'sandy').length > 0 && <h3> Sandy Shores ChopShop</h3> }
+      {todos.filter(car => car.location == 'sandy').length > 0 && <h3> Sandy Shores Chop Shop</h3> }
         <div style={{display: "flex"}}>
       {todos.filter(car => car.location == 'sandy').map((value, index) => (
           <div key={index + value.location}>
