@@ -16,6 +16,7 @@ function SearchBar({ data, addTodo, counter}) {
 
   const handleModalClose = () => {
     setShowModal(false);
+    setQuery('')
   };
 
   const handleSuggestionClick = (e) => {
@@ -39,9 +40,9 @@ function SearchBar({ data, addTodo, counter}) {
             >
               {filteredData.map((item) => (
                 <div key={item.name}>
-                  <h3 onClick={handleSuggestionClick}>
+                  <p style={{margin:5, marginTop:30, color: 'white'}} onClick={handleSuggestionClick}>
                     {item.name}
-                  </h3>
+                  </p>
                   <button
                     onClick={() => {
                       handleModalClose();
