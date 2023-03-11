@@ -217,6 +217,7 @@ export default function AddHand({
         <div style={{ display: "flex", justifyContent: "center" }}>
           {/* <h3 style={{ margin: 4 }}> EDITOR </h3> */}
           <CustomButton
+            bgcolor="rgba(120, 120, 50)"
             buttonHandler={() => {
               let t = new Date();
               let z = t.getTimezoneOffset() * 60 * 1000;
@@ -238,8 +239,7 @@ export default function AddHand({
               });
             }}
           >
-            {" "}
-            New Session{" "}
+            New Session
           </CustomButton>
           <CustomButton buttonHandler={() => removeHand()}>
             {" "}
