@@ -157,8 +157,21 @@ export default function AddHand({
 
   function outHandler(outcome) {
     console.log("Outcome", outcome);
-    let outBal = currentHand["outBal"];
-    let pm = currentHand["pm"];
+
+    let outBal;
+    let pm;
+
+    if (currentHand["outBal"]){
+      outBal = currentHand["outBal"]
+    } else {
+      outBal = handsData.at(-1).hands.at(-1).outBal
+    }
+    if( currentHand["pm"]){
+      pm = currentHand["pm"];
+    } else {
+      pm = handsData.at(-1).hands.at(-1).betPM
+    }
+      
 
     if (two.includes(outcome)) {
       pm += 2;
