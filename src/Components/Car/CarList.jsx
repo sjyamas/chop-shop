@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
+
+// import { Link } from "react-router-dom";
+
 import { ChopCars } from "../../Data/carData";
 import SearchBar from "../Search/Search";
 import Car from "./Car";
+
+import '../../Pages/App.css'
 
 function CarsList() {
   const [todos, setTodos] = useState([]);
@@ -36,7 +41,7 @@ function CarsList() {
 
   console.log("todos", todos);
   return (
-    <div>
+    <div className='App-header' style={{textAlign: 'center'}}>
       <header
         style={{
           position: "fixed",

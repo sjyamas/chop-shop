@@ -18,7 +18,9 @@ export default function Car({ data, index, onClick }) {
         }}
       >
         <div style={{ margin: 10 }}>
-          <a href={data.wiki} target="_blank" style={{color:'white'}}><p style={{margin:5, color: 'white'}}> {data.name} </p></a>
+          <a href={data.wiki} target="_blank" style={{ color: "white" }}>
+            <p style={{ margin: 5, color: "white" }}> {data.name} </p>
+          </a>
           <ImageWithHoverText
             image={data.image}
             alt={altText}
