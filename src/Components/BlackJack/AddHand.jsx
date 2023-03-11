@@ -158,20 +158,31 @@ export default function AddHand({
   function outHandler(outcome) {
     console.log("Outcome", outcome);
 
-    let outBal;
-    let pm;
+    let outBal = 0;
+    let pm = 0;
 
-    if (currentHand["outBal"]){
-      outBal = currentHand["outBal"]
+    if (currentHand["outBal"]) {
+      outBal = currentHand["outBal"];
     } else {
-      outBal = handsData.at(-1).hands.at(-1).outBal
+      if (
+        handsData.at(-1) &&
+        handsData.at(-1).hands &&
+        handsData.at(-1).hands.at(-1)
+      ) {
+        outBal = handsData.at(-1).hands.at(-1).outBal;
+      }
     }
-    if( currentHand["pm"]){
+    if (currentHand["pm"]) {
       pm = currentHand["pm"];
     } else {
-      pm = handsData.at(-1).hands.at(-1).betPM
+      if (
+        handsData.at(-1) &&
+        handsData.at(-1).hands &&
+        handsData.at(-1).hands.at(-1)
+      ) {
+        pm = handsData.at(-1).hands.at(-1).betPM;
+      }
     }
-      
 
     if (two.includes(outcome)) {
       pm += 2;
@@ -240,9 +251,9 @@ export default function AddHand({
             }}
           >
             {" "}
-            Remove Session (must be on ->){" "}
+            Remove Session (must be on →){" "}
           </CustomButton>
-          <Switch handleToggle={() => setUnsafe(!unsafe)}/>
+          <Switch handleToggle={() => setUnsafe(!unsafe)} />
         </div>
         <div
           style={{

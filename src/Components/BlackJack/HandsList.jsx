@@ -177,9 +177,11 @@ export default function HandsList({ data }) {
 
   let profit = 0;
   let rawPM = 0;
+  let gamesPlayed = 0
   if (data.hands.length && data.hands.length > 0) {
     profit = (data.hands.at(-1)['outBal'] - data.startMoney).toLocaleString();
     rawPM = data.hands.at(-1).betPM;
+    gamesPlayed = data.hands.length
   }
 
   let PM = 0;
@@ -211,7 +213,7 @@ export default function HandsList({ data }) {
           start: ${data.startMoney.toLocaleString()} {end} &emsp;
         </h3> */}
         <h2 style={{ margin: 0 }}>
-          Profit: ${profit} &emsp; Plus-Minus: {PM}
+          Profit: ${profit}  &emsp; Games: {gamesPlayed} &emsp; Plus-Minus: {PM}
         </h2>
         <div style={{ marginTop: 10, display: "flex", flexWrap: "wrap" }}>
           {data.hands.map((value, index) => (
