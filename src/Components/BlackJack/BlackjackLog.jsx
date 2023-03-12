@@ -96,7 +96,7 @@ export default function BlackjackLog() {
 
   console.log("BEFORE LIST", handsData);
 
-  const footerHeight = 300;
+  const footerHeight = 350;
 
   return (
     <div
