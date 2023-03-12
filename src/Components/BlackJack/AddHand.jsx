@@ -83,6 +83,13 @@ function Bet({ bet, setBet }) {
       </button>
       <button
         onClick={() => {
+          setBet(500);
+        }}
+      >
+        <h2 style={{ margin: 0 }}> 500 </h2>
+      </button>
+      <button
+        onClick={() => {
           setBet(1000);
         }}
       >
@@ -102,6 +109,13 @@ function Bet({ bet, setBet }) {
       >
         <h2 style={{ margin: 0 }}> 5K </h2>
       </button>
+      {/* <button
+        onClick={() => {
+          setBet(10000);
+        }}
+      >
+        <h2 style={{ margin: 0 }}> 10K </h2>
+      </button> */}
       <button
         onClick={() => {
           setBet(15000);
