@@ -151,7 +151,7 @@ export default function AddHand({
   let two = ["sww", "dw"];
   let oneHalf = ["bw"];
   let one = ["w", "swp"];
-  let zero = ["p", "swl", "spp"];
+  let zero = ["p", "dp", "swl", "spp"];
   let minusOne = ["l", "bl", "slp"];
   let minusTwo = ["dl", "sll"];
 
@@ -351,6 +351,13 @@ export default function AddHand({
                 style={{ width: "100%" }}
               >
                 Push
+              </CustomButton>
+              <CustomButton
+                buttonHandler={() => outHandler("dp")}
+                // bgcolor="rgb(30,30,30)"
+                style={{ width: "100%" }}
+              >
+                Double Down: Push
               </CustomButton>
               <CustomButton
                 buttonHandler={() => outHandler("swl")}

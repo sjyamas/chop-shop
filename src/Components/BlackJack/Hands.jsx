@@ -5,6 +5,7 @@ import win from '../../Assets/bj-svg/win.svg'
 import loss from '../../Assets/bj-svg/loss.svg'
 import bjWin from '../../Assets/bj-svg/bj-win.svg'
 import bjLoss from '../../Assets/bj-svg/bj-loss.svg'
+import ddPush from '../../Assets/bj-svg/dd-push.svg'
 import ddWin from '../../Assets/bj-svg/dd-win.svg'
 import ddLoss from '../../Assets/bj-svg/dd-loss.svg'
 import splitPushPush from '../../Assets/bj-svg/split-push-push.svg'
@@ -81,6 +82,16 @@ export function DdLoss(){
             src={ddLoss}
             style={{height: width, width: height}}
             alt='Double Down Loss'
+        />
+    )
+}
+
+export function DdPush(){
+    return(
+        <img
+            src={ddPush}
+            style={{height: width, width: height}}
+            alt='Double Down Push'
         />
     )
 }
