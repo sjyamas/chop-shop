@@ -871,19 +871,5 @@ export const ChopCars = [
     image: "https://static.wikia.nocookie.net/gtawiki/images/5/5f/Vindicator-GTAV-front.png",
     wiki: "https://gta.fandom.com/wiki/Vindicator#Locations"
   },
-  {
-    name: "Ruffian",
-    image: "https://static.wikia.nocookie.net/gtawiki/images/b/b5/Ruffian-GTAV-front.png",
-    wiki: "https://gta.fandom.com/wiki/Ruffian#Locations"
-  },
-  {
-    name: "Sanchez",
-    image: "https://static.wikia.nocookie.net/gtawiki/images/9/93/Sanchez2-GTAV-front.png",
-    wiki: "https://gta.fandom.com/wiki/Sanchez#Locations"
-  },
-
-
-  
-
 
 ];
