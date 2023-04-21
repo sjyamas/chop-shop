@@ -785,5 +785,105 @@ export const ChopCars = [
     name: "Pounder",
     image: "https://static.wikia.nocookie.net/gtawiki/images/1/1d/Pounder-GTAV-front.png",
     wiki: "https://gta.fandom.com/wiki/Pounder#Locations"
-  }
+  },
+  {
+    name: "Akuma",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/9/9a/Akuma-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Akuma#Locations"
+  },
+  {
+    name: "Bagger",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/1/10/Bagger-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Bagger#Locations"
+  },
+  {
+    name: "Bati 801",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/d/d9/Bati801-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Bati_800#Locations"
+  },
+  {
+    name: "Carbon RS",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/2/2d/CarbonRS-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Carbon_RS#Locations"
+  },
+  {
+    name: "Daemon",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/f/f7/Daemon-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Daemon#Locations"
+  },
+  {
+    name: "Double T",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/8/8c/DoubleT-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Double_T#Locations"
+  },
+  {
+    name: "Faggio",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/9/91/Faggio-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Faggio#Locations"
+  },
+  {
+    name: "Hakuchou",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/a/ab/Hakuchou-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Hakuchou#Locations"
+  },
+  {
+    name: "Hexer",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/6/64/Hexer-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Hexer#Locations"
+  },
+  {
+    name: "Nemesis",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/4/4b/Nemesis-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Nemesis#Locations"
+  },
+  {
+    name: "PCJ-600",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/7/74/PCJ600-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/PCJ_600#Locations"
+  },
+  {
+    name: "Ruffian",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/b/b5/Ruffian-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Ruffian#Locations"
+  },
+  {
+    name: "Sanchez",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/9/93/Sanchez2-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Sanchez#Locations"
+  },
+  {
+    name: "Sovereign",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/9/98/Sovereign-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Sovereign#Locations"
+  },
+  {
+    name: "Thrust",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/4/4e/Thrust-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Thrust#Locations"
+  },
+  {
+    name: "Vader",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/9/9b/Vader-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Vader#Locations"
+  },
+  {
+    name: "Vindicator",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/5/5f/Vindicator-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Vindicator#Locations"
+  },
+  {
+    name: "Ruffian",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/b/b5/Ruffian-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Ruffian#Locations"
+  },
+  {
+    name: "Sanchez",
+    image: "https://static.wikia.nocookie.net/gtawiki/images/9/93/Sanchez2-GTAV-front.png",
+    wiki: "https://gta.fandom.com/wiki/Sanchez#Locations"
+  },
+
+
+  
+
+
 ];
