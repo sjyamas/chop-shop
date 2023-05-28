@@ -21,13 +21,17 @@ export default function Pages() {
               </Link>
             </CustomButton>
           </div>
+          <div style={{padding: 10}}>
+            <img src={bjchart} alt="bjchart" style={{ width: "50%" }} />
+          </div>
           <div>
+            <div>
             <h2 style={{ margin: 0 }}>
               MOTD:
             </h2>
             <h3> you look mighty fine </h3>
+            </div>
           </div>
-          <img src={bjchart} alt="bjchart" style={{ width: "30%" }} />
         </div>
       </div>
     </div>
