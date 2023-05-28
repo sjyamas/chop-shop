@@ -1,3 +1,8 @@
+# This is a website that has tools to help with the GTA V RP experience. 
+So far this project includes a Chop Shop tracker and a BlackJack log
+This site is hosted on Vercel
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
