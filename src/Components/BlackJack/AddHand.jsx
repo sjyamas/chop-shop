@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CustomButton from "../../Global/CustomButton";
 import Switch from "../../Global/Switch/Switch";
+import './styles.css'
 
 function Bet({ bet, setBet }) {
   function handleBet(cbet) {
@@ -22,27 +23,30 @@ function Bet({ bet, setBet }) {
         // display: "inline-block",
       }}
     >
-      <button
+      <CustomButton
         onClick={() => {
           handleBet(-1000);
         }}
+        style={{
+          backgroundColor: "rgb(100, 100, 100)",
+        }}
       >
         <h2 style={{ margin: 0 }}> ◄ 1K </h2>
-      </button>
-      <button
+      </CustomButton>
+      <CustomButton
         onClick={() => {
           handleBet(-100);
         }}
       >
         <h2 style={{ margin: 0 }}> ◄ 100 </h2>
-      </button>
-      <button
+      </CustomButton>
+      <CustomButton
         onClick={() => {
-          handleBet(-10);
+          handleBet(-50);
         }}
       >
-        <h2 style={{ margin: 0 }}> ◄ 10 </h2>
-      </button>
+        <h2 style={{ margin: 0 }}> ◄ 50 </h2>
+      </CustomButton>
       <div
         style={{
           // display: "inline-block",
@@ -50,79 +54,80 @@ function Bet({ bet, setBet }) {
           // backgroundColor: "rgb(100, 100, 100)",
         }}
       >
-        <h2 style={{ margin: 0 }}> ${bet} </h2>
+        {/* <h2 style={{ margin: 0 }}> ${bet} </h2> */}
+        <input class="styled-input" type='text' onChange={(i)=>{setBet(Number(i.target.value))}} placeholder={bet} size='5' />
       </div>
-      <button
+      <CustomButton
         onClick={() => {
-          handleBet(10);
+          handleBet(50);
         }}
       >
-        <h2 style={{ margin: 0 }}> 10 ► </h2>
-      </button>
-      <button
+        <h2 style={{ margin: 0 }}> 50 ► </h2>
+      </CustomButton>
+      <CustomButton
         onClick={() => {
           handleBet(100);
         }}
       >
         <h2 style={{ margin: 0 }}> 100 ► </h2>
-      </button>
-      <button
+      </CustomButton>
+      <CustomButton
         onClick={() => {
           handleBet(1000);
         }}
       >
         <h2 style={{ margin: 0 }}> 1K ► </h2>
-      </button>
+      </CustomButton>
       <div style={{ paddingLeft: 20 }} />
-      <button
+      <CustomButton
         onClick={() => {
-          setBet(10);
+          setBet(0);
         }}
       >
-        <h2 style={{ margin: 0 }}> 10 </h2>
-      </button>
-      <button
+        <h2 style={{ margin: 0 }}> 0 </h2>
+      </CustomButton>
+      <CustomButton
         onClick={() => {
           setBet(500);
         }}
       >
         <h2 style={{ margin: 0 }}> 500 </h2>
-      </button>
-      <button
+      </CustomButton>
+      <CustomButton
         onClick={() => {
           setBet(1000);
         }}
       >
         <h2 style={{ margin: 0 }}> 1K </h2>
-      </button>
-      <button
+      </CustomButton>
+      <CustomButton
         onClick={() => {
           setBet(3000);
         }}
       >
         <h2 style={{ margin: 0 }}> 3K </h2>
-      </button>
-      <button
+      </CustomButton>
+      <CustomButton
         onClick={() => {
           setBet(5000);
         }}
       >
         <h2 style={{ margin: 0 }}> 5K </h2>
-      </button>
-      {/* <button
+      </CustomButton>
+      {/* <CustomButton
         onClick={() => {
           setBet(10000);
         }}
       >
         <h2 style={{ margin: 0 }}> 10K </h2>
-      </button> */}
-      <button
+      </CustomButton> */}
+      <CustomButton
         onClick={() => {
           setBet(15000);
         }}
       >
         <h2 style={{ margin: 0 }}> 15K </h2>
-      </button>
+      </CustomButton>
       {/* <div style={{ paddingRight: 10 }} /> */}
     </div>
   );
@@ -232,7 +237,7 @@ export default function AddHand({
           {/* <h3 style={{ margin: 4 }}> EDITOR </h3> */}
           <CustomButton
             bgcolor="rgba(120, 120, 50)"
-            buttonHandler={() => {
+            onClick={() => {
               let t = new Date();
               let z = t.getTimezoneOffset() * 60 * 1000;
               let tLocal = t - z;
@@ -255,12 +260,12 @@ export default function AddHand({
           >
             New Session
           </CustomButton>
-          <CustomButton buttonHandler={() => removeHand()}>
+          <CustomButton onClick={() => removeHand()}>
             {" "}
             Remove Last Hand{" "}
           </CustomButton>
           <CustomButton
-            buttonHandler={() => {
+            onClick={() => {
               if (unsafe) removeSession();
             }}
           >
@@ -304,13 +309,13 @@ export default function AddHand({
               >
                 <h3 style={{ margin: 0 }}> -2 </h3>
                 <CustomButton
-                  buttonHandler={() => outHandler("dl")}
+                  onClick={() => outHandler("dl")}
                   style={{ width: "100%" }}
                 >
                   Double Down: Loss
                 </CustomButton>
                 <CustomButton
-                  buttonHandler={() => outHandler("sll")}
+                  onClick={() => outHandler("sll")}
                   style={{ width: "100%" }}
                 >
                   Split: Loss-Loss
@@ -323,20 +328,20 @@ export default function AddHand({
               >
                 <h3 style={{ margin: 0 }}> -1 </h3>
                 <CustomButton
-                  buttonHandler={() => outHandler("l")}
-                  bgcolor="rgb(30,30,30)"
+                  onClick={() => outHandler("l")}
+                  bgcolor="rgb(40,30,30)"
                   style={{ width: "100%" }}
                 >
                   Loss
                 </CustomButton>
                 <CustomButton
-                  buttonHandler={() => outHandler("bl")}
+                  onClick={() => outHandler("bl")}
                   style={{ width: "100%" }}
                 >
                   Loss (Dealer Blackjack)
                 </CustomButton>
                 <CustomButton
-                  buttonHandler={() => outHandler("slp")}
+                  onClick={() => outHandler("slp")}
                   style={{ width: "100%" }}
                 >
                   Split: Loss-Push
@@ -360,27 +365,27 @@ export default function AddHand({
             >
               <h3 style={{ margin: 0 }}> ±0 </h3>
               <CustomButton
-                buttonHandler={() => outHandler("p")}
+                onClick={() => outHandler("p")}
                 bgcolor="rgb(30,30,30)"
                 style={{ width: "100%" }}
               >
                 Push
               </CustomButton>
               <CustomButton
-                buttonHandler={() => outHandler("dp")}
+                onClick={() => outHandler("dp")}
                 // bgcolor="rgb(30,30,30)"
                 style={{ width: "100%" }}
               >
                 Double Down: Push
               </CustomButton>
               <CustomButton
-                buttonHandler={() => outHandler("swl")}
+                onClick={() => outHandler("swl")}
                 style={{ width: "100%" }}
               >
                 Split: Win-Loss
               </CustomButton>
               <CustomButton
-                buttonHandler={() => outHandler("spp")}
+                onClick={() => outHandler("spp")}
                 style={{ width: "100%" }}
               >
                 Split: Push-Push
@@ -405,14 +410,14 @@ export default function AddHand({
                 {" "}
                 <h3 style={{ margin: 0 }}> +1 </h3>{" "}
                 <CustomButton
-                  buttonHandler={() => outHandler("w")}
-                  bgcolor="rgb(30,30,30)"
+                  onClick={() => outHandler("w")}
+                  bgcolor="rgb(30,40,30)"
                   style={{ width: "100%" }}
                 >
                   Win
                 </CustomButton>
                 <CustomButton
-                  buttonHandler={() => outHandler("swp")}
+                  onClick={() => outHandler("swp")}
                   style={{ width: "100%" }}
                 >
                   Split: Win-Push
@@ -425,7 +430,7 @@ export default function AddHand({
               >
                 <h3 style={{ margin: 0 }}> +1.5 </h3>
                 <CustomButton
-                  buttonHandler={() => outHandler("bw")}
+                  onClick={() => outHandler("bw")}
                   style={{ width: "100%" }}
                 >
                   Blackjack
@@ -438,13 +443,13 @@ export default function AddHand({
               >
                 <h3 style={{ margin: 0 }}> +2 </h3>
                 <CustomButton
-                  buttonHandler={() => outHandler("dw")}
+                  onClick={() => outHandler("dw")}
                   style={{ width: "100%" }}
                 >
                   Double Down: Win{" "}
                 </CustomButton>
                 <CustomButton
-                  buttonHandler={() => outHandler("sww")}
+                  onClick={() => outHandler("sww")}
                   style={{ width: "100%" }}
                 >
                   Split: Win-Win{" "}

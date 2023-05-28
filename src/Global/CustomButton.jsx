@@ -2,16 +2,16 @@ import React from "react";
 
 export default function CustomButton({
   children,
-  buttonHandler,
+  onClick,
   textMargin = 10,
-  buttonMargin = 8,
+  buttonMargin = 2,
   bgcolor = "rgba(0,0,0, 0.2)",
   style
 }) {
   return (
     <div style ={{margin: buttonMargin}}>
       <button
-        onClick={buttonHandler}
+        onClick={onClick}
         style={{
           ...style,
           backgroundColor: bgcolor,
