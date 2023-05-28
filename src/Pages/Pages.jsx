@@ -17,16 +17,15 @@ export default function Pages() {
             </CustomButton>
             <CustomButton>
               <Link to="Blackjack-Log" style={{ color: "white" }}>
-                <h1> [NEW] Blackjack Log</h1>
+                <h1> Blackjack Log</h1>
               </Link>
             </CustomButton>
           </div>
           <div>
             <h2 style={{ margin: 0 }}>
-              {" "}
-              FOR THE LOVE OF GOD DYLAM USE THE CHART &emsp;{" "}
+              MOTD:
             </h2>
-            <h3> and no im not delusional. the wheel doesn't like me </h3>
+            <h3> you look mighty fine </h3>
           </div>
           <img src={bjchart} alt="bjchart" style={{ width: "30%" }} />
         </div>
