@@ -9,7 +9,9 @@ export default function Pages() {
       <div className="App-header" style={{display: 'flex', flexDirection: 'column'}}>
         <div style ={{display: "flex", justifyContent: "center"}}>
           <h1 style={{textAlign: 'center'}}>Boofman's website for all yotti things</h1>
+        
         </div>
+        <hr style={{width: "90%"}}/>
         <div style={{ display: "flex", justifyContent: "space-evenly" }}>
           <div style={{ display: "flex", flexDirection: 'column', padding: 5}}>
             <CustomButton>
