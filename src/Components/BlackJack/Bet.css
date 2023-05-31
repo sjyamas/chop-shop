@@ -1,0 +1,34 @@
+.bar {
+    background-color: dimgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.inc-button{
+    /* visibility: collapse; */
+}
+
+@media (max-width: 650px) {
+    .inc-button{
+        position: absolute;
+        visibility: hidden;
+    }
+}
+
+.bar-grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.set-bet {
+    display: flex;
+
+}

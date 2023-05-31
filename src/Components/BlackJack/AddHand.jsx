@@ -2,136 +2,8 @@ import React, { useState } from "react";
 import CustomButton from "../../Global/CustomButton";
 import Switch from "../../Global/Switch/Switch";
 import './styles.css'
-
-function Bet({ bet, setBet }) {
-  function handleBet(cbet) {
-    setBet((bet) => bet + cbet);
-    //todo: prevent nevative bets
-  }
-
-  return (
-    <div
-      style={{
-        backgroundColor: "rgb(100, 100, 100)",
-        flexDirection: "row",
-        display: "flex",
-        textAlign: "center",
-        alignItems: "center",
-        borderRadius: 8,
-        // width: "80%",
-        justifyContent: "center",
-        // display: "inline-block",
-      }}
-    >
-      <CustomButton
-        onClick={() => {
-          handleBet(-1000);
-        }}
-        style={{
-          backgroundColor: "rgb(100, 100, 100)",
-        }}
-      >
-        <h2 style={{ margin: 0 }}> ◄ 1K </h2>
-      </CustomButton>
-      <CustomButton
-        onClick={() => {
-          handleBet(-100);
-        }}
-      >
-        <h2 style={{ margin: 0 }}> ◄ 100 </h2>
-      </CustomButton>
-      <CustomButton
-        onClick={() => {
-          handleBet(-50);
-        }}
-      >
-        <h2 style={{ margin: 0 }}> ◄ 50 </h2>
-      </CustomButton>
-      <div
-        style={{
-          // display: "inline-block",
-          width: 100,
-          // backgroundColor: "rgb(100, 100, 100)",
-        }}
-      >
-        {/* <h2 style={{ margin: 0 }}> ${bet} </h2> */}
-        <input class="styled-input" type='text' onChange={(i)=>{setBet(Number(i.target.value))}} placeholder={bet} size='5' />
-      </div>
-      <CustomButton
-        onClick={() => {
-          handleBet(50);
-        }}
-      >
-        <h2 style={{ margin: 0 }}> 50 ► </h2>
-      </CustomButton>
-      <CustomButton
-        onClick={() => {
-          handleBet(100);
-        }}
-      >
-        <h2 style={{ margin: 0 }}> 100 ► </h2>
-      </CustomButton>
-      <CustomButton
-        onClick={() => {
-          handleBet(1000);
-        }}
-      >
-        <h2 style={{ margin: 0 }}> 1K ► </h2>
-      </CustomButton>
-      <div style={{ paddingLeft: 20 }} />
-      <CustomButton
-        onClick={() => {
-          setBet(0);
-        }}
-      >
-        <h2 style={{ margin: 0 }}> 0 </h2>
-      </CustomButton>
-      <CustomButton
-        onClick={() => {
-          setBet(500);
-        }}
-      >
-        <h2 style={{ margin: 0 }}> 500 </h2>
-      </CustomButton>
-      <CustomButton
-        onClick={() => {
-          setBet(1000);
-        }}
-      >
-        <h2 style={{ margin: 0 }}> 1K </h2>
-      </CustomButton>
-      <CustomButton
-        onClick={() => {
-          setBet(3000);
-        }}
-      >
-        <h2 style={{ margin: 0 }}> 3K </h2>
-      </CustomButton>
-      <CustomButton
-        onClick={() => {
-          setBet(5000);
-        }}
-      >
-        <h2 style={{ margin: 0 }}> 5K </h2>
-      </CustomButton>
-      {/* <CustomButton
-        onClick={() => {
-          setBet(10000);
-        }}
-      >
-        <h2 style={{ margin: 0 }}> 10K </h2>
-      </CustomButton> */}
-      <CustomButton
-        onClick={() => {
-          setBet(15000);
-        }}
-      >
-        <h2 style={{ margin: 0 }}> 15K </h2>
-      </CustomButton>
-      {/* <div style={{ paddingRight: 10 }} /> */}
-    </div>
-  );
-}
+import './AddHand.css'
+import { Bet } from "./Bet";
 
 function Footer({ children, height }) {
   var style = {
@@ -234,7 +106,6 @@ export default function AddHand({
         }}
       >
         <div style={{ display: "flex", justifyContent: "center" }}>
-          {/* <h3 style={{ margin: 4 }}> EDITOR </h3> */}
           <CustomButton
             bgcolor="rgba(120, 120, 50)"
             onClick={() => {
@@ -301,25 +172,29 @@ export default function AddHand({
             }}
           >
             <h3 style={{ margin: 0 }}> Loss </h3>
-            <div style={{ display: "flex" }}>
+            <div style={{ display: "flex",}}>
               <div
                 style={{
                   width: "50%",
                 }}
               >
                 <h3 style={{ margin: 0 }}> -2 </h3>
-                <CustomButton
+
+                <button
+                  className="btn btn-lbl"
                   onClick={() => outHandler("dl")}
                   style={{ width: "100%" }}
                 >
                   Double Down: Loss
-                </CustomButton>
-                <CustomButton
+                </button>
+
+                <button
+                className="btn btn-lbl"
                   onClick={() => outHandler("sll")}
                   style={{ width: "100%" }}
                 >
                   Split: Loss-Loss
-                </CustomButton>
+                </button>
               </div>
               <div
                 style={{
@@ -327,25 +202,27 @@ export default function AddHand({
                 }}
               >
                 <h3 style={{ margin: 0 }}> -1 </h3>
-                <CustomButton
+                <button
+                className="btn btn-lbl btn-loss"
                   onClick={() => outHandler("l")}
-                  bgcolor="rgb(40,30,30)"
                   style={{ width: "100%" }}
                 >
                   Loss
-                </CustomButton>
-                <CustomButton
+                </button>
+                <button
+                className="btn btn-lbl"
                   onClick={() => outHandler("bl")}
                   style={{ width: "100%" }}
                 >
                   Loss (Dealer Blackjack)
-                </CustomButton>
-                <CustomButton
+                </button>
+                <button
+                className="btn btn-lbl"
                   onClick={() => outHandler("slp")}
                   style={{ width: "100%" }}
                 >
                   Split: Loss-Push
-                </CustomButton>
+                </button>
               </div>
             </div>
           </div>
@@ -364,32 +241,36 @@ export default function AddHand({
               }}
             >
               <h3 style={{ margin: 0 }}> ±0 </h3>
-              <CustomButton
+              <button
+                className="btn btn-lbl"
                 onClick={() => outHandler("p")}
                 bgcolor="rgb(30,30,30)"
                 style={{ width: "100%" }}
               >
                 Push
-              </CustomButton>
-              <CustomButton
+              </button>
+              <button
+                className="btn btn-lbl"
                 onClick={() => outHandler("dp")}
                 // bgcolor="rgb(30,30,30)"
                 style={{ width: "100%" }}
               >
                 Double Down: Push
-              </CustomButton>
-              <CustomButton
+              </button>
+              <button
+                className="btn btn-lbl"
                 onClick={() => outHandler("swl")}
                 style={{ width: "100%" }}
               >
                 Split: Win-Loss
-              </CustomButton>
-              <CustomButton
+              </button>
+              <button
+                className="btn btn-lbl"
                 onClick={() => outHandler("spp")}
                 style={{ width: "100%" }}
               >
                 Split: Push-Push
-              </CustomButton>
+              </button>
             </div>
           </div>
           <div
@@ -409,19 +290,20 @@ export default function AddHand({
               >
                 {" "}
                 <h3 style={{ margin: 0 }}> +1 </h3>{" "}
-                <CustomButton
+                <button
+                className="btn btn-lbl btn-win"
                   onClick={() => outHandler("w")}
-                  bgcolor="rgb(30,40,30)"
                   style={{ width: "100%" }}
                 >
                   Win
-                </CustomButton>
-                <CustomButton
+                </button>
+                <button
+                className="btn btn-lbl"
                   onClick={() => outHandler("swp")}
                   style={{ width: "100%" }}
                 >
                   Split: Win-Push
-                </CustomButton>
+                </button>
               </div>
               <div
                 style={{
@@ -429,12 +311,13 @@ export default function AddHand({
                 }}
               >
                 <h3 style={{ margin: 0 }}> +1.5 </h3>
-                <CustomButton
+                <button
+                className="btn btn-lbl"
                   onClick={() => outHandler("bw")}
                   style={{ width: "100%" }}
                 >
                   Blackjack
-                </CustomButton>
+                </button>
               </div>
               <div
                 style={{
@@ -442,18 +325,20 @@ export default function AddHand({
                 }}
               >
                 <h3 style={{ margin: 0 }}> +2 </h3>
-                <CustomButton
+                <button
+                className="btn btn-lbl"
                   onClick={() => outHandler("dw")}
                   style={{ width: "100%" }}
                 >
                   Double Down: Win{" "}
-                </CustomButton>
-                <CustomButton
+                </button>
+                <button
+                className="btn btn-lbl"
                   onClick={() => outHandler("sww")}
                   style={{ width: "100%" }}
                 >
                   Split: Win-Win{" "}
-                </CustomButton>
+                </button>
               </div>
             </div>
           </div>
