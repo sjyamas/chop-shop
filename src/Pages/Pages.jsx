@@ -28,7 +28,7 @@ export default function Pages() {
           </div>
           <div style={{ display: "flex", flexDirection: 'column', padding: 5}}>
             <div>
-              <h2 style={{ margin: 0 }}>
+              <h2 style={{ margin: 0, }}>
                 MOTD:
               </h2>
               <h3 style={{ margin: 0, paddingBottom: 50}}> you look mighty fine </h3>
