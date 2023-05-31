@@ -108,7 +108,7 @@ export default function BlackjackLog() {
         display: "flex",
         minHeight: "100vh",
         width: "100%",
-        paddingBottom: footer ? footerHeight + 60 : 10,
+        paddingBottom: footer ? footerHeight + 60 : 0,
       }}
     >
       {footer && (
