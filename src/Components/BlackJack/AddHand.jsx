@@ -5,7 +5,7 @@ import './styles.css'
 
 function Bet({ bet, setBet }) {
   function handleBet(cbet) {
-    setBet((a) => a + cbet);
+    setBet((bet) => bet + cbet);
     //todo: prevent nevative bets
   }
 
