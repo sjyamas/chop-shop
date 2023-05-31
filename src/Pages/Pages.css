@@ -1,0 +1,33 @@
+.front-body{
+    display: flex;
+    flex-direction: column;
+}
+
+.front-title{
+    display: flex;
+    justify-content: center;
+}
+
+.front-body{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 5;
+}
+
+@media (max-width: 550px) {
+    .front-body{
+        flex-direction: column;
+    }
+}
+
+.font-col{
+    display: flex;
+    flex-direction: column;
+}
+
+.front-col-text{
+    display: inline-block;
+    overflow: break-word;
+    inline-size: 372px;
+}
