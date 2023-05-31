@@ -13,11 +13,9 @@ export default function Pages() {
           <h1 style={{textAlign: 'center'}}>Boofman's website for all yotti things</h1>
         
         </div>
-        <div style={{padding: 20}}>
-          <hr style={{width: "90%", }}/>
-        </div>
+        <hr style={{width: "90%", }}/>
         <div className="front-body">
-          <div className="front-col">
+          <div className="front-col padding-col">
             <CustomButton>
               <Link to="chop-shop" style={{ color: "white" }}>
                 <h1> Chop Shop </h1>
@@ -30,7 +28,7 @@ export default function Pages() {
             </CustomButton>
             
           </div>
-          <div className="front-col">
+          <div className="front-col padding-col">
             <div>
               <h2 style={{ margin: 0, }}>
                 MOTD:
