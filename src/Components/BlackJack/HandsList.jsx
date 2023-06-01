@@ -91,6 +91,7 @@ export default function HandsList({ data }) {
         textAlign: "center",
         padding: 10,
         width: "95%",
+        marginTop: 5
         // paddingBottom:100
       }}
     >

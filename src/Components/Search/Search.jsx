@@ -26,7 +26,7 @@ function SearchBar({ data, addTodo, counter}) {
 
   return (
     <div>
-      <input type="text" onChange={handleSearch} value={query} />
+      <input type="text" class ="styled-input input-width" onChange={handleSearch} value={query} />
       {showModal && (
         <div className="modal">
           <div className="modal-content">
@@ -39,11 +39,14 @@ function SearchBar({ data, addTodo, counter}) {
               }}
             >
               {filteredData.map((item) => (
-                <div key={item.name}>
+                <div
+                key={item.name}>
                   <p style={{margin:5, marginTop:30, color: 'white'}} onClick={handleSuggestionClick}>
                     {item.name}
                   </p>
+                  <div style={{display: 'flex'}}>
                   <button
+                  className="btn"
                     onClick={() => {
                       handleModalClose();
                       item.location = "port"
@@ -56,6 +59,7 @@ function SearchBar({ data, addTodo, counter}) {
                     Add to Port Chop
                   </button>
                   <button
+                    className="btn"
                     onClick={() => {
                       handleModalClose();
                       item.location = "sandy"
@@ -67,6 +71,7 @@ function SearchBar({ data, addTodo, counter}) {
                   >
                     Add to Sandy Chop
                   </button>
+                  </div>
                 </div>
               ))}
             </div>

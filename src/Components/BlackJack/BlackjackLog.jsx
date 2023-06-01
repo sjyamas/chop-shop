@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 
 import "../../Pages/App.css";
+import "./Blackjacklog.css"
 import HandsList from "./HandsList.jsx";
 
 // import { testHands } from "../../Data/handsData.jsx";
 // import CustomButton from "../../Global/CustomButton";
 import AddHand from "./AddHand";
 import Switch from "../../Global/Switch/Switch";
+
+import {
+  Link,
+} from "react-router-dom";
 
 export default function BlackjackLog() {
   const [footer, setFooter] = useState(true);
@@ -100,16 +105,7 @@ export default function BlackjackLog() {
 
   return (
     <div
-      style={{
-        textAlign: "center",
-        background: "#282c34",
-        color: "white",
-        flexDirection: "column",
-        display: "flex",
-        minHeight: "100vh",
-        width: "100%",
-        paddingBottom: footer ? footerHeight + 60 : 0,
-      }}
+      className="bj-page-container"
     >
       {footer && (
         <AddHand
@@ -125,20 +121,26 @@ export default function BlackjackLog() {
       )}
 
       <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
+        className="bj-header"
       >
-        <div style={{ display: "flex" }}>
+        <div className="back-btn">
+          
+            <Link to="/" style={{ color: "white" }}>
+             <button className="btn"> Home </button>
+            </Link>
+         
+        </div>
+
+        <div 
+        onClick={() => setFooter(!footer)} style={{ display: "flex", fontSize: 18 }}>
           <Switch
             isOn={footer}
             onColor="#EF476F"
-            handleToggle={() => setFooter(!footer)}
           />
-          <h3> edit/create hand </h3>
+          <p>edit/create hand</p>
         </div>
       </div>
+
       <div
         style={{
           display: "inline-block",
@@ -151,7 +153,12 @@ export default function BlackjackLog() {
             <HandsList data={value} />
           ))}
       </div>
-      <div></div>
+      <div       
+      style={{
+        paddingBottom: footer ? footerHeight + 60 : 0,
+      }}>
+
+      </div>
     </div>
   );
 }

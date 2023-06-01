@@ -20,6 +20,7 @@
     }
 }
 
+
 .bar-grid {
     display: flex;
     flex-direction: row;
@@ -31,4 +32,11 @@
 .set-bet {
     display: flex;
 
+}
+
+@media (max-height: 850px) {
+    .set-bet{
+        position: absolute;
+        visibility: hidden;
+    }
 }

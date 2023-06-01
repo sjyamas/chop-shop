@@ -1,0 +1,22 @@
+.bj-page-container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    min-height: 100vh;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    background-color: #282c34;
+}
+
+.bj-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(53, 53, 58);
+    height: 50px;
+}
+
+.back-btn{
+    position: absolute; 
+    left: 8px
+}

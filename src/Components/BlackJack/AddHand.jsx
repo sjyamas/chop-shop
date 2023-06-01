@@ -6,9 +6,8 @@ import './AddHand.css'
 import { Bet } from "./Bet";
 
 function Footer({ children, height }) {
-  var style = {
+  let style = {
     backgroundColor: "rgba(50,50,55, 1)",
-    // borderTop: "1px solid #67E7E7",
     textAlign: "center",
     // padding: "20px",
     position: "fixed",

@@ -6,7 +6,12 @@ import { ChopCars } from "../../Data/carData";
 import SearchBar from "../Search/Search";
 import Car from "./Car";
 
+import {
+  Link,
+} from "react-router-dom";
+
 import '../../Pages/App.css'
+import './CarList.css'
 
 function CarsList() {
   const [todos, setTodos] = useState([]);
@@ -41,20 +46,25 @@ function CarsList() {
 
   console.log("todos", todos);
   return (
-    <div className='App-header' style={{textAlign: 'center'}}>
-      <header
-        style={{
-          position: "fixed",
-          top: "0",
-          zIndex: "100",
-          height: 100,
-          width: "100%",
-        }}
+    <div className='cr-page-container'>
+      <div
+        className="car-header"
+      >
+        <div className="cr-back-btn">
+          
+            <Link to="/" style={{ color: "white" }}>
+              <button className="btn"> Home </button>
+            </Link>
+          
+        </div>
+      </div>
+
+      <div
+        className="add-car-bar"
       >
         <div
           style={{
             display: "flex",
-            marginBottom: 10,
             alignItems: "center",
             justifyContent: "center",
           }}
@@ -62,9 +72,9 @@ function CarsList() {
           <p>Add Car:</p> &emsp;
           <SearchBar data={ChopCars} addTodo={addTodo} counter={counter} />
         </div>
-      </header>
+      </div>
 
-      <div style={{marginTop: 100, }}>
+      <div style={{marginTop: 100, textAlign: 'center'}}>
         <div>
           {todos.filter((car) => car.location == "port").length > 0 && (
             <h3> Port Chop Shop</h3>
