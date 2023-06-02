@@ -13,19 +13,11 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    /* background-color:rgb(29, 29, 226); */
     width: 100%;
+    background-color:rgb(53, 53, 58);
+
 }
 
 .add-car-bar{
     /* background-color: rgb(50, 50, 128); */
-}
-
-
-
-.cr-back-btn{
-    background-color:rgb(53, 53, 58);
-    width: 100%;
-    /* position: relative;
-    left: 8px */
 }

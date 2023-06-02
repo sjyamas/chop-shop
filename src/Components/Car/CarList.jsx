@@ -50,13 +50,11 @@ function CarsList() {
       <div
         className="car-header"
       >
-        <div className="cr-back-btn">
           
             <Link to="/" style={{ color: "white" }}>
               <button className="btn"> Home </button>
             </Link>
           
-        </div>
       </div>
 
       <div
