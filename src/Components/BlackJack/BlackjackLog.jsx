@@ -124,15 +124,15 @@ export default function BlackjackLog() {
         className="bj-header"
       >
         <div className="back-btn">
-          
-            <Link to="/" style={{ color: "white" }}>
-             <button className="btn"> Home </button>
-            </Link>
-         
+
+          <Link to="/" style={{ color: "white" }}>
+            <button className="btn"> Home </button>
+          </Link>
+
         </div>
 
-        <div 
-        onClick={() => setFooter(!footer)} style={{ display: "flex", fontSize: 18 }}>
+        <div
+          onClick={() => setFooter(!footer)} style={{ display: "flex", fontSize: 18 }}>
           <Switch
             isOn={footer}
             onColor="#EF476F"
@@ -153,10 +153,10 @@ export default function BlackjackLog() {
             <HandsList data={value} />
           ))}
       </div>
-      <div       
-      style={{
-        paddingBottom: footer ? footerHeight + 60 : 0,
-      }}>
+      <div
+        style={{
+          paddingBottom: footer ? footerHeight + 60 : 0,
+        }}>
 
       </div>
     </div>
