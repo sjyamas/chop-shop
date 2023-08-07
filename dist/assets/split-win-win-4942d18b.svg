@@ -1,0 +1,20 @@
+<svg id="SVGRoot" width="16px" height="16px" version="1.1" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <marker id="Arrow1" overflow="visible" markerHeight="6.7071066" markerWidth="4.0606604" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 4.0606602 6.7071068">
+   <path transform="rotate(180 .125 0)" d="m3-3-3 3 3 3" fill="none" stroke="context-stroke"/>
+  </marker>
+ </defs>
+ <g display="none" fill="none">
+  <path d="m8 1.2656v13.469" marker-end="url(#Arrow1)" stroke-opacity="0"/>
+  <g>
+   <path d="m8.9883 1.2655v12.79" stroke="#7a0000" stroke-width=".97445px"/>
+   <path d="m7.0156 1.2655v12.79" stroke="#7a0000" stroke-width=".97445px"/>
+   <path d="m8.0031 13.269v2.729" stroke="#000" stroke-width="1px"/>
+  </g>
+ </g>
+ <g transform="matrix(1 0 0 -1 0 16.454)">
+  <path d="m4.6523 12.336 0.70117-0.70117 1.1738 1.1738v-11.547h0.97266v13.93z" fill="#00800b" stroke-width="0"/>
+  <path d="m8.9875 1.2668v12.79" fill="none" stroke="#7a0000" stroke-width=".97445px"/>
+  <path d="m11.351 12.337-0.70117-0.70117-1.1738 1.1738v-11.547h-0.97266v13.93z" fill="#00800b" stroke-width="0"/>
+ </g>
+</svg>

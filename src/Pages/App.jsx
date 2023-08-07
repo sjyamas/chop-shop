@@ -23,7 +23,6 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/chop-shop' element={<CarsList/>} />
     <Route path='/blackjack-log' element={<BlackjackLog/>} />
     <Route path='/secret' element={<HighLifeBJ/>} />
-
   </Route>
 
 ));
