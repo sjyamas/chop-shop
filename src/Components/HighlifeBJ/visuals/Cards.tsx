@@ -56,322 +56,60 @@ import { ReactComponent as DJs } from "../../../Assets/SVGCards/JD.svg";
 import { ReactComponent as DQs } from "../../../Assets/SVGCards/QD.svg";
 import { ReactComponent as DKs } from "../../../Assets/SVGCards/KD.svg";
 
-export function Back({size}){
-    return(
-        <BackSVG style={{height:size, width:'auto'}}/>
-    )
+import './Cards.css'
+
+export const card = {
+    "Back" : <BackSVG className='card'/>,
+    "SA": <SAs className='card'/>,
+    "S2": <S2s className='card'/>,
+    "S3": <S3s className='card'/>,
+    "S4": <S4s className='card'/>,
+    "S5": <S5s className='card'/>,
+    "S6": <S6s className='card'/>,
+    "S7": <S7s className='card'/>,
+    "S8": <S8s className='card'/>,
+    "S9": <S9s className='card'/>,
+    "ST": <STs className='card'/>,
+    "SJ": <SJs className='card'/>,
+    "SQ": <SQs className='card'/>,
+    "SK": <SKs className='card'/>,
+    "HA": <HAs className='card'/>,
+    "H2": <H2s className='card'/>,
+    "H3": <H3s className='card'/>,
+    "H4": <H4s className='card'/>,
+    "H5": <H5s className='card'/>,
+    "H6": <H6s className='card'/>,
+    "H7": <H7s className='card'/>,
+    "H8": <H8s className='card'/>,
+    "H9": <H9s className='card'/>,
+    "HT": <HTs className='card'/>,
+    "HJ": <HJs className='card'/>,
+    "HQ": <HQs className='card'/>,
+    "HK": <HKs className='card'/>,
+    "CA": <CAs className='card'/>,
+    "C2": <C2s className='card'/>,
+    "C3": <C3s className='card'/>,
+    "C4": <C4s className='card'/>,
+    "C5": <C5s className='card'/>,
+    "C6": <C6s className='card'/>,
+    "C7": <C7s className='card'/>,
+    "C8": <C8s className='card'/>,
+    "C9": <C9s className='card'/>,
+    "CT": <CTs className='card'/>,
+    "CJ": <CJs className='card'/>,
+    "CQ": <CQs className='card'/>,
+    "CK": <CKs className='card'/>,
+    "DA": <DAs className='card'/>,
+    "D2": <D2s className='card'/>,
+    "D3": <D3s className='card'/>,
+    "D4": <D4s className='card'/>,
+    "D5": <D5s className='card'/>,
+    "D6": <D6s className='card'/>,
+    "D7": <D7s className='card'/>,
+    "D8": <D8s className='card'/>,
+    "D9": <D9s className='card'/>,
+    "DT": <DTs className='card'/>,
+    "DJ": <DJs className='card'/>,
+    "DQ": <DQs className='card'/>,
+    "DK": <DKs className='card'/>,
 }
-
-export function SA({size}){
-    return(
-        <SAs style={{height:size, width:'auto'}}/>
-    )
-}
-
-export function S2({size}){
-    return(
-        <S2s width={size} height='auto'/>
-    )
-}
-
-export function S3({size}){
-    return(
-        <S3s width={size} height='auto'/>
-    )
-}
-
-export function S4({size}){
-    return(
-        <S4s width={size} height='auto'/>
-    )
-}
-
-export function S5({size}){
-    return(
-        <S5s width={size} height='auto'/>
-    )
-}
-
-export function S6({size}){
-    return(
-        <S6s width={size} height='auto'/>
-    )
-}
-
-export function S7({size}){
-    return(
-        <S7s width={size} height='auto'/>
-    )
-}
-
-export function S8({size}){
-    return(
-        <S8s width={size} height='auto'/>
-    )
-}
-
-export function S9({size}){
-    return(
-        <S9s width={size} height='auto'/>
-    )
-}
-
-export function ST({size}){
-    return(
-        <STs width={size} height='auto'/>
-    )
-}
-
-export function SJ({size}){
-    return(
-        <SJs width={size} height='auto'/>
-    )
-}
-
-export function SQ({size}){
-    return(
-        <SQs width={size} height='auto'/>
-    )
-}
-
-export function SK({size}){
-    return(
-        <SKs width={size} height='auto'/>
-    )
-}
-
-export function HA({size}){
-    return(
-        <HAs width={size} height='auto'/>
-    )
-}
-
-export function H2({size}){
-    return(
-        <H2s width={size} height='auto'/>
-    )
-}
-
-export function H3({size}){
-    return(
-        <H3s width={size} height='auto'/>
-    )
-}
-
-export function H4({size}){
-    return(
-        <H4s width={size} height='auto'/>
-    )
-}
-
-export function H5({size}){
-    return(
-        <H5s width={size} height='auto'/>
-    )
-}
-
-export function H6({size}){
-    return(
-        <H6s width={size} height='auto'/>
-    )
-}
-
-export function H7({size}){
-    return(
-        <H7s width={size} height='auto'/>
-    )
-}
-
-export function H8({size}){
-    return(
-        <H8s width={size} height='auto'/>
-    )
-}
-
-export function H9({size}){
-    return(
-        <H9s width={size} height='auto'/>
-    )
-}
-
-export function HT({size}){
-    return(
-        <HTs width={size} height='auto'/>
-    )
-}
-
-export function HJ({size}){
-    return(
-        <HJs width={size} height='auto'/>
-    )
-}
-
-export function HQ({size}){
-    return(
-        <HQs width={size} height='auto'/>
-    )
-}
-
-export function HK({size}){
-    return(
-        <HKs width={size} height='auto'/>
-    )
-}
-
-export function CA({size}){
-    return(
-        <CAs width={size} height='auto'/>
-    )
-}
-
-export function C2({size}){
-    return(
-        <C2s width={size} height='auto'/>
-    )
-}
-
-export function C3({size}){
-    return(
-        <C3s width={size} height='auto'/>
-    )
-}
-
-export function C4({size}){
-    return(
-        <C4s width={size} height='auto'/>
-    )
-}
-
-export function C5({size}){
-    return(
-        <C5s width={size} height='auto'/>
-    )
-}
-
-export function C6({size}){
-    return(
-        <C6s width={size} height='auto'/>
-    )
-}
-
-export function C7({size}){
-    return(
-        <C7s width={size} height='auto'/>
-    )
-}
-
-export function C8({size}){
-    return(
-        <C8s width={size} height='auto'/>
-    )
-}
-
-export function C9({size}){
-    return(
-        <C9s width={size} height='auto'/>
-    )
-}
-
-export function CT({size}){
-    return(
-        <CTs width={size} height='auto'/>
-    )
-}
-
-export function CJ({size}){
-    return(
-        <CJs width={size} height='auto'/>
-    )
-}
-
-export function CQ({size}){
-    return(
-        <CQs width={size} height='auto'/>
-    )
-}
-
-export function CK({size}){
-    return(
-        <CKs width={size} height='auto'/>
-    )
-}
-
-export function DA({size}){
-    return(
-        <DAs width={size} height='auto'/>
-    )
-}
-
-export function D2({size}){
-    return(
-        <D2s width={size} height='auto'/>
-    )
-}
-
-export function D3({size}){
-    return(
-        <D3s width={size} height='auto'/>
-    )
-}
-
-export function D4({size}){
-    return(
-        <D4s width={size} height='auto'/>
-    )
-}
-
-export function D5({size}){
-    return(
-        <D5s width={size} height='auto'/>
-    )
-}
-
-export function D6({size}){
-    return(
-        <D6s width={size} height='auto'/>
-    )
-}
-
-export function D7({size}){
-    return(
-        <D7s width={size} height='auto'/>
-    )
-}
-
-export function D8({size}){
-    return(
-        <D8s width={size} height='auto'/>
-    )
-}
-
-export function D9({size}){
-    return(
-        <D9s width={size} height='auto'/>
-    )
-}
-
-export function DT({size}){
-    return(
-        <DTs width={size} height='auto'/>
-    )
-}
-
-export function DJ({size}){
-    return(
-        <DJs width={size} height='auto'/>
-    )
-}
-
-export function DQ({size}){
-    return(
-        <DQs width={size} height='auto'/>
-    )
-}
-
-export function DK({size}){
-    return(
-        <DKs width={size} height='auto'/>
-    )
-}
-
-

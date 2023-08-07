@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import './RadioButtonGroup.css'; // Import the CSS file
+import './RadioButtonGroup.css';
 
-export default function RadioButtonGroup() {
-    const [selectedOption, setSelectedOption] = useState(null);
+export default function RadioButtonGroup({players, setPlayers}) {
 
     const handleOptionChange = (event) => {
-        setSelectedOption(event.target.value);
+        setPlayers(event.target.value);
     };
 
     return (
@@ -16,7 +15,7 @@ export default function RadioButtonGroup() {
                     type="radio"
                     name="options"
                     value="1"
-                    checked={selectedOption === "1"}
+                    checked={players === "1"}
                     onChange={handleOptionChange}
                 />
                 1
@@ -27,7 +26,7 @@ export default function RadioButtonGroup() {
                     type="radio"
                     name="options"
                     value="2"
-                    checked={selectedOption === "2"}
+                    checked={players === "2"}
                     onChange={handleOptionChange}
                 />
                 2
@@ -38,7 +37,7 @@ export default function RadioButtonGroup() {
                     type="radio"
                     name="options"
                     value="3"
-                    checked={selectedOption === "3"}
+                    checked={players === "3"}
                     onChange={handleOptionChange}
                 />
                 3
@@ -49,7 +48,7 @@ export default function RadioButtonGroup() {
                     type="radio"
                     name="options"
                     value="4"
-                    checked={selectedOption === "4"}
+                    checked={players === "4"}
                     onChange={handleOptionChange}
                 />
                 4

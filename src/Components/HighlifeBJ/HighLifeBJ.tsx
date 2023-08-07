@@ -6,13 +6,14 @@ import cardsReducer from './cardsReducer.js'
 import Table from './visuals/Table.js'
 
 import './Dashboard.css'
-import CardStack from './visuals/CardStack.js'
 
 type Player = 'D' | 'P1' | 'P2' | 'P3' | 'P4'
 type Action = 'init1' | 'init2' | 'hit' | 'double' | 'split' | 'splitHit'
 
 export default function HighLifeBJ() {
     const [games, dispatch] = useReducer(cardsReducer, [])
+    const [players, setPlayers] = useState('1')
+
     let gameId = 0
     let cardId = 0
 
@@ -62,17 +63,13 @@ export default function HighLifeBJ() {
         console.log(games)
 
     }
-
-
-
     return (
         <div className="dash-container">
             <div>
-                <Input addCard={handleAddCard} addGame={handleAddGame} removeCard={handleRemoveCard} removeGame={handleRemoveGame} />
+                <Input addCard={handleAddCard} addGame={handleAddGame} removeCard={handleRemoveCard} removeGame={handleRemoveGame} players={players} setPlayers={setPlayers} />
             </div>
             <div>
-                <CardStack/>
-                {/* <Table /> */}
+                <Table cards = {cards} split = {split} players={players}/>
                 <p>
                     {JSON.stringify(games)}
                 </p>

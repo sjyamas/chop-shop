@@ -7,7 +7,7 @@ import Spades from '../../Assets/Suits/Spades.png'
 
 import RadioButtonGroup from './RadioButtonGroup'
 
-export default function Input({addCard, removeCard, addGame, removeGame}) {
+export default function Input({ addCard, removeCard, addGame, removeGame, players, setPlayers }) {
     const [suit, setSuit] = useState('')
     const [rank, setRank] = useState('')
 
@@ -17,7 +17,7 @@ export default function Input({addCard, removeCard, addGame, removeGame}) {
             <div className='input-container '>
                 <div>
                     {/* <h2> Number of players: </h2> */}
-                    <RadioButtonGroup />
+                    <RadioButtonGroup players={players} setPlayers={setPlayers}/>
                 </div>
                 <div className='input-row'>
                     <button className='button input-btn input-rank' onClick={() => { setRank('A') }}>
@@ -87,14 +87,15 @@ export default function Input({addCard, removeCard, addGame, removeGame}) {
                     </button>
                 </div>
                 <div className='input-row'>
-                    <button className='button input-btn' onClick={() => { addGame() }}>
-                        Add Game
-                    </button>
+
                     <button className='button input-btn' onClick={() => { addCard(rank, suit, 'D', 'hit') }}>
                         Add Card
                     </button>
                     <button className='button input-btn' onClick={() => { removeCard() }}>
                         Remove Card
+                    </button>
+                    <button className='button input-btn' onClick={() => { addGame() }}>
+                        Add Game
                     </button>
                     <button className='button input-btn' onClick={() => { removeGame() }}>
                         Remove Game

@@ -1,24 +1,27 @@
 .card-stack {
     display: flex;
     justify-content: center;
-    background-color: rgb(94, 57, 129);
+    padding-left: 16.5rem;
+    margin: 0;
 }
 
 .up-cards{
-    position: relative;
-    left: 10rem;
     display: flex;
     justify-content: center;
     background-color: cadetblue;
+    
 }
 
 .down-card{
     display: flex;
     justify-content: center;
-    /* background-color: coral; */
-    margin-left: 9rem;
+    margin-top: -5rem;
+    margin-bottom: -5rem;
 }
 
-.pcard {
-    margin-left: -18rem;
+.dcard {
+    margin-left: -16.5rem;
+    margin-top: -5rem;
+    margin-bottom: -5rem;
+    display: flex;
 }

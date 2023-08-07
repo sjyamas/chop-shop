@@ -1,15 +1,13 @@
 .table-cloth{
     background-color: purple;
     width: 100%;
-    height: 50rem;
     display: grid;
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-areas: 1;
+    /* grid-template-rows: repeat(4, 11rem); */
+    grid-template-rows: 11rem 5rem 11rem 11rem;
+    grid-template-columns: repeat(8, 10rem);
 }
 
 .card-cont{
-    background-color: brown;
     display: flex;
 }
 
@@ -20,34 +18,29 @@
 
 .area-1{
     grid-row: 1/1;
-    grid-column: 2/4;
+    grid-column: 4/6;
     display: flex;
     justify-content: center;
-    background-color: aquamarine;
 }
 
 .area-2{
     grid-row: 3/4;
-    grid-column: 4/5;
+    grid-column: 6/9;
     display: flex;
     justify-content: center;
-    background-color: rgb(30, 36, 34);
 }
 
 .area-3{
     grid-row: 4/5;
-    grid-column: 3/4;
-    background-color: rgb(30, 36, 34);
+    grid-column: 5/8;
 }
 
 .area-4{
     grid-row: 4/5;
-    grid-column: 2/3;
-    background-color: rgb(30, 36, 34);
+    grid-column: 2/5;
 }
 
 .area-5{
     grid-row: 3/4;
-    grid-column: 1/2;
-    background-color: rgb(30, 36, 34);
+    grid-column: 1/4;
 }
