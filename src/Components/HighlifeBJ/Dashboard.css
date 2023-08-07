@@ -1,0 +1,13 @@
+.dash-container {
+    background-color: #282c34;
+    color: white;
+    width: auto;
+    height: 100vh;
+    display: flex;
+}
+
+@media (max-width: 1000px) {
+    .dash-container {
+        flex-direction: column;
+    }
+}

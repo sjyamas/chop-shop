@@ -1,5 +1,16 @@
 html,body { height:100%; }
 
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  color: var(--color);
+}
+
+
 .App {
   text-align: center;
 }
@@ -19,4 +30,23 @@ html,body { height:100%; }
   flex-direction: column;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.button {
+  padding: 0.2rem 2rem 0.2rem 2rem;
+  font-size: 1.75rem;
+  font-weight: 400;
+  font-family: inherit;
+  border-width: 10px;
+  border-style: solid;
+  border-color: rgb(3, 3, 3);
+  cursor: pointer;
+}
+
+.sml-button{
+  padding: 0.1rem 1rem 0.1rem 1rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-family: inherit;
+  border-width: 5px;
 }

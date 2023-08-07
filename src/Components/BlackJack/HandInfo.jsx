@@ -40,10 +40,10 @@ export function HandInfo({ hand }) {
   } else if (hand.betPM >= 2) {
     bgcolor = "rgba(150, 255, 150, 1)";
     color = "black";
-  } else if (hand.betPM >= 1) {
+  } else if (hand.betPM > 0) {
     bgcolor = "rgba(200, 255, 200, 1)";
     color = "black";
-  } else if (hand.betPM >= 0) {
+  } else if (hand.betPM === 0) {
     bgcolor = "rgba(255, 255, 255, 0.8)";
     color = "black";
   } else if (hand.betPM >= -1) {

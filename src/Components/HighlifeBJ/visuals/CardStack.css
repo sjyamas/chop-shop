@@ -1,0 +1,24 @@
+.card-stack {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(94, 57, 129);
+}
+
+.up-cards{
+    position: relative;
+    left: 10rem;
+    display: flex;
+    justify-content: center;
+    background-color: cadetblue;
+}
+
+.down-card{
+    display: flex;
+    justify-content: center;
+    /* background-color: coral; */
+    margin-left: 9rem;
+}
+
+.pcard {
+    margin-left: -18rem;
+}

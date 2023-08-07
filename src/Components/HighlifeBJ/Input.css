@@ -1,0 +1,40 @@
+.input-main{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.input-container{
+display: flex;
+flex-direction: column;
+align-items: center;
+background-color: rgb(17, 44, 44);
+}
+
+.input-row{
+    display: flex;
+}
+.input-btn{
+    padding: 1rem;
+    color: rgb(255, 255, 255);
+    background-color: #484f5e;
+    margin: 1rem;
+}
+
+.input-rank{
+    padding: 0.5rem 1.2rem 0.5rem 1.2rem;
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0.5rem;
+
+}
+
+.input-enter{
+    font-weight: bold;
+}
+
+.card-container{
+    display: flex;
+    flex-direction: row;
+    background-color: grey;
+}
