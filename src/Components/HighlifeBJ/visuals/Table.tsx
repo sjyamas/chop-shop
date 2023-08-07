@@ -7,8 +7,8 @@ import { card } from './Cards'
 
 import EmptyCard from './EmptyCard'
 
-export default function Table({ players }) {
-    let cards = [card['SA'],card['SA'],card['SA'],card['SA'],card['SA'],]
+export default function Table({ players, cards }) {
+    let tcards = [card['SA'],card['SA'],card['SA'],card['SA'],card['SA'],]
 
     let split = [card['S3']]
     return (
@@ -19,21 +19,21 @@ export default function Table({ players }) {
                 </div>
             </div>
             <div className='area-2'>
-                <PlayerCards cards={cards} split={split}/>
+                <PlayerCards cards={tcards} split={split}/>
             </div>
             <div className='area-3'>
                 {Number(players) >= 2 ? <div>
-                    <PlayerCards cards={cards} split={split} />
+                    <PlayerCards cards={tcards} split={split} />
                 </div> : <EmptyCard />}
             </div>
             <div className='area-4'>
                 {Number(players) >= 3 ? <div>
-                    <PlayerCards cards={cards} split={split}/>
+                    <PlayerCards cards={tcards} split={split}/>
                 </div> : <EmptyCard />}
             </div>
             <div className='area-5'>
                 {Number(players) >= 4 ? <div>
-                    <PlayerCards cards={cards} split={split}/>
+                    <PlayerCards cards={tcards} split={split}/>
                 </div> : <EmptyCard />}
             </div>
         </div>

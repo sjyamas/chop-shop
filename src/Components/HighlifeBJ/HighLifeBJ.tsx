@@ -69,7 +69,7 @@ export default function HighLifeBJ() {
                 <Input addCard={handleAddCard} addGame={handleAddGame} removeCard={handleRemoveCard} removeGame={handleRemoveGame} players={players} setPlayers={setPlayers} />
             </div>
             <div>
-                <Table cards = {cards} split = {split} players={players}/>
+                <Table cards = {games[games.length -1]}  players={players}/>
                 <p>
                     {JSON.stringify(games)}
                 </p>
