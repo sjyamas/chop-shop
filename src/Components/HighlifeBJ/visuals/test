@@ -5,8 +5,7 @@ export default function cardsReducer(games, action) {
                 ...games,
                 {
                     gameId: action.gameId,
-                    players: action.players,
-                    cards: [],
+                    cards: {},
                     results: []
                 },
             ];
@@ -21,7 +20,7 @@ export default function cardsReducer(games, action) {
         case 'addCard': {
             return games.map((game, i) => {
                 if (i === games.length - 1) {
-                    return { ...game, cards: [...game.cards, action.obj] }
+                    return { ...game, cards: [...game.cards, { cardId: action.cardId, rank: action.rank, suit: action.suit, player: action.player, type: action.type }] }
                 }
             });
         }
@@ -48,3 +47,68 @@ export default function cardsReducer(games, action) {
         }
     }
 }
+
+function setPlayers(num){
+    let playerObj = {}
+    for(let i = 1; i <= num; i++){
+        playerObj[i.toString()] = []
+    }
+}
+
+
+function gameParser(players, cards) {
+    let table = {}
+
+    for (let i = 1; i <= players; i++) {
+        table[i.toString()] = []
+    }
+
+    cards.map((o, i) => {
+        if (o.type === 'default') {
+            table[o.player] = o
+        } else {
+            if (o.player === 'D') {
+                table['D'] = o
+            }
+        }
+    });
+    console.log('CARDS', cards)
+    console.log('players', players)
+}
+
+[{"gameId":0,"players":"1","cards":[{"cardId":0,"rank":"10","suit":"S","player":"D","type":"addCard"},{"cardId":0,"rank":"J","suit":"H","player":"D","type":"addCard"}],"results":[]}]
+1
+2
+3
+4
+A
+2
+3
+4
+5
+6
+7
+8
+9
+10
+J
+Q
+K
+
+
+
+
+Hit
+Stand
+Double
+Split
+remove last
+New Game
+Remove Game
+T
+
+HELLO
+
+HELLO
+
+[{"gameId":0,"players":"1","cards":[{"player":"1","action":"init","card":"ST"},{"player":"1","action":"init","card":"ST"},{"player":"1","action":"init","card":"ST"}],"results":[]}]

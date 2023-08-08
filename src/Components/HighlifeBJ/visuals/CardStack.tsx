@@ -3,10 +3,7 @@ import './CardStack.css';
 import { card } from './Cards'
 
 
-const CardStack = () => {
-
-    let cards = [card['SA'], card['C7'], card['C2']]
-    let faceDown = card['Back']
+const CardStack = ({cards, hole}) => {
 
     return (
         <div className="card-stack">
@@ -18,7 +15,7 @@ const CardStack = () => {
                 ))}
             </div>
             <div className='down-card'>
-                {faceDown}
+                {hole}
             </div>
         </div>
     );

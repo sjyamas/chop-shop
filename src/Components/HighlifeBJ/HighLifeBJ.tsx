@@ -1,4 +1,4 @@
-import { useState, useReducer } from 'react'
+import { useState, useReducer, useEffect } from 'react'
 import Input from './Input'
 
 import cardsReducer from './cardsReducer.js'
@@ -11,8 +11,13 @@ type Player = 'D' | 'P1' | 'P2' | 'P3' | 'P4'
 type Action = 'init1' | 'init2' | 'hit' | 'double' | 'split' | 'splitHit'
 
 export default function HighLifeBJ() {
-    const [games, dispatch] = useReducer(cardsReducer, [])
+    const [games, dispatch] = useReducer(cardsReducer, [{"gameId":0,"players":"1","cards":[],"results":[]}])
     const [players, setPlayers] = useState('1')
+    const [changePlayers, setChangePlayers] = useState(true)
+
+    useEffect(()=>{
+        handleChangePlayer()
+    }, [players])
 
     let gameId = 0
     let cardId = 0
@@ -21,21 +26,26 @@ export default function HighLifeBJ() {
         dispatch({
             type: 'addGame',
             gameId: gameId++,
+            players: players,
         });
         cardId = 0
         console.log(games)
-
+        setChangePlayers(true)
     }
 
-    function handleAddCard(rank: number, suit: string, player: Player, action: Action) {
+    function handleChangePlayer(){
+    dispatch({
+        type: 'player',
+        players: players
+    })
+    }
+
+    function handleAddCard(obj) {
         dispatch({
             type: 'addCard',
-            cardId: cardId++,
-            rank: rank,
-            suit: suit,
-            player: player,
-            action: action
+            obj: obj,
         });
+        setChangePlayers(false)
         console.log(games)
     }
 
@@ -44,6 +54,10 @@ export default function HighLifeBJ() {
             type: 'removeCard',
             cardId: cardId
         })
+        if(games[games.length -1].cards.length <= 1)
+        {
+            setChangePlayers(true)
+        }
         console.log(games)
 
     }
@@ -61,12 +75,12 @@ export default function HighLifeBJ() {
             gameId: gameId
         })
         console.log(games)
-
+        setChangePlayers(true)
     }
     return (
         <div className="dash-container">
             <div>
-                <Input addCard={handleAddCard} addGame={handleAddGame} removeCard={handleRemoveCard} removeGame={handleRemoveGame} players={players} setPlayers={setPlayers} />
+                <Input addCard={handleAddCard} addGame={handleAddGame} removeCard={handleRemoveCard} removeGame={handleRemoveGame} players={players} setPlayers={setPlayers} changePlayers={changePlayers} />
             </div>
             <div>
                 <Table cards = {games[games.length -1]}  players={players}/>

@@ -7,9 +7,12 @@ import Spades from '../../Assets/Suits/Spades.png'
 
 import RadioButtonGroup from './RadioButtonGroup'
 
-export default function Input({ addCard, removeCard, addGame, removeGame, players, setPlayers }) {
-    const [suit, setSuit] = useState('')
+export default function Input({ addCard, removeCard, addGame, removeGame, players, setPlayers, changePlayers }) {
+    const [suit, setSuit] = useState('S')
     const [rank, setRank] = useState('')
+
+    const [stage, setStage] = useState(1)
+    const [split, setSplit] = useState([false, false, false, false])
 
     return (
         <div className='input-main'>
@@ -17,7 +20,7 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
             <div className='input-container '>
                 <div>
                     {/* <h2> Number of players: </h2> */}
-                    <RadioButtonGroup players={players} setPlayers={setPlayers}/>
+                    <RadioButtonGroup players={players} setPlayers={setPlayers} changePlayers={changePlayers} />
                 </div>
                 <div className='input-row'>
                     <button className='button input-btn input-rank' onClick={() => { setRank('A') }}>
@@ -54,7 +57,7 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
                     </button>
                 </div>
                 <div className='input-row'>
-                    <button className='button input-btn input-rank' onClick={() => { setRank('10') }}>
+                    <button className='button input-btn input-rank' onClick={() => { setRank('T') }}>
                         10
                     </button>
                     <button className='button input-btn input-rank' onClick={() => { setRank('J') }}>
@@ -86,22 +89,41 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
                             src={Diamond} />
                     </button>
                 </div>
-                <div className='input-row'>
+                {stage < (4 + (players-1) *2) &&
+                    <div className='input-row'>
+                        <button className='button input-btn' onClick={() => { addCard({ player: '1', action: 'init', card: `${suit}${rank}` }); setStage(stage => stage + 1) }}>
+                            Set card
+                        </button>
+                    </div>}
 
-                    <button className='button input-btn' onClick={() => { addCard(rank, suit, 'D', 'hit') }}>
-                        Add Card
+                {stage >= (4 + (players-1) *2) &&
+                    <div className='input-row'>
+                        <button className='button input-btn' onClick={() => { addCard({ player: '1', action: 'hit', card: `${suit}${rank}` }); setStage(stage => stage + 1) }}>
+                            Hit
+                        </button>
+                        <button className='button input-btn' onClick={() => { addCard({ player: '1', action: 'stand' }) }}>
+                            Stand
+                        </button>
+                        <button className='button input-btn' onClick={() => { addCard({ player: '1', action: 'double', card: `${suit}${rank}` }) }}>
+                            Double
+                        </button>
+                        <button className='button input-btn' onClick={() => { addCard({ player: '1', action: 'split' }) }}>
+                            Split
+                        </button>
+                    </div>}
+
+                <div className='input-row'>
+                    <button className='button input-btn' onClick={() => { removeCard(); setStage(stage => stage - 1) }}>
+                        remove last
                     </button>
-                    <button className='button input-btn' onClick={() => { removeCard() }}>
-                        Remove Card
+                    <button className='button input-btn' onClick={() => { addGame(); setStage(1) }}>
+                        New Game
                     </button>
-                    <button className='button input-btn' onClick={() => { addGame() }}>
-                        Add Game
-                    </button>
-                    <button className='button input-btn' onClick={() => { removeGame() }}>
+                    <button className='button input-btn' onClick={() => { removeGame(); setStage(1) }}>
                         Remove Game
                     </button>
-
                 </div>
+
                 <div className='card-container'>
                     <h1>
                         {rank}
@@ -110,9 +132,6 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
                         {suit === 'S' ? <img src={Spades} /> : suit === 'H' ? <img src={Heart} /> : suit === 'C' ? <img src={Club} /> : suit === 'H' ? <img src={Heart} /> : <></>}
                     </div>
                 </div>
-            </div>
-            <div>
-                <h2> hello</h2>
             </div>
         </div>
     )

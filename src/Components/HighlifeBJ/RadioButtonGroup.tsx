@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import './RadioButtonGroup.css';
 
-export default function RadioButtonGroup({players, setPlayers}) {
+export default function RadioButtonGroup({players, setPlayers, changePlayers}) {
 
     const handleOptionChange = (event) => {
-        setPlayers(event.target.value);
+        if(changePlayers){
+            setPlayers(event.target.value);
+        }
     };
 
     return (
