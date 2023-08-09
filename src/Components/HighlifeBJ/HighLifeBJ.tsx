@@ -7,15 +7,12 @@ import Table from './visuals/Table.js'
 
 import './Dashboard.css'
 
-type Player = 'D' | 'P1' | 'P2' | 'P3' | 'P4'
-type Action = 'init1' | 'init2' | 'hit' | 'double' | 'split' | 'splitHit'
-
 export default function HighLifeBJ() {
-    const [games, dispatch] = useReducer(cardsReducer, [{"gameId":0,"players":"1","cards":[],"results":[]}])
+    const [games, dispatch] = useReducer(cardsReducer, [{ "gameId": 0, "players": "1", "cards": [], "results": [] }])
     const [players, setPlayers] = useState('1')
     const [changePlayers, setChangePlayers] = useState(true)
 
-    useEffect(()=>{
+    useEffect(() => {
         handleChangePlayer()
     }, [players])
 
@@ -33,11 +30,11 @@ export default function HighLifeBJ() {
         setChangePlayers(true)
     }
 
-    function handleChangePlayer(){
-    dispatch({
-        type: 'player',
-        players: players
-    })
+    function handleChangePlayer() {
+        dispatch({
+            type: 'player',
+            players: players
+        })
     }
 
     function handleAddCard(obj) {
@@ -54,12 +51,10 @@ export default function HighLifeBJ() {
             type: 'removeCard',
             cardId: cardId
         })
-        if(games[games.length -1].cards.length <= 1)
-        {
+        if (games[games.length - 1].cards.length <= 1) {
             setChangePlayers(true)
         }
         console.log(games)
-
     }
 
     // function handleFinishGame(){
@@ -77,13 +72,14 @@ export default function HighLifeBJ() {
         console.log(games)
         setChangePlayers(true)
     }
+
     return (
         <div className="dash-container">
             <div>
-                <Input addCard={handleAddCard} addGame={handleAddGame} removeCard={handleRemoveCard} removeGame={handleRemoveGame} players={players} setPlayers={setPlayers} changePlayers={changePlayers} />
+                <Input addCard={handleAddCard} addGame={handleAddGame} removeCard={handleRemoveCard} removeGame={handleRemoveGame} players={players} setPlayers={setPlayers} changePlayers={changePlayers} cards={games[games.length - 1]} />
             </div>
             <div>
-                <Table cards = {games[games.length -1]}  players={players}/>
+                <Table cards={games[games.length - 1]} players={players} />
                 <p>
                     {JSON.stringify(games)}
                 </p>

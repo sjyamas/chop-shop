@@ -36,5 +36,13 @@ background-color: rgb(17, 44, 44);
 .card-container{
     display: flex;
     flex-direction: row;
-    background-color: grey;
+    justify-content: center;
+    align-items: center;
+    /* background-color: grey; */
 }
+
+.rank-label{
+    font-size: 3rem;
+    font-weight: bold;
+}
+

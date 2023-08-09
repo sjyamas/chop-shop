@@ -76,7 +76,6 @@ function gameParser(players, cards) {
     console.log('players', players)
 }
 
-[{"gameId":0,"players":"1","cards":[{"cardId":0,"rank":"10","suit":"S","player":"D","type":"addCard"},{"cardId":0,"rank":"J","suit":"H","player":"D","type":"addCard"}],"results":[]}]
 1
 2
 3
@@ -109,6 +108,4 @@ T
 
 HELLO
 
-HELLO
-
-[{"gameId":0,"players":"1","cards":[{"player":"1","action":"init","card":"ST"},{"player":"1","action":"init","card":"ST"},{"player":"1","action":"init","card":"ST"}],"results":[]}]
+[{"gameId":0,"players":"1","cards":[{"player":"1","action":"init","card":"ST"},{"player":"D","action":"init","card":"ST"},{"player":"1","action":"init","card":"ST"},{"player":"1","action":"hit","card":"ST"},{"player":"1","action":"stand"},{"player":"D","action":"hit","card":"ST"}],"results":[]}]

@@ -7,16 +7,86 @@ import Spades from '../../Assets/Suits/Spades.png'
 
 import RadioButtonGroup from './RadioButtonGroup'
 
-export default function Input({ addCard, removeCard, addGame, removeGame, players, setPlayers, changePlayers }) {
+export default function Input({ addCard, removeCard, addGame, removeGame, players, setPlayers, changePlayers, cards }) {
     const [suit, setSuit] = useState('S')
     const [rank, setRank] = useState('')
 
-    const [stage, setStage] = useState(1)
+    const [stage, setStage] = useState(0)
     const [split, setSplit] = useState([false, false, false, false])
+
+    const [doubleActive, setDoubleActive] = useState(true)
+    const [splitActive, setSplitActive] = useState(true)
+
+    let scards = []
+
+    for (let i = 0; i <= players; i++) {
+        let p = 'D'
+        if (i > 0) {
+            p = i.toString()
+        }
+        const cardsString = cards.cards.filter(card => card.player === p).map(card => card.card)
+        scards.push(cardsString.filter(element => element !== undefined))
+    }
+
+    function changeFlip(position) {
+        const newArray = [...split];
+        newArray[position] = !newArray[position];
+        setSplit(newArray);
+    }
+
+    const seq = turnOrder(players)
+
+    function turnOrder(num) {
+        const sequence = [];
+        for (let i = 1; i <= num; i++) {
+            sequence.push(i.toString());
+        }
+        sequence.push('D');
+        for (let i = 1; i <= num; i++) {
+            sequence.push(i.toString());
+        }
+        for (let i = 1; i <= num; i++) {
+            sequence.push(i.toString());
+        }
+        sequence.push('D');
+        return sequence;
+    }
+
+    const undoTurn = () => {
+        if (cards.cards[cards.cards.length - 1].action !== 'hit') {
+            setStage(stage => stage - 1)
+        }
+        setDoubleActive(true)
+    }
+
+    function handleHit() {
+        addCard({ player: seq[stage], action: 'hit', card: `${suit}${rank}` });
+        setDoubleActive(false)
+        setSplitActive(false)
+    }
+
+    function handleDouble() {
+        addCard({ player: seq[stage], action: 'double', card: `${suit}${rank}` });
+        setStage(stage => stage + 1);
+    }
+
+    function handleStand() {
+        addCard({ player: seq[stage], action: 'stand' });
+        setStage(stage => stage + 1)
+    }
+
+    function handleSplit() {
+        addCard({ player: seq[stage], action: 'split' })
+        changeFlip(seq[stage])
+    }
+
+    function handleAdd(type) {
+        addCard({ player: seq[stage], action: 'init', card: `${suit}${rank}` });
+        setStage(stage => stage + 1);
+    }
 
     return (
         <div className='input-main'>
-
             <div className='input-container '>
                 <div>
                     {/* <h2> Number of players: </h2> */}
@@ -34,7 +104,6 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
                     </button>
                 </div>
                 <div className='input-row'>
-
                     <button className='button input-btn input-rank' onClick={() => { setRank('4') }}>
                         4
                     </button>
@@ -45,6 +114,7 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
                         6
                     </button>
                 </div>
+
                 <div className='input-row'>
                     <button className='button input-btn input-rank' onClick={() => { setRank('7') }}>
                         7
@@ -89,45 +159,46 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
                             src={Diamond} />
                     </button>
                 </div>
-                {stage < (4 + (players-1) *2) &&
+
+                {(stage < (3 + (players - 1) * 2) || (scards[0].length == 1 && seq[stage] === 'D')) &&
                     <div className='input-row'>
-                        <button className='button input-btn' onClick={() => { addCard({ player: '1', action: 'init', card: `${suit}${rank}` }); setStage(stage => stage + 1) }}>
+                        <button className='button input-btn' onClick={() => { handleAdd(type) }}>
                             Set card
                         </button>
                     </div>}
 
-                {stage >= (4 + (players-1) *2) &&
+                {stage >= (3 + (players - 1) * 2) && (scards[0].length != 1 || seq[stage] !== 'D') &&
                     <div className='input-row'>
-                        <button className='button input-btn' onClick={() => { addCard({ player: '1', action: 'hit', card: `${suit}${rank}` }); setStage(stage => stage + 1) }}>
+                        <button className='button input-btn' onClick={handleHit}>
                             Hit
                         </button>
-                        <button className='button input-btn' onClick={() => { addCard({ player: '1', action: 'stand' }) }}>
+                        <button className='button input-btn' onClick={handleStand}>
                             Stand
                         </button>
-                        <button className='button input-btn' onClick={() => { addCard({ player: '1', action: 'double', card: `${suit}${rank}` }) }}>
+                        <button className={`button input-btn ${doubleActive ? '' : 'inactive'}`} disabled={!doubleActive} onClick={handleDouble}>
                             Double
                         </button>
-                        <button className='button input-btn' onClick={() => { addCard({ player: '1', action: 'split' }) }}>
+                        <button className={`button input-btn ${splitActive ? '' : 'inactive'}`} disabled={!splitActive} onClick={handleSplit}>
                             Split
                         </button>
                     </div>}
 
                 <div className='input-row'>
-                    <button className='button input-btn' onClick={() => { removeCard(); setStage(stage => stage - 1) }}>
-                        remove last
+                    <button className='button input-btn' onClick={() => { removeCard(); undoTurn(); }}>
+                        Remove Last
                     </button>
-                    <button className='button input-btn' onClick={() => { addGame(); setStage(1) }}>
+                    <button className='button input-btn' onClick={() => { addGame(); setStage(0); }}>
                         New Game
                     </button>
-                    <button className='button input-btn' onClick={() => { removeGame(); setStage(1) }}>
+                    <button className='button input-btn' onClick={() => { removeGame(); setStage(0); }}>
                         Remove Game
                     </button>
                 </div>
 
                 <div className='card-container'>
-                    <h1>
+                    <p className='rank-label'>
                         {rank}
-                    </h1>
+                    </p>
                     <div>
                         {suit === 'S' ? <img src={Spades} /> : suit === 'H' ? <img src={Heart} /> : suit === 'C' ? <img src={Club} /> : suit === 'H' ? <img src={Heart} /> : <></>}
                     </div>
