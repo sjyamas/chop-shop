@@ -1,20 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './CardStack.css';
 
 import { card } from './Cards'
 
 
-const CardStack = ({ cards, scards }) => {
+const CardStack = ({ cards }) => {
     const [hole, setHole] = useState(false)
-    let stack = removeSecondElement(cards)
-
-    useEffect(() => {
-        if (cards.length > 1) {
-            setHole(true)
-        } else {
-            setHole(false)
-        }
-    }, [cards])
+    let stack = removeSecondElement(cards.cards)
 
     function removeSecondElement(arr) {
         if (!Array.isArray(arr)) {
@@ -39,16 +31,16 @@ const CardStack = ({ cards, scards }) => {
     return (
         <div className="card-stack">
             <div className='up-cards'>
-                <p className='pcard-label'> {label(cardValue(scards))} </p>
+                <p className='pcard-label'> {label(cardValue(cards.cards))} </p>
                 {stack.map((o, i) => (
                     <div key={i} className='dcard'>
-                        {o}
+                        {card[o]}
                     </div>
                 ))}
             </div>
-            {hole ?
+            {cards.cards.length > 1 ?
                 <div className='down-card'>
-                    {cards[1]}
+                    {card[cards.cards[1]]}
                 </div>
                 :
                 <div className='down-card'>

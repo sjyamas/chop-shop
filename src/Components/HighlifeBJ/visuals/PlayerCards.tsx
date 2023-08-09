@@ -2,31 +2,32 @@ import './PlayerCards.css';
 
 import { card } from './Cards';
 
-const PlayerCards = ({ cards, split, scards }) => {
+const PlayerCards = ({ cards }) => {
     let isSplit = false;
 
-    if (split.length !== 0) {
-        isSplit = true
+    if (cards.split.length !== 0) {
+        isSplit = true;
     }
+
     return (
         <div className="pcard-stack">
             <div className='pup-cards'>
-                <p className='pcard-label'> {label(cardValue(scards))} </p>
-                {cards.length === 0 ?
+                <p className='pcard-label'> {label(cardValue(cards.cards))} </p>
+                {cards.cards.length === 0 ?
                     <div className='pcard'>
                         {card['Back']}
                     </div> :
-                    cards.map((o, i) => (
+                    cards.cards.map((o, i) => (
                         <div key={i} className='pcard'>
-                            {o}
+                            {card[o]}
                         </div>
                     ))}
             </div>
             {isSplit && <div className='split-cards'>
-                <p className='pcard-label'> {JSON.stringify(cardValue(split))} </p>
-                {split.map((o, i) => (
+                <p className='pcard-label'> {label(cardValue(cards.split))} </p>
+                {cards.split.map((o, i) => (
                     <div key={i} className='pcard'>
-                        {o}
+                        {card[o]}
                     </div>
                 ))}
             </div>}
@@ -59,9 +60,11 @@ const cardValue = (cards) => {
     console.log('dfsda', cards)
 
     cards.map((o, i) => {
-        total += valueMap[o[1]].value
-        if (valueMap[o[1]].soft) {
-            soft = true
+        if (o) {
+            total += valueMap[o[1]].value
+            if (valueMap[o[1]].soft) {
+                soft = true
+            }
         }
     })
     return ({ value: total, soft: soft })

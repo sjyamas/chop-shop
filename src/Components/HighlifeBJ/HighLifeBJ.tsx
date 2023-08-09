@@ -8,8 +8,8 @@ import Table from './visuals/Table.js'
 import './Dashboard.css'
 
 export default function HighLifeBJ() {
-    const [games, dispatch] = useReducer(cardsReducer, [{ "gameId": 0, "players": "1", "cards": [], "results": [] }])
-    const [players, setPlayers] = useState('1')
+    const [games, dispatch] = useReducer(cardsReducer, [{ gameId: 0, players: 1, actions: [], cardsList: [{ player: 0, cards: [], split: [] }, { player: 1, cards: [], split: [] }] }])
+    const [players, setPlayers] = useState(1)
     const [changePlayers, setChangePlayers] = useState(true)
 
     useEffect(() => {
@@ -18,6 +18,14 @@ export default function HighLifeBJ() {
 
     let gameId = 0
     let cardId = 0
+
+
+    // for(let i = 0; i <= players; i++){
+    //     const cardsString = currentGame.filter(card => card.player === p ).map(card => card.card)
+    //     // const selectedPlayerCards = cardsString.map(key => card[key]);
+    //     cardList[i] = cardsString.filter(element => element !== undefined)
+    // }
+
 
     function handleAddGame() {
         dispatch({
@@ -37,13 +45,14 @@ export default function HighLifeBJ() {
         })
     }
 
-    function handleAddCard(obj) {
+    function handleAddCard({ player, action, card }) {
         dispatch({
             type: 'addCard',
-            obj: obj,
+            player: player,
+            action: action,
+            card: card,
         });
         setChangePlayers(false)
-        console.log(games)
     }
 
     function handleRemoveCard() {
@@ -54,7 +63,20 @@ export default function HighLifeBJ() {
         if (games[games.length - 1].cards.length <= 1) {
             setChangePlayers(true)
         }
-        console.log(games)
+    }
+
+    function handleSplit() {
+        dispatch({
+            type: 'split',
+        })
+    }
+
+    function handleAddSplit({ player, action, card }) {
+        dispatch({
+            type: 'addSplit',
+            player: player,
+            card: card
+        })
     }
 
     // function handleFinishGame(){
@@ -76,7 +98,7 @@ export default function HighLifeBJ() {
     return (
         <div className="dash-container">
             <div>
-                <Input addCard={handleAddCard} addGame={handleAddGame} removeCard={handleRemoveCard} removeGame={handleRemoveGame} players={players} setPlayers={setPlayers} changePlayers={changePlayers} cards={games[games.length - 1]} />
+                <Input addCard={handleAddCard} addGame={handleAddGame} removeCard={handleRemoveCard} removeGame={handleRemoveGame} players={players} setPlayers={setPlayers} changePlayers={changePlayers} cards={games[games.length - 1]} split={handleSplit} addSplit={handleAddSplit} />
             </div>
             <div>
                 <Table cards={games[games.length - 1]} players={players} />

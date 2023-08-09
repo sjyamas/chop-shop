@@ -16,8 +16,8 @@ export default function RadioButtonGroup({players, setPlayers, changePlayers}) {
                     className="radio-input"
                     type="radio"
                     name="options"
-                    value="1"
-                    checked={players === "1"}
+                    value={1}
+                    checked={players === 1}
                     onChange={handleOptionChange}
                 />
                 1
@@ -27,8 +27,8 @@ export default function RadioButtonGroup({players, setPlayers, changePlayers}) {
                     className="radio-input"
                     type="radio"
                     name="options"
-                    value="2"
-                    checked={players === "2"}
+                    value={2}
+                    checked={players === 2}
                     onChange={handleOptionChange}
                 />
                 2
@@ -38,8 +38,8 @@ export default function RadioButtonGroup({players, setPlayers, changePlayers}) {
                     className="radio-input"
                     type="radio"
                     name="options"
-                    value="3"
-                    checked={players === "3"}
+                    value={3}
+                    checked={players === 3}
                     onChange={handleOptionChange}
                 />
                 3
@@ -49,8 +49,8 @@ export default function RadioButtonGroup({players, setPlayers, changePlayers}) {
                     className="radio-input"
                     type="radio"
                     name="options"
-                    value="4"
-                    checked={players === "4"}
+                    value={4}
+                    checked={players === 4}
                     onChange={handleOptionChange}
                 />
                 4

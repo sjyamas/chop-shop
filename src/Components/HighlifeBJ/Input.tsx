@@ -7,48 +7,33 @@ import Spades from '../../Assets/Suits/Spades.png'
 
 import RadioButtonGroup from './RadioButtonGroup'
 
-export default function Input({ addCard, removeCard, addGame, removeGame, players, setPlayers, changePlayers, cards }) {
+export default function Input({ addCard, removeCard, addGame, removeGame, players, setPlayers, changePlayers, cards, split, addSplit }) {
     const [suit, setSuit] = useState('S')
     const [rank, setRank] = useState('')
 
     const [stage, setStage] = useState(0)
-    const [split, setSplit] = useState([false, false, false, false])
 
     const [doubleActive, setDoubleActive] = useState(true)
     const [splitActive, setSplitActive] = useState(true)
 
-    let scards = []
-
-    for (let i = 0; i <= players; i++) {
-        let p = 'D'
-        if (i > 0) {
-            p = i.toString()
-        }
-        const cardsString = cards.cards.filter(card => card.player === p).map(card => card.card)
-        scards.push(cardsString.filter(element => element !== undefined))
-    }
-
-    function changeFlip(position) {
-        const newArray = [...split];
-        newArray[position] = !newArray[position];
-        setSplit(newArray);
-    }
+    let scards = cards.cardsList
+    let prevAction = cards.actions[cards.actions.length-1]
 
     const seq = turnOrder(players)
 
     function turnOrder(num) {
         const sequence = [];
         for (let i = 1; i <= num; i++) {
-            sequence.push(i.toString());
+            sequence.push(i);
         }
-        sequence.push('D');
+        sequence.push(0);
         for (let i = 1; i <= num; i++) {
-            sequence.push(i.toString());
+            sequence.push(i);
         }
         for (let i = 1; i <= num; i++) {
-            sequence.push(i.toString());
+            sequence.push(i);
         }
-        sequence.push('D');
+        sequence.push(0);
         return sequence;
     }
 
@@ -76,8 +61,11 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
     }
 
     function handleSplit() {
-        addCard({ player: seq[stage], action: 'split' })
-        changeFlip(seq[stage])
+        split({ player: seq[stage], action: 'split' })
+    }
+
+    function handleAddSplit(){
+        addSplit({ player: seq[stage], action: 'addSplit', card: `${suit}${rank}` })
     }
 
     function handleAdd(type) {
@@ -162,7 +150,7 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
 
                 {(stage < (3 + (players - 1) * 2) || (scards[0].length == 1 && seq[stage] === 'D')) &&
                     <div className='input-row'>
-                        <button className='button input-btn' onClick={() => { handleAdd(type) }}>
+                        <button className='button input-btn' onClick={() => { handleAdd(stage) }}>
                             Set card
                         </button>
                     </div>}
@@ -180,6 +168,9 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
                         </button>
                         <button className={`button input-btn ${splitActive ? '' : 'inactive'}`} disabled={!splitActive} onClick={handleSplit}>
                             Split
+                        </button>
+                        <button className={`button input-btn ${splitActive ? '' : 'inactive'}`} disabled={!splitActive} onClick={handleAddSplit}>
+                            Add Split
                         </button>
                     </div>}
 
