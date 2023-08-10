@@ -6,7 +6,6 @@ import PlayerCards from './PlayerCards'
 import { card } from './Cards'
 
 import EmptyCard from './EmptyCard'
-import { useEffect } from 'react'
 
 export default function Table({ cards, players }) {
     console.log('dfdfdfd', cards)

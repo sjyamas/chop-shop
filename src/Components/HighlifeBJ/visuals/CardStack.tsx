@@ -73,10 +73,13 @@ const cardValue = (cards) => {
     console.log('dfsda', cards)
 
     cards.map((o, i) => {
-        total += valueMap[o[1]].value
-        if (valueMap[o[1]].soft) {
-            soft = true
+        if (o > 0) {
+            total += valueMap[o[1]].value
+            if (valueMap[o[1]].soft) {
+                soft = true
+            }
         }
+
     })
     return ({ value: total, soft: soft })
 }

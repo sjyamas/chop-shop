@@ -191,7 +191,7 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
                         {rank}
                     </p>
                     <div>
-                        {suit === 'S' ? <img src={Spades} /> : suit === 'H' ? <img src={Heart} /> : suit === 'C' ? <img src={Club} /> : suit === 'H' ? <img src={Heart} /> : <></>}
+                        {suit === 'S' ? <img src={Spades} /> : suit === 'H' ? <img src={Heart} /> : suit === 'C' ? <img src={Club} /> : <img src={Diamond} />}
                     </div>
                 </div>
             </div>

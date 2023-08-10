@@ -8,7 +8,7 @@ import Table from './visuals/Table.js'
 import './Dashboard.css'
 
 export default function HighLifeBJ() {
-    const [games, dispatch] = useReducer(cardsReducer, [{ gameId: 0, players: 1, actions: [], cardsList: [{ player: 0, cards: [], split: [] }, { player: 1, cards: [], split: [] }] }])
+    const [games, dispatch] = useReducer(cardsReducer, [{ gameId: 0, players: 1, actions: [], cardsList: [{ player: 0, cards: [], split: [] }, { player: 1, cards: [], split: [] }, { player: 2, cards: [], split: [] }] }])
     const [players, setPlayers] = useState(1)
     const [changePlayers, setChangePlayers] = useState(true)
 
