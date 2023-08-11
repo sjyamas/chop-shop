@@ -7,7 +7,7 @@ import Spades from '../../Assets/Suits/Spades.png'
 
 import RadioButtonGroup from './RadioButtonGroup'
 
-export default function Input({ addCard, removeCard, addGame, removeGame, players, setPlayers, changePlayers, cards, split, addSplit }) {
+export default function Input({ addCard, removeCard, addGame, removeGame, players, setPlayers, changePlayers, game, split, addSplit }) {
     const [suit, setSuit] = useState('S')
     const [rank, setRank] = useState('')
 
@@ -16,8 +16,8 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
     const [doubleActive, setDoubleActive] = useState(true)
     const [splitActive, setSplitActive] = useState(true)
 
-    let scards = cards.cardsList
-    let prevAction = cards.actions[cards.actions.length-1]
+    let scards = game.cardsList
+    let prevAction = game.actions[game.actions.length - 1]
 
     const seq = turnOrder(players)
 
@@ -38,13 +38,14 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
     }
 
     const undoTurn = () => {
-        if (cards.cards[cards.cards.length - 1].action !== 'hit') {
+        if (game.cards[game.cards.length - 1].action !== 'hit') {
             setStage(stage => stage - 1)
         }
         setDoubleActive(true)
     }
 
     function handleHit() {
+
         addCard({ player: seq[stage], action: 'hit', card: `${suit}${rank}` });
         setDoubleActive(false)
         setSplitActive(false)
@@ -57,20 +58,24 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
 
     function handleStand() {
         addCard({ player: seq[stage], action: 'stand' });
-        setStage(stage => stage + 1)
+        if ((!['splitInitSplit', 'splitMain'].includes(prevAction.action))) {
+            setStage(stage => stage + 1)
+        }
     }
 
     function handleSplit() {
         split({ player: seq[stage], action: 'split' })
     }
 
-    function handleAddSplit(){
+    function handleAddSplit() {
         addSplit({ player: seq[stage], action: 'addSplit', card: `${suit}${rank}` })
     }
 
-    function handleAdd(type) {
+    function handleAdd() {
         addCard({ player: seq[stage], action: 'init', card: `${suit}${rank}` });
-        setStage(stage => stage + 1);
+        if ((game.actions.length === 0 || (prevAction.action === 'init'))) {
+            setStage(stage => stage + 1)
+        }
     }
 
     return (
@@ -148,14 +153,15 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
                     </button>
                 </div>
 
-                {(stage < (3 + (players - 1) * 2) || (scards[0].length == 1 && seq[stage] === 'D')) &&
+                {((stage < (3 + (players - 1) * 2)) || (prevAction.action === 'split' || prevAction.action === 'splitInitMain')) || (seq[stage] === 0 && stage >= players * 3 + 1) ?
                     <div className='input-row'>
-                        <button className='button input-btn' onClick={() => { handleAdd(stage) }}>
+                        <button className='button input-btn' onClick={() => { handleAdd(); }}>
                             Set card
                         </button>
-                    </div>}
+                    </div>
+                    :
 
-                {stage >= (3 + (players - 1) * 2) && (scards[0].length != 1 || seq[stage] !== 'D') &&
+                    // {stage >= (3 + (players - 1) * 2) && (scards[0].length != 1 || seq[stage] !== 'D') &&
                     <div className='input-row'>
                         <button className='button input-btn' onClick={handleHit}>
                             Hit

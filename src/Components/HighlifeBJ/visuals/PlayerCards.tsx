@@ -3,12 +3,6 @@ import './PlayerCards.css';
 import { card } from './Cards';
 
 const PlayerCards = ({ cards }) => {
-    let isSplit = false;
-
-    if (cards.split.length !== 0) {
-        isSplit = true;
-    }
-
     return (
         <div className="pcard-stack">
             <div className='pup-cards'>
@@ -23,7 +17,7 @@ const PlayerCards = ({ cards }) => {
                         </div>
                     ))}
             </div>
-            {isSplit && <div className='split-cards'>
+            {cards.split.length > 0 && <div className='split-cards'>
                 <p className='pcard-label'> {label(cardValue(cards.split))} </p>
                 {cards.split.map((o, i) => (
                     <div key={i} className='pcard'>

@@ -20,18 +20,18 @@ export default function Table({ cards, players }) {
                 <PlayerCards cards={cards.cardsList[1]} />
             </div>
             <div className='area-3'>
-                {Number(players) >= 2 ? <div>
+                {cards.cardsList.length > 2 ? <div>
                     <PlayerCards cards={cards.cardsList[2]} />
-                </div> : <EmptyCard /> }
+                </div> : <EmptyCard />}
             </div>
             <div className='area-4'>
-                {Number(players) >= 3 ? <div>
-                    <PlayerCards cards={cards.cardsList[3]}/>
+                {cards.cardsList.length > 3 ? <div>
+                    <PlayerCards cards={cards.cardsList[3]} />
                 </div> : <EmptyCard />}
             </div>
             <div className='area-5'>
-                {Number(players) >= 4 ? <div>
-                    <PlayerCards cards={cards.cardsList[4]}/>
+                {cards.cardsList.length > 4 ? <div>
+                    <PlayerCards cards={cards.cardsList[4]} />
                 </div> : <EmptyCard />}
             </div>
         </div>

@@ -65,9 +65,10 @@ export default function HighLifeBJ() {
         }
     }
 
-    function handleSplit() {
+    function handleSplit({ player }) {
         dispatch({
             type: 'split',
+            player: player
         })
     }
 
@@ -98,7 +99,7 @@ export default function HighLifeBJ() {
     return (
         <div className="dash-container">
             <div>
-                <Input addCard={handleAddCard} addGame={handleAddGame} removeCard={handleRemoveCard} removeGame={handleRemoveGame} players={players} setPlayers={setPlayers} changePlayers={changePlayers} cards={games[games.length - 1]} split={handleSplit} addSplit={handleAddSplit} />
+                <Input addCard={handleAddCard} addGame={handleAddGame} removeCard={handleRemoveCard} removeGame={handleRemoveGame} players={players} setPlayers={setPlayers} changePlayers={changePlayers} game={games[games.length - 1]} split={handleSplit} addSplit={handleAddSplit} />
             </div>
             <div>
                 <Table cards={games[games.length - 1]} players={players} />
