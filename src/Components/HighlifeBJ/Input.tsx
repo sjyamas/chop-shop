@@ -16,7 +16,6 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
     const [doubleActive, setDoubleActive] = useState(true)
     const [splitActive, setSplitActive] = useState(true)
 
-    let scards = game.cardsList
     let prevAction = game.actions[game.actions.length - 1]
 
     const seq = turnOrder(players)

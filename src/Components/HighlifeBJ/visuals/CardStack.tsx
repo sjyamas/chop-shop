@@ -31,7 +31,7 @@ const CardStack = ({ cards }) => {
     return (
         <div className="card-stack">
             <div className='up-cards'>
-                <p className='pcard-label'> {label(cardValue(cards.cards))} </p>
+                {cardValue(cards.cards).value > 21 ? <p className='pcard-label'> {cardValue(cards.cards).value} - BUST </p> : <p className='pcard-label'> {cardValue(cards.cards).value} </p> } 
                 {stack.map((o, i) => (
                     <div key={i} className='dcard'>
                         {card[o]}
@@ -70,26 +70,14 @@ const cardValue = (cards) => {
     let total = 0;
     let soft = false;
 
-    console.log('dfsda', cards)
-
     cards.map((o, i) => {
-        if (o > 0) {
+        if(total > 21 && valueMap[o[1]].value == 11){
+            total += 1
+        }else{  
             total += valueMap[o[1]].value
-            if (valueMap[o[1]].soft) {
-                soft = true
-            }
         }
-
     })
-    return ({ value: total, soft: soft })
-}
-
-const label = (total) => {
-    if (total.soft) {
-        return `${total.value - 10}`
-    } else {
-        return `${total.value}`
-    }
+    return ({ value: total })
 }
 
 
