@@ -89,14 +89,13 @@ export default function cardsReducer(games, action) {
             let playerIndex = curGame.cardsList.findIndex(player => player.player === lastPlayer);
 
             if (curGame.cardsList[playerIndex].cards.length > 0) {
-                if (['splitInitSplit', 'splitSplit'].includes(curGame.actions[curGame.actions.length - 1].action)) {
+                if (['splitInitSplit', 'splitSplit', 'splitSplitStand'].includes(curGame.actions[curGame.actions.length - 1].action)) {
                     curGame.cardsList[playerIndex].split.pop()
                 } else {
                     if (curGame.actions[curGame.actions.length - 1].action === 'split') {
                         curGame.cardsList[playerIndex].cards.push(curGame.cardsList[playerIndex].split[0])
                         curGame.cardsList[playerIndex].split.pop()
                     } else {
-
                         curGame.cardsList[playerIndex].cards.pop()
                     }
                 }

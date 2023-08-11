@@ -60,7 +60,7 @@ export default function HighLifeBJ() {
             type: 'removeCard',
             cardId: cardId
         })
-        if (games[games.length - 1].cards.length <= 1) {
+        if (games[games.length - 1].cardsList.length <= 1) {
             setChangePlayers(true)
         }
     }

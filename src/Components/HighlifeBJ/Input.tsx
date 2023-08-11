@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Input.css'
 import Club from '../../Assets/Suits/Clubs.png'
 import Diamond from '../../Assets/Suits/Diamond.png'
@@ -21,6 +21,14 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
 
     const seq = turnOrder(players)
 
+    useEffect(()=>{
+        if(game.cardsList[seq[stage]].cards.length === 2 && game.cardsList[seq[stage]].cards[game.cardsList[seq[stage]].cards.length - 1][1] === game.cardsList[seq[stage]].cards[game.cardsList[seq[stage]].cards.length - 2][1] && game.cardsList[seq[stage]].split.length === 0 ){
+            setSplitActive(true)
+        } else {
+            setSplitActive(false)
+        }
+    },[game])
+
     function turnOrder(num) {
         const sequence = [];
         for (let i = 1; i <= num; i++) {
@@ -38,10 +46,15 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
     }
 
     const undoTurn = () => {
-        if (game.cards[game.cards.length - 1].action !== 'hit') {
+        if (['hit', 'split', 'init', 'double' ].includes(game.actions[game.actions.length - 1].action)) {
             setStage(stage => stage - 1)
         }
-        setDoubleActive(true)
+        if(game.cardList[game.actions[game.actions.length - 1].player].cards.length === 2 ){
+            setDoubleActive(true)
+            if(game.cardList[game.actions[game.actions.length - 1].player].cards[game.cardList[game.actions[game.actions.length - 1].player].cards.length - 1][1] === game.cardList[game.actions[game.actions.length - 1].player].cards[game.cardList[game.actions[game.actions.length - 1].player].cards.length - 2][1] ){
+                setSplitActive(true)
+            }
+        }
     }
 
     function handleHit() {
@@ -60,15 +73,20 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
         addCard({ player: seq[stage], action: 'stand' });
         if ((!['splitInitSplit', 'splitMain'].includes(prevAction.action))) {
             setStage(stage => stage + 1)
+            setDoubleActive(true)
         }
     }
 
     function handleSplit() {
         split({ player: seq[stage], action: 'split' })
+        setDoubleActive(false)
+        setSplitActive(false)
     }
 
     function handleAddSplit() {
         addSplit({ player: seq[stage], action: 'addSplit', card: `${suit}${rank}` })
+        setDoubleActive(false)  
+        setSplitActive(false)
     }
 
     function handleAdd() {
@@ -174,9 +192,6 @@ export default function Input({ addCard, removeCard, addGame, removeGame, player
                         </button>
                         <button className={`button input-btn ${splitActive ? '' : 'inactive'}`} disabled={!splitActive} onClick={handleSplit}>
                             Split
-                        </button>
-                        <button className={`button input-btn ${splitActive ? '' : 'inactive'}`} disabled={!splitActive} onClick={handleAddSplit}>
-                            Add Split
                         </button>
                     </div>}
 
