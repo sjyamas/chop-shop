@@ -1,15 +1,13 @@
-import React from "react";
-
 export default function CustomButton({
   children,
   onClick,
   textMargin = 10,
   buttonMargin = 2,
   bgcolor = "rgba(0,0,0, 0.2)",
-  style
+  style,
 }) {
   return (
-    <div style ={{margin: buttonMargin}}>
+    <div style={{ margin: buttonMargin }}>
       <button
         onClick={onClick}
         style={{

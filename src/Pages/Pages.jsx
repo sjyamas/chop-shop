@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CustomButton from "../Global/CustomButton.jsx";
+import CustomButton from "../Global/CustomButton.tsx";
 
 import bjchart from "../Assets/Images/bjchart.png";
 
