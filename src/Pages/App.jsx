@@ -18,6 +18,7 @@ import Chrono from '../Components/Chrono/Chrono'
 import TrafficLightPage from './TrafficLightPage'
 
 import './App.css';
+import { enableMapSet } from 'immer';
 
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -34,6 +35,7 @@ const router = createBrowserRouter(createRoutesFromElements(
 ));
 
 function App() {
+  enableMapSet()
   return (
     <RouterProvider router={router}/>
   );

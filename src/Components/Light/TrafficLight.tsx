@@ -1,33 +1,50 @@
 import SingleLight from "Components/Light/SingleLight";
 
-export default function TrafficLight({ config }: any) {
+export default function TrafficLight({ id, config }: any) {
+  // console.log("fan", config);
   return (
     <div
       style={{
+        height: "auto",
+        width: "auto",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
       }}
     >
-      {config.map((row) => (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          {row.map((item) => (
-            <SingleLight
-              color={item.color}
-              arrow={item.arrow}
-              flashing={item.flashing}
-              altFlashing={item.altFlashing}
-              on={item.on}
-            />
-          ))}
-        </div>
-      ))}
+      <p style={{ width: "1rem", color: "white" }}>{id}</p>
+
+      <div
+        style={{
+          height: "auto",
+          width: "auto",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#111111",
+          padding: "1rem",
+          borderRadius: "0.5rem",
+        }}
+      >
+        {config.map((row) => (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            {row.map((item) => (
+              <SingleLight
+                color={item.color}
+                arrow={item.arrow === "solid" ? false : item.arrow}
+                flashing={item.flashing === "solid" ? false : item.flashing}
+                altFlashing={item.flashing === "alt"}
+                on={item.on}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

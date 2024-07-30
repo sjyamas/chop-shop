@@ -15,6 +15,7 @@
             "Global/*" :["src/Global/*"],
             "Pages/*": ["src/Pages/*"],
             "Styles/*": ["src/Styles/*"],
+            "Helpers/*": ["src/Helpers/*"]
         },
         /* Bundler mode */
         "moduleResolution": "bundler",

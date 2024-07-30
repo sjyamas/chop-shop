@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import lightsStore from "Helpers/lightsStore";
 
 export default function SingleLight({
   size = 12,
@@ -14,7 +15,7 @@ export default function SingleLight({
     red: "#ED1D24",
   };
 
-  const flashTime = 1.5;
+  const flash = lightsStore((state) => state.flash);
   return (
     <div
       style={{
@@ -28,21 +29,18 @@ export default function SingleLight({
     >
       {arrow ? (
         flashing ? (
-          <motion.div
-            animate={{ opacity: [1, 1, 0, 0] }} // Define keyframes for opacity
-            transition={{
-              delay: altFlashing ? flashTime / 2 : 0,
-              duration: flashTime, // Total duration (2 seconds on + 1 second off)
-              times: [0, 0.5, 0.5, 1], // Control the timing of keyframes
-              repeat: Infinity, // Repeat infinitely
-              repeatType: "loop", // Loop the animation
-              ease: "linear", // Ensure smooth transition
-            }}
+          <div
             style={{
               height: size === 12 ? "3rem" : "10rem",
               width: size === 12 ? "3rem" : "10rem",
               borderRadius: "50%",
-              visibility: on ? "visible" : "hidden",
+              visibility: altFlashing
+                ? flash
+                  ? "hidden"
+                  : "visible"
+                : flash
+                ? "visible"
+                : "hidden",
             }}
           >
             <svg width="100%" height="100%" viewBox="0 0 200 200">
@@ -64,7 +62,7 @@ export default function SingleLight({
                 />
               </g>
             </svg>
-          </motion.div>
+          </div>
         ) : (
           <div
             style={{
@@ -100,22 +98,19 @@ export default function SingleLight({
           </div>
         )
       ) : flashing ? (
-        <motion.div
-          animate={{ opacity: [1, 1, 0, 0] }} // Define keyframes for opacity
-          transition={{
-            delay: altFlashing ? flashTime / 2 : 0,
-            duration: flashTime, // Total duration (2 seconds on + 1 second off)
-            times: [0, 0.5, 0.5, 1], // Control the timing of keyframes
-            repeat: Infinity, // Repeat infinitely
-            repeatType: "loop", // Loop the animation
-            ease: "linear", // Ensure smooth transition
-          }}
+        <div
           style={{
             backgroundColor: colors[color],
             height: size === 12 ? "3rem" : "10rem",
             width: size === 12 ? "3rem" : "10rem",
             borderRadius: "50%",
-            visibility: on ? "visible" : "hidden",
+            visibility: altFlashing
+              ? flash
+                ? "hidden"
+                : "visible"
+              : flash
+              ? "visible"
+              : "hidden",
           }}
         />
       ) : (
