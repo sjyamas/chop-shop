@@ -9,7 +9,9 @@ import lightsStore from "Helpers/lightsStore";
 
 export default function SetLight({ coords, color, arrow, flashing, on }) {
   let iconSize = "16px";
-  const data = lightsStore((state) => state.lights);
+  const cycle = lightsStore((state) => state.cycle);
+  const editStage = lightsStore((state) => state.editStage);
+
   const updateLight = lightsStore((state) => state.updateLight);
   const removeLight = lightsStore((state) => state.removeLight);
   const aspectStyle = {
@@ -285,6 +287,7 @@ export default function SetLight({ coords, color, arrow, flashing, on }) {
           onClick={() => {
             removeLight(coords[1], coords[0], coords[3], coords[2]);
           }}
+          disabled={!(editStage === 0 && cycle.length === 1)}
         >
           <FaTrashAlt color="white" size={iconSize} />
         </button>

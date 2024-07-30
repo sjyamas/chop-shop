@@ -3,12 +3,18 @@ import SetLight from "./SetLight";
 import lightsStore from "Helpers/lightsStore";
 
 export default function SetTrafficLight() {
-  const data = lightsStore((state) => state.lights);
+  const cycle = lightsStore((state) => state.cycle);
+  const setCurrentStage = lightsStore((state) => state.setCurrentStage);
+  const setEditStage = lightsStore((state) => state.setEditStage);
+  const editStage = lightsStore((state) => state.editStage);
+
+  const addStage = lightsStore((state) => state.addStage);
   const addLightRow = lightsStore((state) => state.addLightRow);
   const addLightCol = lightsStore((state) => state.addLightCol);
   const addRow = lightsStore((state) => state.addRow);
   const addCol = lightsStore((state) => state.addCol);
   const removeModule = lightsStore((state) => state.removeModule);
+  const removeStage = lightsStore((state) => state.removeStage);
 
   const buttonStyle = {
     display: "flex",
@@ -26,16 +32,53 @@ export default function SetTrafficLight() {
     borderStyle: "solid",
   };
 
-  useEffect(() => {
-    console.log(JSON.stringify(data));
-  }, [data]);
+  // useEffect(() => {
+  //   console.log(JSON.stringify(cycle));
+  // }, [cycle]);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      {data.map((row, rowIndex) => (
-        <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
+      <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
+        <button
+          style={buttonStyle}
+          onClick={() => {
+            removeStage();
+          }}
+        >
+          -
+        </button>
+        {[...Array(cycle.length)].map((e, i) => (
+          <button
+            key={i}
+            style={{
+              ...buttonStyle,
+              backgroundColor: i === editStage ? "blue" : "black",
+            }}
+            onClick={() => {
+              setEditStage(i);
+              setCurrentStage(i);
+            }}
+          >
+            {i}
+          </button>
+        ))}
+        <button
+          style={buttonStyle}
+          onClick={() => {
+            addStage();
+          }}
+        >
+          +
+        </button>
+      </div>
+      {cycle[editStage].lights.map((row, rowIndex) => (
+        <div
+          key={rowIndex}
+          style={{ display: "flex", flexDirection: "row", gap: "1rem" }}
+        >
           {row.map((signal, signalIndex) => (
             <div
+              key={signalIndex}
               style={{
                 display: "flex",
               }}
@@ -54,6 +97,7 @@ export default function SetTrafficLight() {
                 <p style={{ color: "white" }}>{signal.light_id}</p>
                 {signal.state.map((lightRow, lightRowIndex) => (
                   <div
+                    key={lightRowIndex}
                     style={{
                       display: "flex",
                       flexDirection: "row",
@@ -88,6 +132,7 @@ export default function SetTrafficLight() {
                       onClick={() =>
                         addLightRow(signalIndex, rowIndex, lightRowIndex)
                       }
+                      disabled={!(editStage === 0 && cycle.length === 1)}
                     >
                       +
                     </button>
@@ -98,6 +143,7 @@ export default function SetTrafficLight() {
                     ...buttonStyle,
                   }}
                   onClick={() => addLightCol(signalIndex, rowIndex)}
+                  disabled={!(editStage === 0 && cycle.length === 1)}
                 >
                   +
                 </button>
@@ -105,16 +151,19 @@ export default function SetTrafficLight() {
               <button
                 style={buttonStyle}
                 onClick={() => removeModule(signalIndex, rowIndex)}
+                disabled={!(editStage === 0 && cycle.length === 1)}
               >
                 X
               </button>
             </div>
           ))}
+
           <button
             style={{
               ...buttonStyle,
             }}
             onClick={() => addRow(rowIndex)}
+            disabled={!(editStage === 0 && cycle.length === 1)}
           >
             ++
           </button>
@@ -125,6 +174,7 @@ export default function SetTrafficLight() {
           ...buttonStyle,
         }}
         onClick={() => addCol()}
+        disabled={!(editStage === 0 && cycle.length === 1)}
       >
         ++
       </button>

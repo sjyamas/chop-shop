@@ -26,15 +26,17 @@ export default function TrafficLight({ id, config }: any) {
           borderRadius: "0.5rem",
         }}
       >
-        {config.map((row) => (
+        {config.map((row, rowIndex) => (
           <div
+            key={rowIndex}
             style={{
               display: "flex",
               flexDirection: "row",
             }}
           >
-            {row.map((item) => (
+            {row.map((item, itemIndex) => (
               <SingleLight
+                key={itemIndex}
                 color={item.color}
                 arrow={item.arrow === "solid" ? false : item.arrow}
                 flashing={item.flashing === "solid" ? false : item.flashing}
