@@ -1,16 +1,21 @@
 import { create } from "zustand";
-import { produce } from "immer";
-import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
 const defaultLight = { color: "red", arrow: "solid", flashing: "solid", on: true }
-const lightsStore = create(devtools(immer((set) => ({
+const lightsStore = create(immer((set) => ({
+    on: false,
+
+    toggleOn: () => set(state => ({ on: !state.on })),
     currentStage: 0,
     light_id: 4,
     editStage: 0,
+    time: 0,
+    addTime: () => set((state) => ({ time: state.time + 1 })),
+    resetTime: () => set({ time: 0 }),
+
     cycle: [{
         stage: 0,
-        min_duration: 4,
+        duration: 4,
         max_duration: 120,
         lights: [
             [
@@ -58,6 +63,10 @@ const lightsStore = create(devtools(immer((set) => ({
         ],
     }],
 
+    setDuration: (stage, duration) => set((state) => {
+        state.cycle[stage].duration = duration
+    }),
+
     addStage: () => set((state) => {
         state.cycle.push(state.cycle[state.cycle.length - 1]); state.editStage++;
         state.currentStage++;
@@ -73,14 +82,26 @@ const lightsStore = create(devtools(immer((set) => ({
             state.cycle.pop()
         }
     }),
-    setEditStage: (stage) => set({ editStage: stage }),
-    setCurrentStage: (stage) => set({ currentStage: stage }),
+    setEditStage: (stage) => set((state) => {
+        state.editStage = stage
+    }),
+
+    setCurrentStage: (stage) => set((state) => {
+        state.currentStage = stage
+    }),
+
+    incStage: () => set((state) => {
+        if (state.currentStage === state.cycle.length - 1) {
+            state.currentStage = 0
+            state.editStage = 0
+        } else { state.currentStage++; state.editStage++; }
+    }),
     // setEditable: (stage) => set({ editable: !(state.editStage === 0 && state.cycle.length === 1) }),
 
     updateLight: (row, col, x, y, key, value) => set((state) => { state.cycle[state.editStage].lights[col][row].state[y][x][key] = value }),
 
-    addCol: () => set((state) => { state.light_id++; state.cycle[state.editStage].lights.push([{ light_id: state.light_id, state: [[defaultLight]] }]) }),
-    addRow: (col) => set((state) => { state.light_id++; state.cycle[state.editStage].lights[col].push({ light_id: state.light_id, state: [[defaultLight]] }) }),
+    addCol: () => set((state) => { state.cycle[state.editStage].lights.push([{ light_id: state.light_id++, state: [[defaultLight]] }]) }),
+    addRow: (col) => set((state) => { state.cycle[state.editStage].lights[col].push({ light_id: state.light_id++, state: [[defaultLight]] }) }),
     removeModule: (row, col) => set((state) => {
         if (state.cycle[state.editStage].lights[col].length === 1) {
             if (state.cycle[state.editStage].lights.length === 1) {
@@ -105,10 +126,11 @@ const lightsStore = create(devtools(immer((set) => ({
     }),
 
     flashing: true,
-    setFlashing: () => set(state => ({ flashing: !state.flashing })),
+    setFlashing: () => set((state) => ({ flashing: !state.cycle[state.currentStage].lights.flatMap(arr => arr).flatMap(item => item.state).flatMap(row => row).every(item => item.flashing === "solid") })),
+    // setFlashing: () => set(state => ({ flashing: !state.flashing })),
 
     flash: true,
     setFlash: () => set(state => ({ flash: !state.flash }))
-}))));
+})));
 
 export default lightsStore;

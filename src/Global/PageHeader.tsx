@@ -1,15 +1,17 @@
-export default function PageHeader({ children }: any) {
+import { memo } from "react";
+
+const PageHeader = memo(function PageHeader() {
+  console.log("PageHeader");
   return (
-    <div>
+    <div style={{ width: "100%", position: "relative", top: 0 }}>
       <div
         style={{
           height: "3.5rem",
           backgroundColor: "#282828",
         }}
       ></div>
-      <div style={{ backgroundColor: "#282c34", height: "100vh" }}>
-        {children}
-      </div>
     </div>
   );
-}
+});
+
+export default PageHeader;

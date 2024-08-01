@@ -1,20 +1,33 @@
-import { useEffect } from "react";
+import { memo, useEffect, useMemo } from "react";
 import SetLight from "./SetLight";
 import lightsStore from "Helpers/lightsStore";
+import TextInput from "Global/TextInput";
 
-export default function SetTrafficLight() {
+const SetTrafficLight = memo(function SetTrafficLight() {
+  console.log("SetTrafficLight");
   const cycle = lightsStore((state) => state.cycle);
   const setCurrentStage = lightsStore((state) => state.setCurrentStage);
   const setEditStage = lightsStore((state) => state.setEditStage);
   const editStage = lightsStore((state) => state.editStage);
+
+  const currentStage = lightsStore((state) => state.currentStage);
 
   const addStage = lightsStore((state) => state.addStage);
   const addLightRow = lightsStore((state) => state.addLightRow);
   const addLightCol = lightsStore((state) => state.addLightCol);
   const addRow = lightsStore((state) => state.addRow);
   const addCol = lightsStore((state) => state.addCol);
+
   const removeModule = lightsStore((state) => state.removeModule);
   const removeStage = lightsStore((state) => state.removeStage);
+
+  const setFlashing = lightsStore((state) => state.setFlashing);
+
+  const setDuration = lightsStore((state) => state.setDuration);
+
+  const time = lightsStore((state) => state.time);
+
+  const toggleOn = lightsStore((state) => state.toggleOn);
 
   const buttonStyle = {
     display: "flex",
@@ -37,8 +50,22 @@ export default function SetTrafficLight() {
   // }, [cycle]);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+        padding: "1rem",
+      }}
+    >
+      {/* STAGE SETTER */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          gap: "1rem",
+        }}
+      >
         <button
           style={buttonStyle}
           onClick={() => {
@@ -49,7 +76,7 @@ export default function SetTrafficLight() {
         </button>
         {[...Array(cycle.length)].map((e, i) => (
           <button
-            key={i}
+            key={"a" + i}
             style={{
               ...buttonStyle,
               backgroundColor: i === editStage ? "blue" : "black",
@@ -57,6 +84,7 @@ export default function SetTrafficLight() {
             onClick={() => {
               setEditStage(i);
               setCurrentStage(i);
+              // setFlashing();
             }}
           >
             {i}
@@ -71,14 +99,49 @@ export default function SetTrafficLight() {
           +
         </button>
       </div>
+
+      {/* stage config */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: "1rem",
+        }}
+      >
+        <button
+          style={buttonStyle}
+          onClick={() => {
+            toggleOn();
+          }}
+        >
+          START
+        </button>
+        <span>Stage: {currentStage}</span>
+        <span>
+          Time: {time}/{cycle[currentStage].duration}
+        </span>
+        <input
+          type="text"
+          onChange={(e) => setDuration(currentStage, e.target.value)}
+          value={cycle[currentStage].duration}
+        />
+        <button style={buttonStyle} onClick={() => {}}>
+          -
+        </button>
+        <button style={buttonStyle} onClick={() => {}}>
+          +
+        </button>
+      </div>
+      {/* LIGHTS */}
       {cycle[editStage].lights.map((row, rowIndex) => (
         <div
-          key={rowIndex}
+          key={"b" + rowIndex}
           style={{ display: "flex", flexDirection: "row", gap: "1rem" }}
         >
           {row.map((signal, signalIndex) => (
             <div
-              key={signalIndex}
+              key={"c" + rowIndex + signalIndex}
               style={{
                 display: "flex",
               }}
@@ -97,7 +160,7 @@ export default function SetTrafficLight() {
                 <p style={{ color: "white" }}>{signal.light_id}</p>
                 {signal.state.map((lightRow, lightRowIndex) => (
                   <div
-                    key={lightRowIndex}
+                    key={"d" + rowIndex + signalIndex + lightRowIndex}
                     style={{
                       display: "flex",
                       flexDirection: "row",
@@ -106,27 +169,33 @@ export default function SetTrafficLight() {
                       gap: "1rem",
                     }}
                   >
-                    {lightRow &&
-                      lightRow.map((light, lightIndex) => (
-                        <SetLight
-                          key={[
-                            rowIndex,
-                            signalIndex,
-                            lightRowIndex,
-                            lightIndex,
-                          ]}
-                          coords={[
-                            rowIndex,
-                            signalIndex,
-                            lightRowIndex,
-                            lightIndex,
-                          ]}
-                          color={light.color}
-                          arrow={light.arrow}
-                          flashing={light.flashing}
-                          on={light.on}
-                        />
-                      ))}
+                    {lightRow.map((light, lightIndex) => (
+                      <SetLight
+                        key={
+                          "e" +
+                          rowIndex +
+                          signalIndex +
+                          lightRowIndex +
+                          lightIndex
+                        }
+                        id={
+                          "e" +
+                          rowIndex +
+                          signalIndex +
+                          lightRowIndex +
+                          lightIndex
+                        }
+                        col={rowIndex}
+                        row={signalIndex}
+                        y={lightRowIndex}
+                        x={lightIndex}
+                        color={light.color}
+                        arrow={light.arrow}
+                        flashing={light.flashing}
+                        on={light.on}
+                        enabled={cycle.length === 1 && editStage === 0}
+                      />
+                    ))}
                     <button
                       style={buttonStyle}
                       onClick={() =>
@@ -180,4 +249,6 @@ export default function SetTrafficLight() {
       </button>
     </div>
   );
-}
+});
+
+export default SetTrafficLight;

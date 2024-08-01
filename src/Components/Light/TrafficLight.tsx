@@ -1,7 +1,8 @@
 import SingleLight from "Components/Light/SingleLight";
+import { memo, useMemo } from "react";
 
-export default function TrafficLight({ id, config }: any) {
-  // console.log("fan", config);
+const TrafficLight = memo(function TrafficLight({ light }: any) {
+  console.log("TrafficLight");
   return (
     <div
       style={{
@@ -11,7 +12,7 @@ export default function TrafficLight({ id, config }: any) {
         flexDirection: "column",
       }}
     >
-      <p style={{ width: "1rem", color: "white" }}>{id}</p>
+      <p style={{ width: "1rem", color: "white" }}>{light.light_id}</p>
 
       <div
         style={{
@@ -26,7 +27,7 @@ export default function TrafficLight({ id, config }: any) {
           borderRadius: "0.5rem",
         }}
       >
-        {config.map((row, rowIndex) => (
+        {light.state.map((row, rowIndex) => (
           <div
             key={rowIndex}
             style={{
@@ -49,4 +50,6 @@ export default function TrafficLight({ id, config }: any) {
       </div>
     </div>
   );
-}
+});
+
+export default TrafficLight;

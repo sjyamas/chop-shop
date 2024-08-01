@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import lightsStore from "Helpers/lightsStore";
+import { memo } from "react";
 
-export default function SingleLight({
+const SingleLight = memo(function SingleLight({
   size = 12,
   on = false,
   color = "red",
@@ -14,8 +15,8 @@ export default function SingleLight({
     yellow: "#FFF200",
     red: "#ED1D24",
   };
-
-  const flash = lightsStore((state) => state.flash);
+  console.log("SingleLight");
+  const flash = flashing ? lightsStore((state) => state.flash) : null;
   return (
     <div
       style={{
@@ -126,4 +127,6 @@ export default function SingleLight({
       )}
     </div>
   );
-}
+});
+
+export default SingleLight;
