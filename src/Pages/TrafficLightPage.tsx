@@ -6,6 +6,7 @@ import CylceInput from "Components/Light/CycleInput";
 import SetLight from "Components/Light/SetLight";
 import SetTrafficLight from "Components/Light/SetTrafficLight";
 import lightsStore from "Helpers/lightsStore";
+import OptionButton from "Components/Light/OptionButton";
 
 export default function TrafficLightPage() {
   const on = lightsStore((state) => state.on);
@@ -16,6 +17,7 @@ export default function TrafficLightPage() {
   const time = lightsStore((state) => state.time);
   const resetTime = lightsStore((state) => state.resetTime);
   const incStage = lightsStore((state) => state.incStage);
+  const setFlashing = lightsStore((state) => state.setFlashing);
 
   const blinkingInterval = 750;
   const cycleInterval = 1000;
@@ -23,7 +25,7 @@ export default function TrafficLightPage() {
   //TODO: trigger only when there is a light that has flashing
 
   useEffect(() => {
-    // setFlashing();
+    setFlashing();
   }, []);
 
   useEffect(() => {
@@ -55,14 +57,14 @@ export default function TrafficLightPage() {
     if (time >= cycle[currentStage].duration) {
       resetTime();
       incStage();
+      setFlashing();
     }
   }, [time]);
 
   const cycle = lightsStore((state) => state.cycle);
 
-  console.log("RERENDERING MAIN", currentStage, cycle);
   return (
-    <div>
+    <div style={{ backgroundColor: "grey" }}>
       <PageHeader />
       {/* <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
           {lights.map((item) => (

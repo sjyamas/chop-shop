@@ -4,9 +4,17 @@ import {
   FaArrowRight,
   FaArrowUp,
   FaTrashAlt,
+  FaBicycle,
 } from "react-icons/fa";
 import { HiLightBulb, HiOutlineLightBulb } from "react-icons/hi";
+import {
+  PiArrowULeftDownBold,
+  PiArrowUpLeftBold,
+  PiArrowUpRightBold,
+} from "react-icons/pi";
+
 import lightsStore from "Helpers/lightsStore";
+import OptionButton from "./OptionButton";
 
 const SetLight = memo(function SetLight({
   row,
@@ -14,7 +22,8 @@ const SetLight = memo(function SetLight({
   y,
   x,
   color,
-  arrow,
+  shape,
+  size = 12,
   flashing,
   on,
   enabled = true,
@@ -46,10 +55,15 @@ const SetLight = memo(function SetLight({
     borderRadius: "50%",
   };
 
+  function handleChange(key, value) {
+    updateLight(row, col, x, y, key, value);
+  }
+
   return (
     <div
       style={{
-        display: "inline-flex",
+        display: "flex",
+        flexDirection: "column",
         padding: "1rem",
         height: "auto",
         width: "auto",
@@ -57,55 +71,7 @@ const SetLight = memo(function SetLight({
         backgroundColor: "pink",
       }}
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "0.2rem" }}>
-        <button
-          style={{
-            ...aspectStyle,
-            borderColor: color === "red" ? "white" : "black",
-          }}
-          onClick={() => {
-            updateLight(row, col, x, y, "color", "red");
-          }}
-        >
-          <div
-            style={{
-              ...circleStyle,
-              backgroundColor: "red",
-            }}
-          />
-        </button>
-        <button
-          style={{
-            ...aspectStyle,
-            borderColor: color === "yellow" ? "white" : "black",
-          }}
-          onClick={() => {
-            updateLight(row, col, x, y, "color", "yellow");
-          }}
-        >
-          <div
-            style={{
-              ...circleStyle,
-              backgroundColor: "yellow",
-            }}
-          />
-        </button>
-        <button
-          style={{
-            ...aspectStyle,
-            borderColor: color === "green" ? "white" : "black",
-          }}
-          onClick={() => {
-            updateLight(row, col, x, y, "color", "green");
-          }}
-        >
-          <div
-            style={{
-              ...circleStyle,
-              backgroundColor: "green",
-            }}
-          />
-        </button>
+      <div style={{ display: "flex", flexDirection: "row" }}>
         <button
           style={{
             ...aspectStyle,
@@ -122,99 +88,22 @@ const SetLight = memo(function SetLight({
             }}
           />
         </button>
-      </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: "0.2rem" }}>
-        <button
-          style={{
-            ...aspectStyle,
-            borderColor: arrow === "solid" ? "white" : "black",
-          }}
-          onClick={() => {
-            updateLight(row, col, x, y, "arrow", "solid");
-          }}
-        >
-          <div
-            style={{
-              ...circleStyle,
-              backgroundColor: "white",
-            }}
-          />
-        </button>
-        <button
-          style={{
-            ...aspectStyle,
-            borderColor: arrow === "left" ? "white" : "black",
-          }}
-          onClick={() => {
-            updateLight(row, col, x, y, "arrow", "left");
-          }}
-        >
-          <FaArrowLeft color="white" size={iconSize} />
-        </button>
-        <button
-          style={{
-            ...aspectStyle,
-            borderColor: arrow === "right" ? "white" : "black",
-          }}
-          onClick={() => {
-            updateLight(row, col, x, y, "arrow", "right");
-          }}
-        >
-          <FaArrowRight color="white" size={iconSize} />
-        </button>
-        <button
-          style={{
-            ...aspectStyle,
-            borderColor: arrow === "up" ? "white" : "black",
-          }}
-          onClick={() => {
-            updateLight(row, col, x, y, "arrow", "up");
-          }}
-        >
-          <FaArrowUp color="white" size={iconSize} />
-        </button>
-      </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: "0.2rem" }}>
-        <button
-          style={{
-            ...aspectStyle,
-            borderColor: flashing === "solid" ? "white" : "black",
-          }}
-          onClick={() => {
-            updateLight(row, col, x, y, "flashing", "solid");
-          }}
-        >
-          <div
-            style={{
-              height: "1.5rem",
-              width: "1.5rem",
-              borderRadius: "50%",
-              backgroundColor: "white",
-            }}
-          />
-        </button>
-        <button
-          style={{
-            ...aspectStyle,
-            borderColor: flashing === "true" ? "white" : "black",
-          }}
-          onClick={() => {
-            updateLight(row, col, x, y, "flashing", "true");
-          }}
-        >
-          <HiLightBulb color="white" size={iconSize} />
-        </button>
-        <button
-          style={{
-            ...aspectStyle,
-            borderColor: flashing === "alt" ? "white" : "black",
-          }}
-          onClick={() => {
-            updateLight(row, col, x, y, "flashing", "alt");
-          }}
-        >
-          <HiOutlineLightBulb color="white" size={iconSize} />
-        </button>
+        <OptionButton
+          init={size}
+          options={[
+            null,
+            { value: 10, display: <span>10</span> },
+            null,
+            null,
+            { value: 12, display: <span>12</span> },
+            null,
+            null,
+            { value: 8, display: <span>8</span> },
+            null,
+          ]}
+          funcKey="size"
+          setFunc={handleChange}
+        />
         <button
           style={{
             ...aspectStyle,
@@ -226,6 +115,104 @@ const SetLight = memo(function SetLight({
         >
           <FaTrashAlt color="white" size={iconSize} />
         </button>
+      </div>
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <div
+          style={{ display: "flex", flexDirection: "column", gap: "0.2rem" }}
+        >
+          <OptionButton
+            init={color}
+            options={[
+              null,
+              {
+                value: "red",
+                display: (
+                  <div style={{ ...circleStyle, backgroundColor: "red" }} />
+                ),
+              },
+              null,
+              null,
+              {
+                value: "yellow",
+                display: (
+                  <div style={{ ...circleStyle, backgroundColor: "yellow" }} />
+                ),
+              },
+              null,
+              null,
+              {
+                value: "green",
+                display: (
+                  <div style={{ ...circleStyle, backgroundColor: "green" }} />
+                ),
+              },
+              null,
+            ]}
+            funcKey="color"
+            setFunc={handleChange}
+          />
+        </div>
+        <div
+          style={{ display: "flex", flexDirection: "column", gap: "0.2rem" }}
+        >
+          <OptionButton
+            init={shape}
+            options={[
+              {
+                value: "upLeft",
+                display: <PiArrowUpLeftBold size={iconSize} />,
+              },
+              { value: "up", display: <FaArrowUp size={iconSize} /> },
+              {
+                value: "upRight",
+                display: <PiArrowUpRightBold size={iconSize} />,
+              },
+              { value: "left", display: <FaArrowLeft size={iconSize} /> },
+              {
+                value: "solid",
+                display: (
+                  <div style={{ ...circleStyle, backgroundColor: "white" }} />
+                ),
+              },
+              { value: "right", display: <FaArrowRight size={iconSize} /> },
+              {
+                value: "bike",
+                display: <FaBicycle size={iconSize} />,
+              },
+              {
+                value: "uTurn",
+                display: <PiArrowULeftDownBold size={iconSize} />,
+              },
+            ]}
+            funcKey="shape"
+            setFunc={handleChange}
+          />
+        </div>
+        <div
+          style={{ display: "flex", flexDirection: "column", gap: "0.2rem" }}
+        >
+          <OptionButton
+            init={flashing}
+            options={[
+              null,
+              { value: "flashing", display: <HiLightBulb size={iconSize} /> },
+              null,
+              null,
+              {
+                value: "solid",
+                display: (
+                  <div style={{ ...circleStyle, backgroundColor: "white" }} />
+                ),
+              },
+              null,
+              null,
+              { value: "alt", display: <HiOutlineLightBulb size={iconSize} /> },
+              null,
+            ]}
+            funcKey="flashing"
+            setFunc={handleChange}
+          />
+        </div>
       </div>
     </div>
   );

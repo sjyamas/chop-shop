@@ -28,6 +28,7 @@ const SetTrafficLight = memo(function SetTrafficLight() {
   const time = lightsStore((state) => state.time);
 
   const toggleOn = lightsStore((state) => state.toggleOn);
+  const setCycle = lightsStore((state) => state.setCycle);
 
   const buttonStyle = {
     display: "flex",
@@ -84,7 +85,7 @@ const SetTrafficLight = memo(function SetTrafficLight() {
             onClick={() => {
               setEditStage(i);
               setCurrentStage(i);
-              // setFlashing();
+              setFlashing();
             }}
           >
             {i}
@@ -119,18 +120,31 @@ const SetTrafficLight = memo(function SetTrafficLight() {
         </button>
         <span>Stage: {currentStage}</span>
         <span>
-          Time: {time}/{cycle[currentStage].duration}
+          Time: {time + 1}/{cycle[currentStage].duration}
         </span>
         <input
           type="text"
           onChange={(e) => setDuration(currentStage, e.target.value)}
           value={cycle[currentStage].duration}
         />
-        <button style={buttonStyle} onClick={() => {}}>
-          -
+        <button
+          style={buttonStyle}
+          onClick={() => {
+            localStorage.setItem("light", JSON.stringify(cycle));
+          }}
+        >
+          SAVE
         </button>
-        <button style={buttonStyle} onClick={() => {}}>
-          +
+        <button
+          style={buttonStyle}
+          onClick={() => {
+            let local = localStorage.getItem("light");
+            if (local) {
+              setCycle(JSON.parse(local));
+            }
+          }}
+        >
+          LOAD
         </button>
       </div>
       {/* LIGHTS */}
@@ -190,7 +204,7 @@ const SetTrafficLight = memo(function SetTrafficLight() {
                         y={lightRowIndex}
                         x={lightIndex}
                         color={light.color}
-                        arrow={light.arrow}
+                        shape={light.shape}
                         flashing={light.flashing}
                         on={light.on}
                         enabled={cycle.length === 1 && editStage === 0}
@@ -218,7 +232,12 @@ const SetTrafficLight = memo(function SetTrafficLight() {
                 </button>
               </div>
               <button
-                style={buttonStyle}
+                style={{
+                  ...buttonStyle,
+                  borderRadius: 0,
+                  borderColor: "purple",
+                  backgroundColor: "black",
+                }}
                 onClick={() => removeModule(signalIndex, rowIndex)}
                 disabled={!(editStage === 0 && cycle.length === 1)}
               >

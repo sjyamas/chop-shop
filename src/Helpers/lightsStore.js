@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-const defaultLight = { color: "red", arrow: "solid", flashing: "solid", on: true }
+const defaultLight = { color: "red", shape: "solid", flashing: "solid", on: true }
 const lightsStore = create(immer((set) => ({
     on: false,
 
@@ -23,14 +23,14 @@ const lightsStore = create(immer((set) => ({
                     light_id: 1,
                     state:
                         [
-                            [{ color: "red", arrow: "solid", flashing: "solid", on: true }],
+                            [{ color: "red", shape: "solid", flashing: "solid", on: true }],
                             [
-                                { color: "yellow", arrow: "left", flashing: "solid", on: true },
-                                { color: "yellow", arrow: "solid", flashing: "solid", on: true },
+                                { color: "yellow", shape: "left", flashing: "solid", on: true },
+                                { color: "yellow", shape: "solid", flashing: "solid", on: true },
                             ],
                             [
-                                { color: "green", arrow: "left", flashing: "solid", on: true },
-                                { color: "green", arrow: "solid", flashing: "solid", on: true },
+                                { color: "green", shape: "left", flashing: "solid", on: true },
+                                { color: "green", shape: "solid", flashing: "solid", on: true },
                             ],
                         ],
                 },
@@ -38,31 +38,16 @@ const lightsStore = create(immer((set) => ({
                     light_id: 2,
                     state:
                         [
-                            [{ color: "red", arrow: "solid", flashing: "solid", on: true }],
-                            [{ color: "yellow", arrow: "solid", flashing: "solid", on: true }],
-                            [{ color: "green", arrow: "solid", flashing: "solid", on: true }],
+                            [{ color: "red", shape: "solid", flashing: "solid", on: true }],
+                            [{ color: "yellow", shape: "solid", flashing: "solid", on: true }],
+                            [{ color: "green", shape: "solid", flashing: "solid", on: true }],
                         ],
                 }
-            ],
-            [{
-                light_id: 3,
-                state:
-                    [
-                        [{ color: "red", arrow: "solid", flashing: "solid", on: true }],
-                        [
-                            { color: "yellow", arrow: "left", flashing: "solid", on: true },
-                            { color: "yellow", arrow: "solid", flashing: "solid", on: true },
-                        ],
-                        [
-                            { color: "green", arrow: "left", flashing: "solid", on: true },
-                            { color: "green", arrow: "solid", flashing: "solid", on: true },
-                        ],
-                    ]
-            },
             ],
         ],
     }],
 
+    setCycle: (newCycle) => set({ cycle: newCycle }),
     setDuration: (stage, duration) => set((state) => {
         state.cycle[stage].duration = duration
     }),
@@ -126,8 +111,7 @@ const lightsStore = create(immer((set) => ({
     }),
 
     flashing: true,
-    setFlashing: () => set((state) => ({ flashing: !state.cycle[state.currentStage].lights.flatMap(arr => arr).flatMap(item => item.state).flatMap(row => row).every(item => item.flashing === "solid") })),
-    // setFlashing: () => set(state => ({ flashing: !state.flashing })),
+    setFlashing: () => set((state) => ({ flashing: !state.cycle[state.currentStage].lights.flatMap(arr => arr).flatMap(item => item.state).flatMap(row => row).filter(item => item.on).every(item => item.flashing === "solid") })),
 
     flash: true,
     setFlash: () => set(state => ({ flash: !state.flash }))

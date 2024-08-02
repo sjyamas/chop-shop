@@ -22,7 +22,7 @@ const TrafficLight = memo(function TrafficLight({ light }: any) {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "#111111",
+          backgroundColor: "#1E1E1E",
           padding: "1rem",
           borderRadius: "0.5rem",
         }}
@@ -38,8 +38,9 @@ const TrafficLight = memo(function TrafficLight({ light }: any) {
             {row.map((item, itemIndex) => (
               <SingleLight
                 key={itemIndex}
+                size={item.size}
                 color={item.color}
-                arrow={item.arrow === "solid" ? false : item.arrow}
+                shape={item.shape}
                 flashing={item.flashing === "solid" ? false : item.flashing}
                 altFlashing={item.flashing === "alt"}
                 on={item.on}
