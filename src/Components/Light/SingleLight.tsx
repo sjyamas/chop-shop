@@ -59,13 +59,19 @@ const SingleLight = memo(function SingleLight({
     //     }}
     //   />
     // ),
-    upLeft: <Arrow direction={"upLeft"} color={colors[color]} />,
-    up: <Arrow direction={"up"} color={colors[color]} />,
-    upRight: <Arrow direction={"upRight"} color={colors[color]} />,
-    left: <Arrow direction={"left"} color={colors[color]} />,
-    right: <Arrow direction={"right"} color={colors[color]} />,
-    bike: <Bike color={colors[color]} />,
-    uTurn: <Uturn color={colors[color]} />,
+    upLeft: (
+      <Arrow direction={"upLeft"} color={colors[color]} animate={animate} />
+    ),
+    up: <Arrow direction={"up"} color={colors[color]} animate={animate} />,
+    upRight: (
+      <Arrow direction={"upRight"} color={colors[color]} animate={animate} />
+    ),
+    left: <Arrow direction={"left"} color={colors[color]} animate={animate} />,
+    right: (
+      <Arrow direction={"right"} color={colors[color]} animate={animate} />
+    ),
+    bike: <Bike color={colors[color]} animate={animate} />,
+    uTurn: <Uturn color={colors[color]} animate={animate} />,
   };
 
   console.log("SingleLight");
