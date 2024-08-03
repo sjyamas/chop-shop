@@ -6,6 +6,7 @@ import {
   FaTrashAlt,
   FaBicycle,
 } from "react-icons/fa";
+import { MdAnimation } from "react-icons/md";
 import { HiLightBulb, HiOutlineLightBulb } from "react-icons/hi";
 import {
   PiArrowULeftDownBold,
@@ -85,9 +86,14 @@ const SetLight = memo(function SetLight({
           <div
             style={{
               ...circleStyle,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
               backgroundColor: "white",
             }}
-          />
+          >
+            <span>{on ? "ON" : "OFF"} </span>
+          </div>
         </button>
         <OptionButton
           init={size}
@@ -104,7 +110,7 @@ const SetLight = memo(function SetLight({
           ]}
           funcKey="size"
           setFunc={handleChange}
-        />{" "}
+        />
         <button
           style={{
             ...aspectStyle,
@@ -114,7 +120,9 @@ const SetLight = memo(function SetLight({
             updateLight(row, col, x, y, "animate", animate ? false : true);
           }}
         >
-          <span style={{ color: "white" }}>animate</span>
+          <span style={{ color: "white" }}>
+            <MdAnimation />
+          </span>
         </button>
         <button
           style={{

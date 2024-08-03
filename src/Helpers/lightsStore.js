@@ -47,7 +47,7 @@ const lightsStore = create(immer((set) => ({
         ],
     }],
 
-    setCycle: (newCycle) => set({ cycle: newCycle }),
+    setCycle: (newCycle) => set((state) => { state.cycle = newCycle }),
     setDuration: (stage, duration) => set((state) => {
         state.cycle[stage].duration = duration
     }),

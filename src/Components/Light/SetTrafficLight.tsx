@@ -2,6 +2,7 @@ import { memo, useEffect, useMemo } from "react";
 import SetLight from "./SetLight";
 import lightsStore from "Helpers/lightsStore";
 import TextInput from "Global/TextInput";
+import { FaPause, FaPlay } from "react-icons/fa";
 
 const SetTrafficLight = memo(function SetTrafficLight() {
   console.log("SetTrafficLight");
@@ -27,6 +28,8 @@ const SetTrafficLight = memo(function SetTrafficLight() {
 
   const time = lightsStore((state) => state.time);
 
+  const on = lightsStore((state) => state.on);
+
   const toggleOn = lightsStore((state) => state.toggleOn);
   const setCycle = lightsStore((state) => state.setCycle);
 
@@ -38,9 +41,9 @@ const SetTrafficLight = memo(function SetTrafficLight() {
     outline: 0,
     padding: 0,
     cursor: "pointer",
-    height: "3rem",
-    width: "3rem",
-    borderRadius: "1rem",
+    height: "2rem",
+    width: "2rem",
+    borderRadius: "15%",
     backgroundColor: "black",
     borderWidth: "0.5rem",
     borderStyle: "solid",
@@ -116,7 +119,7 @@ const SetTrafficLight = memo(function SetTrafficLight() {
             toggleOn();
           }}
         >
-          START
+          {on ? <FaPause /> : <FaPlay />}
         </button>
         <span>Stage: {currentStage}</span>
         <span>

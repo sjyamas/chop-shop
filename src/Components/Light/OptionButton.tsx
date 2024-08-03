@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const OptionButton = ({ init, options, funcKey, setFunc }) => {
   const [showGrid, setShowGrid] = useState(false);
   const [selectedOption, setSelectedOption] = useState(
     options.find((item) => item && item.value === init)
   );
+
+  useEffect(() => {
+    setSelectedOption(options.find((item) => item && item.value === init));
+  }, [init]);
 
   const ButtonStyle = {
     display: "flex",

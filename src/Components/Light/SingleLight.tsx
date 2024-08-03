@@ -90,16 +90,6 @@ const SingleLight = memo(function SingleLight({
           width: `${size * mult}rem`,
           borderRadius: "50%",
           backgroundColor: "#000",
-
-          // visibility: flashing
-          //   ? altFlashing
-          //     ? flash
-          //       ? "hidden"
-          //       : "visible"
-          //     : flash
-          //     ? "visible"
-          //     : "hidden"
-          //   : "visible",
         }}
       >
         <div
