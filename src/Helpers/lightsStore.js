@@ -23,7 +23,7 @@ const lightsStore = create(immer((set) => ({
                     light_id: 1,
                     state:
                         [
-                            [{ color: "red", shape: "solid", flashing: "solid", on: true }],
+                            [{ color: "red", shape: "solid", flashing: "solid", on: true, animate: true }],
                             [
                                 { color: "yellow", shape: "left", flashing: "solid", on: true },
                                 { color: "yellow", shape: "solid", flashing: "solid", on: true },

@@ -43,6 +43,7 @@ const TrafficLight = memo(function TrafficLight({ light }: any) {
                 shape={item.shape}
                 flashing={item.flashing === "solid" ? false : item.flashing}
                 altFlashing={item.flashing === "alt"}
+                animate={item.animate}
                 on={item.on}
               />
             ))}

@@ -10,31 +10,55 @@ const SingleLight = memo(function SingleLight({
   shape = "solid",
   flashing = false,
   altFlashing = false,
+  animate = false,
 }) {
+  const flash = flashing ? lightsStore((state) => state.flash) : null;
+
   const mult = 0.25;
-  const colors = {
+  const lightColors = {
     green: on ? "#00A651" : "#00190C",
     yellow: on ? "#FFF200" : "#191700",
     red: on ? "#ED1D24" : "#190304",
   };
-
   const darkColor = {
-    green: "#003318",
-    yellow: "#332F00",
-    red: "#330608",
+    green: "#00190C",
+    yellow: "#191700",
+    red: "#190304",
   };
+
+  let colors = flashing
+    ? altFlashing
+      ? flash
+        ? darkColor
+        : lightColors
+      : flash
+      ? lightColors
+      : darkColor
+    : lightColors;
 
   const shapeMap = {
     solid: (
-      <div
+      <motion.div
+        animate={{ backgroundColor: colors[color] }}
+        transition={{ duration: animate ? 0.2 : 0 }}
         style={{
-          backgroundColor: colors[color],
+          // backgroundColor: colors[color],
           height: `${size * mult}rem`,
           width: `${size * mult}rem`,
           borderRadius: "50%",
         }}
       />
     ),
+    // ) : (
+    //   <div
+    //     style={{
+    //       height: `${size * mult}rem`,
+    //       width: `${size * mult}rem`,
+    //       borderRadius: "50%",
+    //       backgroundColor: colors[color],
+    //     }}
+    //   />
+    // ),
     upLeft: <Arrow direction={"upLeft"} color={colors[color]} />,
     up: <Arrow direction={"up"} color={colors[color]} />,
     upRight: <Arrow direction={"upRight"} color={colors[color]} />,
@@ -45,7 +69,6 @@ const SingleLight = memo(function SingleLight({
   };
 
   console.log("SingleLight");
-  const flash = flashing ? lightsStore((state) => state.flash) : null;
 
   return (
     <div
@@ -68,15 +91,15 @@ const SingleLight = memo(function SingleLight({
           borderRadius: "50%",
           backgroundColor: "#000",
 
-          visibility: flashing
-            ? altFlashing
-              ? flash
-                ? "hidden"
-                : "visible"
-              : flash
-              ? "visible"
-              : "hidden"
-            : "visible",
+          // visibility: flashing
+          //   ? altFlashing
+          //     ? flash
+          //       ? "hidden"
+          //       : "visible"
+          //     : flash
+          //     ? "visible"
+          //     : "hidden"
+          //   : "visible",
         }}
       >
         <div

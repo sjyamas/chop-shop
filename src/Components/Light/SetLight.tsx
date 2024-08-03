@@ -26,6 +26,7 @@ const SetLight = memo(function SetLight({
   size = 12,
   flashing,
   on,
+  animate = false,
   enabled = true,
 }: any) {
   console.log("setLight");
@@ -68,7 +69,7 @@ const SetLight = memo(function SetLight({
         height: "auto",
         width: "auto",
         gap: "0.2rem",
-        backgroundColor: "pink",
+        backgroundColor: "grey",
       }}
     >
       <div style={{ display: "flex", flexDirection: "row" }}>
@@ -103,7 +104,18 @@ const SetLight = memo(function SetLight({
           ]}
           funcKey="size"
           setFunc={handleChange}
-        />
+        />{" "}
+        <button
+          style={{
+            ...aspectStyle,
+            borderColor: animate ? "white" : "black",
+          }}
+          onClick={() => {
+            updateLight(row, col, x, y, "animate", animate ? false : true);
+          }}
+        >
+          <span style={{ color: "white" }}>animate</span>
+        </button>
         <button
           style={{
             ...aspectStyle,

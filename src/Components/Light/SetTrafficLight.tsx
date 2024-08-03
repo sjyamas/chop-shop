@@ -168,7 +168,7 @@ const SetTrafficLight = memo(function SetTrafficLight() {
                   padding: "1rem",
                   flexDirection: "column",
                   gap: "1rem",
-                  backgroundColor: "purple",
+                  backgroundColor: "black",
                 }}
               >
                 <p style={{ color: "white" }}>{signal.light_id}</p>
@@ -203,6 +203,8 @@ const SetTrafficLight = memo(function SetTrafficLight() {
                         row={signalIndex}
                         y={lightRowIndex}
                         x={lightIndex}
+                        size={light.size}
+                        animate={light.animate}
                         color={light.color}
                         shape={light.shape}
                         flashing={light.flashing}
@@ -235,7 +237,7 @@ const SetTrafficLight = memo(function SetTrafficLight() {
                 style={{
                   ...buttonStyle,
                   borderRadius: 0,
-                  borderColor: "purple",
+                  borderColor: "black",
                   backgroundColor: "black",
                 }}
                 onClick={() => removeModule(signalIndex, rowIndex)}
