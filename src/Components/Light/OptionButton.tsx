@@ -1,11 +1,20 @@
 import { memo, useEffect, useState } from "react";
 
+type Option = { value: string | number; display: React.ReactNode } | null;
+
+type OptionButtonProps = {
+  init: string | number;
+  options: Option[];
+  funcKey: string;
+  setFunc: (funcKey: string, value: string) => void;
+};
+
 const OptionButton = memo(function OptionButton({
   init,
   options,
   funcKey,
   setFunc,
-}) {
+}: OptionButtonProps) {
   const [showGrid, setShowGrid] = useState(false);
   const [selectedOption, setSelectedOption] = useState(
     options.find((item) => item && item.value === init)
@@ -32,7 +41,7 @@ const OptionButton = memo(function OptionButton({
     setShowGrid(true);
   };
 
-  const handleMouseUp = (option) => {
+  const handleMouseUp = (option: Option) => {
     setShowGrid(false);
     if (option !== null) {
       setSelectedOption(option);
@@ -73,7 +82,7 @@ const OptionButton = memo(function OptionButton({
 
   const optionButtonContainerStyle = {
     position: "relative",
-    display: "inline-block",
+    display: "inlineBlock",
   };
 
   return (
@@ -85,7 +94,7 @@ const OptionButton = memo(function OptionButton({
         onTouchStart={() => handleMouseUp(null)}
         onTouchEnd={handleMouseDown}
       >
-        {selectedOption.display}
+        {selectedOption && selectedOption.display}
       </button>
       {showGrid && renderGrid()}
     </div>

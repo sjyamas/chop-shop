@@ -65,9 +65,16 @@ export default function TrafficLightPage() {
 
   return (
     <div style={{ backgroundColor: "grey" }}>
-      <PageHeader />
+      {/* <PageHeader /> */}
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+          padding: "1rem",
+        }}
+      >
         {cycle[currentStage].lights.map((item, i) => (
           <div
             key={i}

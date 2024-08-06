@@ -132,3 +132,47 @@ const lightsStore = create(immer((set) => ({
 })));
 
 export default lightsStore;
+
+const time = [{ stage: 0, innerStage: [[{ phase: 'a', duration: 4, max_duration: 10, lights: [1, 2] }, { phase: 'b', duration: 4, max_duration: 10, lights: [1, 2] }], [{ phase: 'a', duration: 4, max_duration: 10, lights: [1, 2] }, { phase: 'b', duration: 4, max_duration: 10, lights: [3, 4] }]] }]
+
+const lightState = [{
+    stage: 0,
+    duration: 4,
+    max_duration: 120,
+    lights: [
+        {
+            x: 0,
+            y: 0,
+            light_id: 1,
+            backplate: true,
+            bg_color: false,
+            reflector: false,
+            state:
+                [
+                    [{ color: "red", shape: "solid", flashing: "solid", on: true }],
+                    [
+                        { color: "yellow", shape: "left", flashing: "solid", on: true },
+                        { color: "yellow", shape: "solid", flashing: "solid", on: true },
+                    ],
+                    [
+                        { color: "green", shape: "left", flashing: "solid", on: true },
+                        { color: "green", shape: "solid", flashing: "solid", on: true },
+                    ],
+                ],
+        },
+        {
+            x: 1,
+            y: 0,
+            light_id: 2,
+            backplate: true,
+            bg_color: false,
+            reflector: false,
+            state:
+                [
+                    [{ color: "red", shape: "solid", flashing: "solid", on: true }],
+                    [{ color: "yellow", shape: "solid", flashing: "solid", on: true }],
+                    [{ color: "green", shape: "solid", flashing: "solid", on: true }],
+                ],
+        }
+    ],
+}]
