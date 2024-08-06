@@ -66,11 +66,11 @@ const SetLight = memo(function SetLight({
       style={{
         display: "flex",
         flexDirection: "column",
-        padding: "1rem",
+        padding: "0.25rem",
         height: "auto",
         width: "auto",
-        gap: "0.2rem",
-        backgroundColor: "grey",
+        // border: "solid 0.5rem black",
+        // backgroundColor: "grey",
       }}
     >
       <div style={{ display: "flex", flexDirection: "row" }}>
@@ -195,10 +195,7 @@ const SetLight = memo(function SetLight({
                 ),
               },
               { value: "right", display: <FaArrowRight size={iconSize} /> },
-              {
-                value: "bike",
-                display: <FaBicycle size={iconSize} />,
-              },
+              null,
               {
                 value: "uTurn",
                 display: <PiArrowULeftDownBold size={iconSize} />,

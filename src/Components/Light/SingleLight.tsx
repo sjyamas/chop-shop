@@ -94,6 +94,8 @@ const SingleLight = memo(function SingleLight({
           alignItems: "center",
           height: `${size * mult}rem`,
           width: `${size * mult}rem`,
+          // padding: `0.3rem`,
+          // borderRadius: "20%",
           borderRadius: "50%",
           backgroundColor: "#000",
         }}

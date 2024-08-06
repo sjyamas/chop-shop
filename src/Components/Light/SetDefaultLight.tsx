@@ -52,11 +52,10 @@ const SetDefaultLight = memo(function SetDefaultLight() {
     <div
       style={{
         display: "flex",
-        flexDirection: "column",
-        padding: "1rem",
+        flexDirection: "row",
+        // padding: "1rem",
         height: "auto",
         width: "auto",
-        gap: "0.2rem",
         backgroundColor: "grey",
       }}
     >

@@ -64,17 +64,19 @@ const lightsStore = create(immer((set) => ({
     }),
 
     addStage: () => set((state) => {
-        state.cycle.push(state.cycle[state.cycle.length - 1]); state.editStage++;
+        state.cycle.splice(state.editStage, 0, state.cycle[state.editStage]);
+        state.editStage++;
         state.currentStage++;
     }), //add edit and curr stage
     removeStage: () => set((state) => {
 
         if (state.cycle.length > 1) {
+
             if (state.editStage === state.cycle.length - 1) {
                 state.editStage--;
                 state.currentStage--;
             }
-            state.cycle.pop()
+            state.cycle.splice(state.editStage, 1)
         }
     }),
     setEditStage: (stage) => set((state) => {
@@ -102,7 +104,7 @@ const lightsStore = create(immer((set) => ({
     removeModule: (row, col) => set((state) => {
         if (state.cycle[state.editStage].lights[col].length === 1) {
             if (state.cycle[state.editStage].lights.length === 1) {
-
+                return;
             } else {
                 state.cycle[state.editStage].lights.splice(col, 1)
             }

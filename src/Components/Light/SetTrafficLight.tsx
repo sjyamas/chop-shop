@@ -128,10 +128,23 @@ const SetTrafficLight = memo(function SetTrafficLight() {
           Time: {time + 1}/{cycle[currentStage].duration}
         </span>
         <input
+          style={{ width: "2rem" }}
           type="text"
           onChange={(e) => setDuration(currentStage, e.target.value)}
           value={cycle[currentStage].duration}
         />
+        <SetDefaultLight />
+      </div>
+
+      {/* SAVE AND LOAD */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: "1rem",
+        }}
+      >
         <button
           style={{ ...buttonStyle, width: "auto" }}
           onClick={() => {
@@ -151,14 +164,13 @@ const SetTrafficLight = memo(function SetTrafficLight() {
         >
           LOAD
         </button>
-        <SetDefaultLight />
       </div>
 
       {/* LIGHTS */}
       {cycle[editStage].lights.map((row, rowIndex) => (
         <div
           key={"b" + rowIndex}
-          style={{ display: "flex", flexDirection: "row", gap: "1rem" }}
+          style={{ display: "flex", flexDirection: "row", gap: "0.3rem" }}
         >
           {row.map((signal, signalIndex) => (
             <div
@@ -174,8 +186,9 @@ const SetTrafficLight = memo(function SetTrafficLight() {
                   alignItems: "center",
                   padding: "1rem",
                   flexDirection: "column",
-                  gap: "1rem",
-                  backgroundColor: "black",
+                  gap: "0.2rem",
+                  border: "solid 0.5rem black",
+                  // backgroundColor: "black",
                 }}
               >
                 <p style={{ color: "white" }}>{signal.light_id}</p>
@@ -186,7 +199,7 @@ const SetTrafficLight = memo(function SetTrafficLight() {
                     style={{
                       ...buttonStyle,
                       width: "auto",
-                      borderColor: signal.reflector ? " yellow" : "black",
+                      borderColor: signal.reflector ? " white" : "black",
                       borderRadius: "0",
                       padding: "0.2rem",
                     }}
@@ -205,7 +218,7 @@ const SetTrafficLight = memo(function SetTrafficLight() {
                     style={{
                       ...buttonStyle,
                       width: "auto",
-                      borderColor: signal.backplate ? " yellow" : "black",
+                      borderColor: signal.backplate ? "white" : "black",
                       borderRadius: "0",
                       padding: "0.2rem",
                     }}
@@ -229,7 +242,7 @@ const SetTrafficLight = memo(function SetTrafficLight() {
                       flexDirection: "row",
                       justifyContent: "center",
                       alignItems: "center",
-                      gap: "1rem",
+                      // gap: "1rem",
                     }}
                   >
                     {lightRow.map((light, lightIndex) => (

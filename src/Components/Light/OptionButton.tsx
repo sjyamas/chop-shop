@@ -1,6 +1,11 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
-const OptionButton = ({ init, options, funcKey, setFunc }) => {
+const OptionButton = memo(function OptionButton({
+  init,
+  options,
+  funcKey,
+  setFunc,
+}) {
   const [showGrid, setShowGrid] = useState(false);
   const [selectedOption, setSelectedOption] = useState(
     options.find((item) => item && item.value === init)
@@ -83,6 +88,6 @@ const OptionButton = ({ init, options, funcKey, setFunc }) => {
       {showGrid && renderGrid()}
     </div>
   );
-};
+});
 
 export default OptionButton;
