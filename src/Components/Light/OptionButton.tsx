@@ -82,6 +82,8 @@ const OptionButton = memo(function OptionButton({
         style={ButtonStyle}
         onMouseDown={handleMouseDown}
         onMouseUp={() => handleMouseUp(null)}
+        onTouchStart={() => handleMouseUp(null)}
+        onTouchEnd={handleMouseDown}
       >
         {selectedOption.display}
       </button>

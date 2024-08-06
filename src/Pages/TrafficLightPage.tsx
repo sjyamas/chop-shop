@@ -19,7 +19,7 @@ export default function TrafficLightPage() {
   const incStage = lightsStore((state) => state.incStage);
   const setFlashing = lightsStore((state) => state.setFlashing);
 
-  const blinkingInterval = 750;
+  const blinkingInterval = 500;
   const cycleInterval = 1000;
 
   //TODO: trigger only when there is a light that has flashing
