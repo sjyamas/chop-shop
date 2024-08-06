@@ -72,7 +72,9 @@ export default function TrafficLightPage() {
           display: "flex",
           flexDirection: "column",
           gap: "1rem",
-          padding: "1rem",
+          paddingTop: "3rem",
+          paddingBottom: "3rem",
+          paddingLeft: "8rem",
         }}
       >
         {cycle[currentStage].lights.map((item, i) => (
