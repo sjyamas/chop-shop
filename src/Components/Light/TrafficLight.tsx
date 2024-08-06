@@ -12,7 +12,7 @@ const TrafficLight = memo(function TrafficLight({ light }: any) {
         flexDirection: "column",
       }}
     >
-      <p style={{ width: "1rem", color: "white" }}>{light.light_id}</p>
+      {/* <p style={{ width: "1rem", color: "white" }}>{light.light_id}</p> */}
 
       <div
         style={{
