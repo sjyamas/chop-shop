@@ -64,7 +64,7 @@ export default function TrafficLightPage() {
   const cycle = lightsStore((state) => state.cycle);
 
   return (
-    <div style={{ backgroundColor: "grey" }}>
+    <div style={{ backgroundColor: "grey", width: "100rem" }}>
       {/* <PageHeader /> */}
 
       <div

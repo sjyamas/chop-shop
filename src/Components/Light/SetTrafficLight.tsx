@@ -191,7 +191,7 @@ const SetTrafficLight = memo(function SetTrafficLight() {
                   // backgroundColor: "black",
                 }}
               >
-                <p style={{ color: "white" }}>{signal.light_id}</p>
+                {/* <p style={{ color: "white" }}>{signal.light_id}</p> */}
                 <div
                   style={{ display: "flex", flexDirection: "row", gap: "1rem" }}
                 >

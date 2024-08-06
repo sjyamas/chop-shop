@@ -1,4 +1,11 @@
-html,body { height:100%; }
+html,
+body {
+  height: 100%;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
 
 h2,
 h3,
@@ -43,7 +50,7 @@ p {
   cursor: pointer;
 }
 
-.sml-button{
+.sml-button {
   padding: 0.1rem 1rem 0.1rem 1rem;
   font-size: 1.25rem;
   font-weight: 400;
