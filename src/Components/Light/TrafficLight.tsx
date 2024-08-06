@@ -16,15 +16,20 @@ const TrafficLight = memo(function TrafficLight({ light }: any) {
 
       <div
         style={{
-          height: "auto",
-          width: "auto",
+          // height: "auto",
+          // width: "auto",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "#1E1E1E",
+          backgroundColor: light.backplate ? "#1E1E1E" : "rgba(0,0,0,0)",
+          border: light.backplate
+            ? light.reflector
+              ? "0.5rem solid #FEC802"
+              : "0.5rem solid #1E1E1E"
+            : "0.5rem solid rgba(0,0,0,0)",
           padding: "1rem",
-          borderRadius: "0.5rem",
+          borderRadius: "0.4rem",
         }}
       >
         {light.state.map((row, rowIndex) => (

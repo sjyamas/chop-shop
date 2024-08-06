@@ -1,9 +1,13 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-const defaultLight = { color: "red", shape: "solid", flashing: "solid", on: true }
+
+
 const lightsStore = create(immer((set) => ({
     on: false,
+    defaultLight: { color: "red", size: 12, animtae: true, shape: "solid", flashing: "solid", on: true },
+    updateDefaultLight: (key, value) => set((state) => { state.defaultLight[key] = value }),
+
 
     toggleOn: () => set(state => ({ on: !state.on })),
     currentStage: 0,
@@ -21,6 +25,9 @@ const lightsStore = create(immer((set) => ({
             [
                 {
                     light_id: 1,
+                    backplate: true,
+                    bg_color: false,
+                    reflector: false,
                     state:
                         [
                             [{ color: "red", shape: "solid", flashing: "solid", on: true }],
@@ -36,6 +43,10 @@ const lightsStore = create(immer((set) => ({
                 },
                 {
                     light_id: 2,
+                    backplate: true,
+
+                    bg_color: false,
+                    reflector: false,
                     state:
                         [
                             [{ color: "red", shape: "solid", flashing: "solid", on: true }],
@@ -62,7 +73,6 @@ const lightsStore = create(immer((set) => ({
             if (state.editStage === state.cycle.length - 1) {
                 state.editStage--;
                 state.currentStage--;
-                //TODO: SEPRATE CURRENT AND EDIT STAGE LOGIC 
             }
             state.cycle.pop()
         }
@@ -85,8 +95,10 @@ const lightsStore = create(immer((set) => ({
 
     updateLight: (row, col, x, y, key, value) => set((state) => { state.cycle[state.editStage].lights[col][row].state[y][x][key] = value }),
 
-    addCol: () => set((state) => { state.cycle[state.editStage].lights.push([{ light_id: state.light_id++, state: [[defaultLight]] }]) }),
-    addRow: (col) => set((state) => { state.cycle[state.editStage].lights[col].push({ light_id: state.light_id++, state: [[defaultLight]] }) }),
+    updateLightConfig: (row, col, key, value) => set((state) => { state.cycle[state.editStage].lights[col][row][key] = value }),
+
+    addCol: () => set((state) => { state.cycle[state.editStage].lights.push([{ light_id: state.light_id++, state: [[state.defaultLight]] }]) }),
+    addRow: (col) => set((state) => { state.cycle[state.editStage].lights[col].push({ light_id: state.light_id++, state: [[state.defaultLight]] }) }),
     removeModule: (row, col) => set((state) => {
         if (state.cycle[state.editStage].lights[col].length === 1) {
             if (state.cycle[state.editStage].lights.length === 1) {
@@ -97,8 +109,8 @@ const lightsStore = create(immer((set) => ({
         } else { state.cycle[state.editStage].lights[col].splice(row, 1); }
     }),
 
-    addLightCol: (row, col) => set((state) => { state.cycle[state.editStage].lights[col][row].state.push([defaultLight]) }),
-    addLightRow: (row, col, y) => set((state) => { state.cycle[state.editStage].lights[col][row].state[y].push(defaultLight) }),
+    addLightCol: (row, col) => set((state) => { state.cycle[state.editStage].lights[col][row].state.push([state.defaultLight]) }),
+    addLightRow: (row, col, y) => set((state) => { state.cycle[state.editStage].lights[col][row].state[y].push(state.defaultLight) }),
 
     removeLight: (row, col, x, y) => set((state) => {
         if (state.cycle[state.editStage].lights[col][row].state[y].length === 1) {

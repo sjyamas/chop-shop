@@ -3,6 +3,7 @@ import SetLight from "./SetLight";
 import lightsStore from "Helpers/lightsStore";
 import TextInput from "Global/TextInput";
 import { FaPause, FaPlay } from "react-icons/fa";
+import SetDefaultLight from "./SetDefaultLight";
 
 const SetTrafficLight = memo(function SetTrafficLight() {
   console.log("SetTrafficLight");
@@ -32,6 +33,7 @@ const SetTrafficLight = memo(function SetTrafficLight() {
 
   const toggleOn = lightsStore((state) => state.toggleOn);
   const setCycle = lightsStore((state) => state.setCycle);
+  const updateLightConfig = lightsStore((state) => state.updateLightConfig);
 
   const buttonStyle = {
     display: "flex",
@@ -73,7 +75,7 @@ const SetTrafficLight = memo(function SetTrafficLight() {
         <button
           style={buttonStyle}
           onClick={() => {
-            removeStage();
+            removeStage(currentStage);
           }}
         >
           -
@@ -97,7 +99,7 @@ const SetTrafficLight = memo(function SetTrafficLight() {
         <button
           style={buttonStyle}
           onClick={() => {
-            addStage();
+            addStage(currentStage);
           }}
         >
           +
@@ -131,7 +133,7 @@ const SetTrafficLight = memo(function SetTrafficLight() {
           value={cycle[currentStage].duration}
         />
         <button
-          style={buttonStyle}
+          style={{ ...buttonStyle, width: "auto" }}
           onClick={() => {
             localStorage.setItem("light", JSON.stringify(cycle));
           }}
@@ -139,7 +141,7 @@ const SetTrafficLight = memo(function SetTrafficLight() {
           SAVE
         </button>
         <button
-          style={buttonStyle}
+          style={{ ...buttonStyle, width: "auto" }}
           onClick={() => {
             let local = localStorage.getItem("light");
             if (local) {
@@ -149,7 +151,9 @@ const SetTrafficLight = memo(function SetTrafficLight() {
         >
           LOAD
         </button>
+        <SetDefaultLight />
       </div>
+
       {/* LIGHTS */}
       {cycle[editStage].lights.map((row, rowIndex) => (
         <div
@@ -175,6 +179,48 @@ const SetTrafficLight = memo(function SetTrafficLight() {
                 }}
               >
                 <p style={{ color: "white" }}>{signal.light_id}</p>
+                <div
+                  style={{ display: "flex", flexDirection: "row", gap: "1rem" }}
+                >
+                  <button
+                    style={{
+                      ...buttonStyle,
+                      width: "auto",
+                      borderColor: signal.reflector ? " yellow" : "black",
+                      borderRadius: "0",
+                      padding: "0.2rem",
+                    }}
+                    onClick={() => {
+                      updateLightConfig(
+                        signalIndex,
+                        rowIndex,
+                        "reflector",
+                        !signal.reflector
+                      );
+                    }}
+                  >
+                    reflector?
+                  </button>
+                  <button
+                    style={{
+                      ...buttonStyle,
+                      width: "auto",
+                      borderColor: signal.backplate ? " yellow" : "black",
+                      borderRadius: "0",
+                      padding: "0.2rem",
+                    }}
+                    onClick={() => {
+                      updateLightConfig(
+                        signalIndex,
+                        rowIndex,
+                        "backplate",
+                        !signal.backplate
+                      );
+                    }}
+                  >
+                    backplate?
+                  </button>
+                </div>
                 {signal.state.map((lightRow, lightRowIndex) => (
                   <div
                     key={"d" + rowIndex + signalIndex + lightRowIndex}
