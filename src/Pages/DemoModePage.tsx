@@ -1,28 +1,40 @@
-import { useEffect } from "react";
-import PageHeader from "Global/PageHeader.js";
-import TrafficLight from "Components/Light/TrafficLight";
-
-import CylceInput from "Components/Light/CycleInput";
-import SetLight from "Components/Light/SetLight";
-import SetTrafficLight from "Components/Light/SetTrafficLight";
+import { memo, useEffect } from "react";
 import lightsStore from "Helpers/lightsStore";
-import OptionButton from "Components/Light/OptionButton";
+import TrafficLight from "Components/Light/TrafficLight";
+import { FaPause, FaPlay } from "react-icons/fa";
 
-export default function TrafficLightPage() {
+const DemoModePage = memo(function DemoModePage() {
+  const cycle = lightsStore((state) => state.cycle);
+  const currentStage = lightsStore((state) => state.currentStage);
+
   const on = lightsStore((state) => state.on);
   const flashing = lightsStore((state) => state.flashing);
   const setFlash = lightsStore((state) => state.setFlash);
-  const currentStage = lightsStore((state) => state.currentStage);
   const addTime = lightsStore((state) => state.addTime);
   const time = lightsStore((state) => state.time);
   const resetTime = lightsStore((state) => state.resetTime);
   const incStage = lightsStore((state) => state.incStage);
   const setFlashing = lightsStore((state) => state.setFlashing);
 
+  const toggleOn = lightsStore((state) => state.toggleOn);
+
   const blinkingInterval = 500;
   const cycleInterval = 1000;
-
-  //TODO: trigger only when there is a light that has flashing
+  const buttonStyle = {
+    display: "flex",
+    color: "white",
+    justifyContent: "center",
+    alignItems: "center",
+    outline: 0,
+    padding: 0,
+    cursor: "pointer",
+    height: "2rem",
+    width: "2rem",
+    borderRadius: "15%",
+    backgroundColor: "black",
+    borderWidth: "0.5rem",
+    borderStyle: "solid",
+  };
 
   useEffect(() => {
     setFlashing();
@@ -60,34 +72,31 @@ export default function TrafficLightPage() {
       setFlashing();
     }
   }, [time]);
-
-  const cycle = lightsStore((state) => state.cycle);
-
   return (
-    <div style={{ backgroundColor: "grey", width: "100rem" }}>
-      <PageHeader />
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
-          padding: "3rem",
-        }}
-      >
-        {cycle[currentStage].lights.map((item, i) => (
-          <div
-            key={i}
-            style={{ display: "flex", flexDirection: "row", gap: "1rem" }}
-          >
-            {item.map((light) => (
-              <TrafficLight key={light.light_id} light={light} />
-            ))}
-          </div>
-        ))}
-      </div>
-
-      <SetTrafficLight />
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "1rem",
+        height: "100vh",
+        width: "100%",
+        backgroundColor: "grey",
+      }}
+    >
+      {cycle[currentStage].lights.map((item, i) => (
+        <div
+          key={i}
+          style={{ display: "flex", flexDirection: "row", gap: "1rem" }}
+        >
+          {item.map((light) => (
+            <TrafficLight key={light.light_id} light={light} />
+          ))}
+        </div>
+      ))}
     </div>
   );
-}
+});
+
+export default DemoModePage;

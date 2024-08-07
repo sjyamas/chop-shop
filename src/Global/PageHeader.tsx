@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { Link } from "react-router-dom";
 
 const PageHeader = memo(function PageHeader() {
   console.log("PageHeader");
@@ -9,7 +10,11 @@ const PageHeader = memo(function PageHeader() {
           height: "3.5rem",
           backgroundColor: "#282828",
         }}
-      ></div>
+      >
+        <Link to="demo" style={{ color: "white" }}>
+          <p> demo </p>
+        </Link>
+      </div>
     </div>
   );
 });
