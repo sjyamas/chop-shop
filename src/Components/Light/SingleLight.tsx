@@ -11,10 +11,10 @@ const SingleLight = memo(function SingleLight({
   flashing = false,
   altFlashing = false,
   animate = false,
+  mult = 0.25,
 }) {
   const flash = flashing ? lightsStore((state) => state.flash) : null;
 
-  const mult = 0.25;
   const lightColors = {
     green: on ? "#00A651" : "#00190C",
     yellow: on ? "#FFF200" : "#191700",

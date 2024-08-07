@@ -3,6 +3,9 @@ import { memo, useMemo } from "react";
 
 const TrafficLight = memo(function TrafficLight({ light }: any) {
   console.log("TrafficLight");
+  const mult = 0.5;
+  const reflectorSize = 2;
+
   return (
     <div
       style={{
@@ -25,10 +28,10 @@ const TrafficLight = memo(function TrafficLight({ light }: any) {
           backgroundColor: light.backplate ? "#1E1E1E" : "rgba(0,0,0,0)",
           border: light.backplate
             ? light.reflector
-              ? "0.5rem solid #FEC802"
-              : "0.5rem solid #1E1E1E"
+              ? `${reflectorSize * mult}rem solid #FEC802`
+              : `${reflectorSize * mult}rem solid #1E1E1E`
             : "0.5rem solid rgba(0,0,0,0)",
-          padding: "1rem",
+          padding: `${4 * mult}rem`,
           borderRadius: "0.4rem",
         }}
       >
@@ -42,6 +45,7 @@ const TrafficLight = memo(function TrafficLight({ light }: any) {
           >
             {row.map((item, itemIndex) => (
               <SingleLight
+                mult={mult}
                 key={itemIndex}
                 size={item.size}
                 color={item.color}
