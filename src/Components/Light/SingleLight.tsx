@@ -19,11 +19,13 @@ const SingleLight = memo(function SingleLight({
     green: on ? "#00A651" : "#00190C",
     yellow: on ? "#FFF200" : "#191700",
     red: on ? "#ED1D24" : "#190304",
+    white: on ? "#fff" : "#222",
   };
   const darkColor = {
     green: "#00190C",
     yellow: "#191700",
     red: "#190304",
+    white: "#222",
   };
 
   let colors = flashing
@@ -60,18 +62,51 @@ const SingleLight = memo(function SingleLight({
     //   />
     // ),
     upLeft: (
-      <Arrow direction={"upLeft"} color={colors[color]} animate={animate} />
+      <Arrow
+        direction={"upLeft"}
+        color={colors[color]}
+        animate={animate}
+        pad={(size * mult) / 10}
+      />
     ),
-    up: <Arrow direction={"up"} color={colors[color]} animate={animate} />,
+    up: (
+      <Arrow
+        direction={"up"}
+        color={colors[color]}
+        animate={animate}
+        pad={(size * mult) / 10}
+      />
+    ),
     upRight: (
-      <Arrow direction={"upRight"} color={colors[color]} animate={animate} />
+      <Arrow
+        direction={"upRight"}
+        color={colors[color]}
+        animate={animate}
+        pad={(size * mult) / 10}
+      />
     ),
-    left: <Arrow direction={"left"} color={colors[color]} animate={animate} />,
+    left: (
+      <Arrow
+        direction={"left"}
+        color={colors[color]}
+        animate={animate}
+        pad={(size * mult) / 10}
+      />
+    ),
     right: (
-      <Arrow direction={"right"} color={colors[color]} animate={animate} />
+      <Arrow
+        direction={"right"}
+        color={colors[color]}
+        animate={animate}
+        pad={(size * mult) / 10}
+      />
     ),
-    bike: <Bike color={colors[color]} animate={animate} />,
-    uTurn: <Uturn color={colors[color]} animate={animate} />,
+    bike: (
+      <Bike color={colors[color]} animate={animate} pad={(size * mult) / 10} />
+    ),
+    uTurn: (
+      <Uturn color={colors[color]} animate={animate} pad={(size * mult) / 10} />
+    ),
   };
 
   console.log("SingleLight");

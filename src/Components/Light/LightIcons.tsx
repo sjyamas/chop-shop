@@ -6,9 +6,9 @@ const colors = {
   red: "#ED1D24",
 };
 
-export function Uturn({ color, animate }) {
+export function Uturn({ color, animate, pad }) {
   return (
-    <div style={{ padding: "0.2rem" }}>
+    <div style={{ padding: `${pad}rem` }}>
       <motion.svg
         width="100%"
         height="100%"
@@ -31,9 +31,9 @@ export function Uturn({ color, animate }) {
   );
 }
 
-export function Bike({ color, animate }) {
+export function Bike({ color, animate, pad }) {
   return (
-    <div style={{ padding: "0.2rem" }}>
+    <div style={{ padding: `${pad}rem` }}>
       <motion.svg width="100%" height="100%" viewBox="0 0 14.008 14.008">
         <motion.g>
           <motion.path
@@ -49,7 +49,7 @@ export function Bike({ color, animate }) {
   );
 }
 
-export function Arrow({ direction, color, animate }) {
+export function Arrow({ direction, color, animate, pad }) {
   const angles = {
     upLeft: "-45",
     up: "0",
@@ -58,17 +58,13 @@ export function Arrow({ direction, color, animate }) {
     right: "90",
   };
   return (
-    <div
-      style={{
-        padding: "0.3rem",
-      }}
-    >
-      <motion.svg width="100%" height="100%" viewBox="0 0 38.181 39.515">
+    <div style={{ padding: `${pad}rem` }}>
+      <motion.svg width="100%" height="100%" viewBox="0 0 40 40">
         <motion.g
           stroke={color}
           animate={{ stroke: color }}
           transition={{ duration: animate ? 0.2 : 0 }}
-          transform={`rotate( ${angles[direction]}, 19.0905, 19.0905) translate(0 .00061552)`}
+          transform={`translate(0 .00061552) rotate( ${angles[direction]}, 20, 20) `}
           fill="none"
           strokeWidth="4.0062"
         >

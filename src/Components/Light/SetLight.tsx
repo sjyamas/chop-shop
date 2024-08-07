@@ -106,7 +106,7 @@ const SetLight = memo(function SetLight({
             null,
             null,
             { value: 8, display: <span>8</span> },
-            null,
+            { value: 4, display: <span>4</span> },
           ]}
           funcKey="size"
           setFunc={handleChange}
@@ -151,7 +151,12 @@ const SetLight = memo(function SetLight({
                 ),
               },
               null,
-              null,
+              {
+                value: "white",
+                display: (
+                  <div style={{ ...circleStyle, backgroundColor: "white" }} />
+                ),
+              },
               {
                 value: "yellow",
                 display: (
@@ -195,7 +200,10 @@ const SetLight = memo(function SetLight({
                 ),
               },
               { value: "right", display: <FaArrowRight size={iconSize} /> },
-              null,
+              {
+                value: "bike",
+                display: <FaBicycle size={iconSize} />,
+              },
               {
                 value: "uTurn",
                 display: <PiArrowULeftDownBold size={iconSize} />,
