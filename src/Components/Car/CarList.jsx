@@ -5,11 +5,7 @@ import React, { useState, useEffect } from "react";
 import { ChopCars } from "../../Data/carData";
 import SearchBar from "../Search/Search";
 import Car from "./Car";
-
-import {
-  Link,
-} from "react-router-dom";
-
+import PageHeader from '../../Global/PageHeader'
 import '../../Pages/App.css'
 import './CarList.css'
 
@@ -47,15 +43,7 @@ function CarsList() {
   console.log("todos", todos);
   return (
     <div className='cr-page-container'>
-      <div
-        className="car-header"
-      >
-          
-            <Link to="/" style={{ color: "white" }}>
-              <button className="btn"> Home </button>
-            </Link>
-          
-      </div>
+      <PageHeader/>
 
       <div
         className="add-car-bar"

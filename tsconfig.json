@@ -10,7 +10,7 @@
         "skipLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            // "*": ["src/*"]
+            // "*": ["src/*"],
             "Components/*": ["src/Components/*"],
             "Global/*" :["src/Global/*"],
             "Pages/*": ["src/Pages/*"],

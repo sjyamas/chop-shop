@@ -12,6 +12,7 @@ import Switch from "../../Global/Switch/Switch";
 import {
   Link,
 } from "react-router-dom";
+import PageHeader from "../../Global/PageHeader";
 
 export default function BlackjackLog() {
   const [footer, setFooter] = useState(true);
@@ -122,15 +123,7 @@ export default function BlackjackLog() {
 
       <div
         className="bj-header"
-      >
-        <div className="back-btn">
-
-          <Link to="/" style={{ color: "white" }}>
-            <button className="btn"> Home </button>
-          </Link>
-
-        </div>
-
+      ><PageHeader>
         <div
           onClick={() => setFooter(!footer)} style={{ display: "flex", fontSize: 18 }}>
           <Switch
@@ -138,7 +131,7 @@ export default function BlackjackLog() {
             onColor="#EF476F"
           />
           <p>edit/create hand</p>
-        </div>
+        </div></PageHeader>
       </div>
 
       <div

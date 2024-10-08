@@ -44,6 +44,11 @@ export default function AdminPage() {
               <h1> Traffic Light </h1>
             </Link>
           </CustomButton>
+          <CustomButton>
+            <Link to="/portal-map" style={{ color: "white" }}>
+              <h1> Portal Map </h1>
+            </Link>
+          </CustomButton>
         </div>
         <div className="front-col padding-col">
           <div>

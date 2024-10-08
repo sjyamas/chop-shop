@@ -7,6 +7,7 @@ import SetLight from "Components/Light/SetLight";
 import SetTrafficLight from "Components/Light/SetTrafficLight";
 import lightsStore from "Helpers/lightsStore";
 import OptionButton from "Components/Light/OptionButton";
+import { Link } from "react-router-dom";
 
 export default function TrafficLightPage() {
   const on = lightsStore((state) => state.on);
@@ -65,7 +66,11 @@ export default function TrafficLightPage() {
 
   return (
     <div style={{ backgroundColor: "grey", width: "100rem" }}>
-      <PageHeader />
+      <PageHeader>
+        <Link to="demo" style={{ color: "white" }}>
+          <p> demo </p>
+        </Link>
+      </PageHeader>
 
       <div
         style={{
