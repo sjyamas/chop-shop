@@ -5,7 +5,14 @@ const ZoomMap = ({ data, type = "Nether", processDataCallback = (e) => e }) => {
   const processedData = processDataCallback(data);
   const svgRef = useRef();
   const [transform, setTransform] = useState({ k: 1, x: 0, y: 0 });
-  const SEARCH = type === "OW" ? 16 : 128;
+
+  const OW = type === "OW";
+  const MULT = OW ? 8 : 1;
+  const INV_MULT = OW ? 1 : 8;
+
+  const SEARCH = OW ? 16 : 128;
+  const MIN_ZOOM = 0.1 * MULT;
+  const MAX_ZOOM = 1000 * MULT;
 
   // Function to calculate the distance between two points
   function calculateDistance(point1, point2) {
@@ -37,7 +44,6 @@ const ZoomMap = ({ data, type = "Nether", processDataCallback = (e) => e }) => {
       }
     });
 
-    console.log("HEL:LO", closestPoint);
     return closestPoint;
   };
 
@@ -47,23 +53,30 @@ const ZoomMap = ({ data, type = "Nether", processDataCallback = (e) => e }) => {
 
     // Set up zoom behavior
     const zoomBehavior = zoom()
-      .scaleExtent([0.01, 100])
+      .scaleExtent([MIN_ZOOM, MAX_ZOOM])
       .on("zoom", (event) => {
         const transform = event.transform;
         g.attr("transform", transform);
         setTransform({ k: transform.k, x: transform.x, y: transform.y });
-        // setTransform({ k: 1, x: 0, y: 0 });
       });
 
     svg.call(zoomBehavior);
   }, []);
 
+  useEffect(() => {
+    console.log("Yirl", svgRef.current);
+  }, [svgRef]);
+
   return (
     <svg
       ref={svgRef}
-      width={800}
-      height={600}
-      style={{ border: "1px solid black" }}
+      width={900}
+      height={800}
+      style={
+        type === "OW"
+          ? { border: "1px solid black", backgroundColor: "#ff7e7e" }
+          : { border: "1px solid black", backgroundColor: "#8eff7e" }
+      }
     >
       <defs>
         {/* Define arrow marker */}
@@ -80,12 +93,12 @@ const ZoomMap = ({ data, type = "Nether", processDataCallback = (e) => e }) => {
         </marker>
       </defs>
       <g>
-        {/* Draw lines between points that are 150 units or closer */}
+        {/* Draw lines between points */}
         {processedData
           // .filter((point) => point.enable)
           .map((point1, index1) =>
             processedData.map((point2, index2) => {
-              if (index1 !== index2) {
+              if (index1 !== index2 && point1.sender !== point2.sender) {
                 const distance = calculateDistance(point1, point2);
                 if (
                   Math.abs(point1.x - point2.x) <= SEARCH &&
@@ -101,14 +114,16 @@ const ZoomMap = ({ data, type = "Nether", processDataCallback = (e) => e }) => {
                         stroke="pink"
                         strokeWidth={1 / transform.k}
                       />
-                      <text
-                        x={(point1.x + point2.x) / 2}
-                        y={(point1.y + point2.y) / 2}
-                        fontSize={`${12 / transform.k}px`}
-                        fill="black"
-                      >
-                        {Math.round(distance)}
-                      </text>
+                      {transform.k * INV_MULT > 8 && (
+                        <text
+                          x={(point1.x + point2.x) / 2}
+                          y={(point1.y + point2.y) / 2}
+                          fontSize={`${12 / transform.k}px`}
+                          fill="black"
+                        >
+                          {Math.round(distance)}
+                        </text>
+                      )}
                     </g>
                   );
                 }
@@ -118,29 +133,30 @@ const ZoomMap = ({ data, type = "Nether", processDataCallback = (e) => e }) => {
           )}
 
         {/* Draw arrows for sender points */}
-        {processedData
-          // .filter((point) => point.enable)
-          .map((point, index) => {
-            if (point.sender) {
-              const closestNonSender = findClosestNonSender(point);
-              if (closestNonSender) {
-                return (
-                  <g key={`arrow-${index}`}>
-                    <line
-                      x1={point.x}
-                      y1={point.y}
-                      x2={closestNonSender.x}
-                      y2={closestNonSender.y}
-                      stroke="red"
-                      strokeWidth={2 / transform.k}
-                      markerEnd="url(#arrowhead)" // Use the marker defined in <defs>
-                    />
-                  </g>
-                );
+        {transform.k * INV_MULT > 8 &&
+          processedData
+            // .filter((point) => point.enable)
+            .map((point, index) => {
+              if (point.sender) {
+                const closestNonSender = findClosestNonSender(point);
+                if (closestNonSender) {
+                  return (
+                    <g key={`arrow-${index}`}>
+                      <line
+                        x1={point.x}
+                        y1={point.y}
+                        x2={closestNonSender.x}
+                        y2={closestNonSender.y}
+                        stroke="red"
+                        strokeWidth={2 / transform.k}
+                        markerEnd="url(#arrowhead)" // Use the marker defined in <defs>
+                      />
+                    </g>
+                  );
+                }
               }
-            }
-            return null;
-          })}
+              return null;
+            })}
 
         {/* Draw points and labels - render after lines */}
         {processedData.map((point, index) => (
@@ -149,16 +165,26 @@ const ZoomMap = ({ data, type = "Nether", processDataCallback = (e) => e }) => {
               cx={point.x}
               cy={point.y}
               r={5 / transform.k}
-              fill={point.sender ? "green" : "red"}
+              fill={
+                OW
+                  ? point.sender
+                    ? "green"
+                    : "red"
+                  : point.sender
+                  ? "red"
+                  : "green"
+              }
             />
-            <text
-              x={point.x + 10 / transform.k}
-              y={point.y}
-              fontSize={`${12 / transform.k}px`}
-              fill="black"
-            >
-              {`${point.name} (${point.x}, ${point.z}, ${point.y})`}
-            </text>
+            {transform.k * INV_MULT > 8 && (
+              <text
+                x={point.x + 10 / transform.k}
+                y={point.y}
+                fontSize={`${12 / transform.k}px`}
+                fill="black"
+              >
+                {`${point.name} (${point.x}, ${point.z}, ${point.y})`}
+              </text>
+            )}
           </g>
         ))}
       </g>

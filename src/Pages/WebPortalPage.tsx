@@ -16,6 +16,10 @@ const data2 = [
   { enbale: true, sender: true, x: -10672, y: 97, z: -2144, name: "R" },
   { enbale: true, sender: false, x: -1335, y: 129, z: -268, name: "R" },
   { enbale: true, sender: false, x: -1322, y: 55, z: -117, name: "OLD CITY" },
+  { enable: true, sender: true, x: 931, y: 65, z: 516, name: "MAIN" },
+  { enable: true, sender: false, x: 114, y: 88, z: 58, name: "MAIN" },
+  { enable: true, sender: false, x: 125, y: 128, z: 62, name: "ROOF" },
+  { enable: true, sender: true, x: 930, y: 111, z: 530, name: "ROOF" },
 ];
 
 function OWtoNether2(data) {
@@ -71,13 +75,16 @@ function NethertoOW(data) {
 
 export default function WebPortalPage() {
   return (
-    <div style={{ width: "100%", height: "100vh", backgroundColor: "gray" }}>
+    <div style={{ width: "100%", height: "100%", backgroundColor: "gray" }}>
       <div style={{ width: "100%", position: "relative", top: 0 }}>
         <PageHeader />
       </div>
-      <h1> WEB PORTAL PAGE </h1>
-      <ZoomMap data={OWtoNether2(data2)} type="OW" />
-      <ZoomMap data={NethertoOW(data2)} />
+      <div style={{ padding: "1rem" }}>
+        <div style={{ gap: "1rem" }}>
+          <ZoomMap data={OWtoNether2(data2)} type="OW" />
+          <ZoomMap data={NethertoOW(data2)} />
+        </div>
+      </div>
     </div>
   );
 }
