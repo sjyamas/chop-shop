@@ -9,7 +9,7 @@ export default function AdminPage() {
   return (
     <div className="App-header front-body">
       <div className="front-title">
-        <h1 style={{ textAlign: "center" }}>Web portal</h1>
+        <h1 style={{ textAlign: "center" }}>Test Page</h1>
       </div>
       <hr style={{ width: "90%" }} />
       <div className="front-body">

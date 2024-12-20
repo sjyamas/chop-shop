@@ -20,6 +20,7 @@ const SingleLight = memo(function SingleLight({
     yellow: on ? "#FFF200" : "#191700",
     red: on ? "#ED1D24" : "#190304",
     white: on ? "#fff" : "#222",
+    black: "#111111",
   };
   const darkColor = {
     green: "#00190C",

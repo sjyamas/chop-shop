@@ -139,7 +139,12 @@ const SetDefaultLight = memo(function SetDefaultLight() {
                   <div style={{ ...circleStyle, backgroundColor: "yellow" }} />
                 ),
               },
-              null,
+              {
+                value: "black",
+                display: (
+                  <div style={{ ...circleStyle, backgroundColor: "#1E1E1E" }} />
+                ),
+              },
               null,
               {
                 value: "green",
