@@ -1,6 +1,5 @@
 import ZoomMap from "Components/Portal/ZoomMap";
 import PageHeader from "Global/PageHeader";
-import InputRow from "Global/RowInput/RowInput";
 import { useState } from "react";
 const data2 = [
   { enbale: true, sender: true, x: -10599, y: 75, z: -1729, name: "MAIN" },
@@ -84,8 +83,6 @@ export default function WebPortalPage() {
         <PageHeader />
       </div>
       <div style={{ padding: "1rem" }}>
-        <InputRow data={data2} />
-
         <div style={{ gap: "1rem" }}>
           <ZoomMap data={OWtoNether2(data)} type="OW" />
           <ZoomMap data={NethertoOW(data)} />
