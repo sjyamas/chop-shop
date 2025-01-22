@@ -103,7 +103,7 @@ export default function HandsList({ data }) {
           start: ${data.startMoney.toLocaleString()} {end} &emsp;
         </h3> */}
         <h2 style={{ margin: 0 }}>
-          Profit: ${profit} &emsp; Games: {gamesPlayed} &emsp; Plus-Minus: {PM}
+          Profit: ${profit} &emsp; Games: {gamesPlayed} &emsp; W/L: {PM}
         </h2>
         <div style={{ marginTop: 10, display: "flex", flexWrap: "wrap" }}>
           {data.hands.map((value, index) => (
