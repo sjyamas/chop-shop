@@ -49,6 +49,11 @@ export default function AdminPage() {
               <h1> Portal Map </h1>
             </Link>
           </CustomButton>
+          <CustomButton>
+            <Link to="/gamble" style={{ color: "white" }}>
+              <h1> Gamble Sim </h1>
+            </Link>
+          </CustomButton>
         </div>
         <div className="front-col padding-col">
           <div>

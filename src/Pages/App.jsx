@@ -18,6 +18,7 @@ import Chrono from '../Components/Chrono/Chrono'
 import TrafficLightPage from './TrafficLightPage'
 import DemoModePage from './DemoModePage'
 import WebPortalPage from './WebPortalPage'
+import GamblePage from './GamblePage'
 
 import './App.css';
 import { enableMapSet } from 'immer';
@@ -35,7 +36,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/traffic-light/demo' element={<DemoModePage/>}/>
     <Route path='/traffic-light' element={<TrafficLightPage/>}/>
     <Route path='/portal-map' element={<WebPortalPage/>}/>
-
+    <Route path='/gamble' element={<GamblePage/>}/>
 
   </Route>
 
