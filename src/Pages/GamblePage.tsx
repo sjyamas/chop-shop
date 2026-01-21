@@ -1,3 +1,3 @@
-export function GamblePage() {
+export default function GamblePage() {
   return <></>;
 }
